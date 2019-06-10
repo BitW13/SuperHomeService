@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace NotesService.Models
 {
-    public class NewNote
+    public class CreateNote
     {
         public string Name { get; set; }
 

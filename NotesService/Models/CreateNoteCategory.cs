@@ -2,7 +2,7 @@
 
 namespace NotesService.Models
 {
-    public class NewNoteCategory
+    public class CreateNoteCategory
     {
         [Required]
         public string Name { get; set; }
