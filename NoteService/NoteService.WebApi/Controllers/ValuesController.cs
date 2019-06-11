@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
-namespace NotesService.Controllers
+namespace NoteService.WebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

@@ -2,9 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using NotesService.Dal.Contexts;
 using NotesService.Dal.Repositories.Interfaces;
-using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace NotesService.Dal.Repositories.Implementations

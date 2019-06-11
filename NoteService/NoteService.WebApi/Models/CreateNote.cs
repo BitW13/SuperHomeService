@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace NotesService.Models
+namespace NotesService.WebApi.Models
 {
     public class CreateNote
     {
