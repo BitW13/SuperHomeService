@@ -3,7 +3,6 @@ using Common.Entity.NoteService;
 using Microsoft.AspNetCore.Mvc;
 using NoteService.Dal.DataAccess.Interfaces;
 using NotesService.WebApi.Models;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace NoteService.WebApi.Controllers
@@ -19,41 +18,6 @@ namespace NoteService.WebApi.Controllers
         {
             this.db = db;
             this.mapper = mapper;
-        }
-
-        [HttpGet]
-        public async Task<IEnumerable<EditNote>> Get()
-        {
-            var notes = await db.Notes.GetAllAsync();
-
-            List<EditNote> models = mapper.Map<List<EditNote>>(notes);
-
-            return models;
-        }
-
-        [HttpGet("{id}")]
-        public async Task<IActionResult> Get(int id)
-        {
-            if(id <= 0)
-            {
-                return BadRequest();
-            }
-
-            Note note = await db.Notes.GetItemByIdAsync(id);
-
-            if(note == null)
-            {
-                return NotFound();
-            }
-
-            EditNote model = mapper.Map<EditNote>(note);
-
-            if(model == null)
-            {
-                return NotFound();
-            }
-
-            return Ok(model);
         }
 
         [HttpPost]

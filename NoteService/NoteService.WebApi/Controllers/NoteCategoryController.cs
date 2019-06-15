@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using Common.Entity.NoteService;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NoteService.Dal.DataAccess.Interfaces;
 using NotesService.WebApi.Models;
+using System.Threading.Tasks;
 
 namespace NoteService.WebApi.Controllers
 {
@@ -22,41 +18,6 @@ namespace NoteService.WebApi.Controllers
         {
             this.mapper = mapper;
             this.db = db;
-        }
-
-        [HttpGet]
-        public async Task<IEnumerable<EditNoteCategory>> Get()
-        {
-            var notes = await db.NoteCategories.GetAllAsync();
-
-            List<EditNoteCategory> models = mapper.Map<List<EditNoteCategory>>(notes);
-
-            return models;
-        }
-
-        [HttpGet("{id}")]
-        public async Task<IActionResult> Get(int id)
-        {
-            if (id <= 0)
-            {
-                return BadRequest();
-            }
-
-            NoteCategory noteCategory = await db.NoteCategories.GetItemByIdAsync(id);
-
-            if (noteCategory == null)
-            {
-                return NotFound();
-            }
-
-            EditNoteCategory model = mapper.Map<EditNoteCategory>(noteCategory);
-
-            if (model == null)
-            {
-                return NotFound();
-            }
-
-            return Ok(model);
         }
 
         [HttpPost]
