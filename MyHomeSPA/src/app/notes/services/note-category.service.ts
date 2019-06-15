@@ -1,22 +1,25 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { NoteModel } from '../models/noteModel';
-import { Note } from '../models/note';
+import { NoteCategory } from '../models/noteCategory';
 
 @Injectable({
   providedIn: 'root'
 })
-export class NoteService {
+export class NoteCategoryService {
 
-  private url = "https://superhomeservicenoteservice.azurewebsites.net/api/note/";
+  private url = "https://superhomeservicenoteservice.azurewebsites.net/api/notecategory/";
   
   constructor(private http: HttpClient) { }
 
-  createItem(item: Note){
+  getItems(){
+    return this.http.get(this.url);
+  }
+
+  createItem(item: NoteCategory){
       return this.http.post(this.url, item); 
   }
 
-  updateItem(item: Note) {
+  updateItem(item: NoteCategory) {
     return this.http.put(this.url + item.id, item);
   }
   
