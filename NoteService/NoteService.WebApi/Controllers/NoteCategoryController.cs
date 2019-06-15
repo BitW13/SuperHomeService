@@ -20,6 +20,13 @@ namespace NoteService.WebApi.Controllers
             this.db = db;
         }
 
+        [HttpGet]
+        public async Task<IActionResult> Get()
+        {
+            return Ok(await db.NoteCategories.GetAllAsync());
+        }
+
+
         [HttpPost]
         public async Task<IActionResult> Post([FromBody]CreateNoteCategory model)
         {
