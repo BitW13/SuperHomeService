@@ -6,6 +6,8 @@ export class Note {
 
         public name?: string,
 
+        public text?: string,
+
         public lastChange?: Date,
 
         public noteCategoryId?: number

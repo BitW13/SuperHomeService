@@ -1,0 +1,13 @@
+<div>
+  <h1>{{noteCategory.name}}</h1>
+  <div *ngFor='let item of items'>
+    <div class="card" style="width: 18rem;">
+      <img src="{{noteCategory.imagePath}}" class="card-img-top">
+      <div class="card-body">
+        <h5 class="card-title">Название</h5>
+        <p class="card-text">Описание</p>
+        <button type="button" class="btn btn-primary">Удалить</button>
+      </div>
+    </div>
+  </div>
+</div>

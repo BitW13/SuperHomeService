@@ -3,8 +3,17 @@
     <div class="col-4">
       <app-note-filter></app-note-filter>
     </div>
-    <div class="col-8">
-      <p>Notes work!</p>
+    <div>
+      <div *ngIf='isNewRecord, else unset'>
+        <button type="button" class="btn btn-secondary" (click)='onButton()'>Отмена</button>
+        <app-note-add></app-note-add>
+      </div>
+      <ng-template #unset>
+        <button type="button" class="btn btn-secondary" (click)='onButton()'>Новая заметка</button>
+        <app-note-list 
+        *ngFor='let item of items'
+        [noteCategory] = 'item'></app-note-list>
+      </ng-template>
     </div>
   </div>
 </div>

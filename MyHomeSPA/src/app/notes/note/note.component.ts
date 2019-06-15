@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { NoteModel } from '../models/noteModel';
-import { NoteModelService } from '../services/note-model.service';
+import { NoteCategoryService } from '../services/note-category.service';
+import { NoteCategory } from '../models/noteCategory';
 
 @Component({
   selector: 'app-note',
@@ -9,18 +9,25 @@ import { NoteModelService } from '../services/note-model.service';
 })
 export class NoteComponent implements OnInit {
 
-  items: Array<NoteModel>;
+  items: Array<NoteCategory>;
+  isNewRecord: boolean = false;
 
-  constructor(private service: NoteModelService) { }
+  constructor(private service: NoteCategoryService) { 
+    this.items = new Array<NoteCategory>();
+  }
 
   ngOnInit() {
     this.loadItems();
   }
 
   loadItems(){
-    this.service.getItems().subscribe((data: NoteModel[]) => {
+    this.service.getItems().subscribe((data: NoteCategory[]) => {
       this.items = data;
     });
+  }
+
+  onButton(){
+    this.isNewRecord = !this.isNewRecord;
   }
 
 }

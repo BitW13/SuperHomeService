@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { NoteModel } from '../models/noteModel';
 import { Note } from '../models/note';
 
 @Injectable({
@@ -8,12 +7,16 @@ import { Note } from '../models/note';
 })
 export class NoteService {
 
-  private url = "https://superhomeservicenoteservice.azurewebsites.net/api/note/";
+  private url = "https://shsnoteservice.azurewebsites.net/api/note/";
   
   constructor(private http: HttpClient) { }
 
+  getByNoteCategoryId(noteCategoryId: number){
+    return this.http.get(this.url + 'getbynotecategoryid/' + noteCategoryId)
+  }
+
   createItem(item: Note){
-      return this.http.post(this.url, item); 
+    return this.http.post(this.url, item); 
   }
 
   updateItem(item: Note) {
