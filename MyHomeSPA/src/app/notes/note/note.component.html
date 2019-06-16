@@ -1,18 +1,54 @@
-<div class="container">
-  <div class="row">
-    <div class="col-4">
-      <app-note-filter></app-note-filter>
+<!--<div class="row">
+  <div>
+    <div *ngIf='ifActiveFilterPanel, else filter'>
+      <app-note-filter 
+      *ngFor='let item of items'
+      [item]='item'></app-note-filter>
+    </div>
+    <ng-template #filter>
+    </ng-template>
+  </div>
+  <button type="button" class="btn btn-primary" (click)='activateFilterPanel()'></button>
+  <div>
+    <div class="container-fluid">
+      <div *ngIf='ifNewNote, else list'>
+      <button type="button" class="btn btn-primary" (click)='newNote()'>Отмена</button>
+      <app-note-add
+      (addNewNote)="addNewNote($event)"></app-note-add>
+    </div>
+    <ng-template #list>
+      <button type="button" class="btn btn-primary" (click)='newNote()'>Добавить заметку</button>
+      <app-note-list 
+      *ngFor='let noteCategory of items'
+      [noteCategory]='noteCategory'></app-note-list>
+    </ng-template>
+    </div>      
+  </div>
+</div>-->
+
+<div class="row">
+  <div>
+    <div *ngIf='ifActiveFilterPanel, else filter'>
+      <app-note-filter 
+      *ngFor='let noteCategory of items'
+      [noteCategory]='noteCategory'></app-note-filter>
+    </div>
+    <ng-template #filter>
+    </ng-template>
+  </div>
+  <button type="button" class="btn btn-primary" (click)='activateFilterPanel()'>Панель</button>
+  <div class="col-auto">
+    <div *ngIf='ifNewNote, else list'>
+      <button type="button" class="btn btn-primary" (click)='newNote()'>Отмена</button>
+      <app-note-add
+      (addNewNote)="addNewNote($event)"></app-note-add>
     </div>
     <div>
-      <div *ngIf='isNewRecord, else unset'>
-        <button type="button" class="btn btn-secondary" (click)='onButton()'>Отмена</button>
-        <app-note-add></app-note-add>
-      </div>
-      <ng-template #unset>
-        <button type="button" class="btn btn-secondary" (click)='onButton()'>Новая заметка</button>
-        <app-note-list 
-        *ngFor='let item of items'
-        [noteCategory] = 'item'></app-note-list>
+      <ng-template #list>
+        <div><button type="button" class="btn btn-primary" (click)='newNote()'>Добавить заметку</button></div>
+        <div *ngFor='let noteCategory of items'>
+          <app-note-list *ngIf='item.isOn'
+          [noteCategory]='noteCategory'></app-note-list></div>
       </ng-template>
     </div>
   </div>

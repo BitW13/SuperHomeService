@@ -12,15 +12,14 @@ export class NoteListComponent implements OnInit {
 
   @Input() noteCategory: NoteCategory;
   items: Array<Note>;
+  ifItemMappingIsEnabled: boolean;
 
   constructor(private service: NoteService) { 
     this.items = new Array<Note>();
   }
 
   ngOnInit() {
-    if(this.noteCategory != null){
-      this.loadItems();
-    }
+    this.loadItems();
   }
 
   loadItems(){
@@ -29,4 +28,7 @@ export class NoteListComponent implements OnInit {
     });
   }
 
+  itemMappingIsEnabled(){
+    this.ifItemMappingIsEnabled = !this.ifItemMappingIsEnabled;
+  }
 }

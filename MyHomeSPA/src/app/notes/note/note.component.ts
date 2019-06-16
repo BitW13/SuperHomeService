@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NoteCategoryService } from '../services/note-category.service';
 import { NoteCategory } from '../models/noteCategory';
+import { Note } from '../models/note';
+import { NoteService } from '../services/note.service';
 
 @Component({
   selector: 'app-note',
@@ -10,9 +12,10 @@ import { NoteCategory } from '../models/noteCategory';
 export class NoteComponent implements OnInit {
 
   items: Array<NoteCategory>;
-  isNewRecord: boolean = false;
+  ifNewNote: boolean = false;
+  ifActiveFilterPanel: boolean = true;
 
-  constructor(private service: NoteCategoryService) { 
+  constructor(private service: NoteCategoryService, private noteService: NoteService) { 
     this.items = new Array<NoteCategory>();
   }
 
@@ -26,8 +29,24 @@ export class NoteComponent implements OnInit {
     });
   }
 
-  onButton(){
-    this.isNewRecord = !this.isNewRecord;
+  newNote(){
+    this.ifNewNote = !this.ifNewNote;
   }
 
+  activateFilterPanel(){
+    this.ifActiveFilterPanel = !this.ifActiveFilterPanel;
+  }
+
+  addNewNote(note: Note){
+    this.noteService.createItem(note).subscribe((data: Note) => {
+      this.newNote();
+      this.loadItems();
+    });
+  }
+
+  onVisibilitySwitching(noteCategory: NoteCategory){
+    this.service.updateItem(noteCategory).subscribe((data: NoteCategory) => {
+      this.loadItems();
+    })
+  }
 }

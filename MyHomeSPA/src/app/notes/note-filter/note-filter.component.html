@@ -1,46 +1,10 @@
-<div>
-  <input type="button" value="Добавить" class="btn btn-primary" (click)="add()" />
-  <table class="table table-striped">
-      <thead>
-          <tr>
-              <td>Название</td>
-              <td>Картинка</td>
-              <td>Действия</td>
-          </tr>
-      </thead>
-      <tbody>
-          <tr *ngFor="let item of items">
-              <ng-template [ngTemplateOutlet]="loadTemplate(item)" 
-                          [ngTemplateOutletContext]="{ $implicit: item}">
-              </ng-template>
-          </tr>
-      </tbody>
-  </table>
-  <div>{{statusMessage}}</div>
-</div>
 
-<ng-template #readTemplate let-item>
-    <td>{{item.name}}</td>
-    <td><img src="{{item.imagePath}}" width="100" height="100"></td>
-    <td>
-      <div class="btn-group-vertical" role="group">
-        <button type="button" class="btn btn-secondary" (click)="edit(item)">Изменить</button>
-        <button type="button" class="btn btn-secondary" (click)="delete(item)">Удалить</button>
-      </div>
-    </td>
-</ng-template>
-
-<ng-template #editTemplate>
-    <td>
-        <input type="text" [(ngModel)]="editItem.name" class="form-control" />
-    </td>
-    <td>
-        <input type="text" [(ngModel)]="editItem.imagePath" class="form-control" />
-    </td>
-    <td>
-      <div class="btn-group-vertical" role="group">
-        <button type="button" class="btn btn-secondary" (click)="save()">Сохранить</button>
-        <button type="button" class="btn btn-secondary" (click)="cancel()">Отмена</button>
-      </div>
-    </td>
-</ng-template>
+<table>
+  <tbody>
+    <tr>
+      <td><img src="https://mobile-review.com/articles/2016/image/montblanc-augmented-paper/1.jpg" width="50" height="50"></td>
+      <td><h2>{{item.name}}</h2></td>
+      <td><button type="button" class="btn btn-primary" (click)='visibilitySwitching()'>Не отображать</button></td>
+    </tr>
+  </tbody>
+</table>

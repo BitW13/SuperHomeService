@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output, OnInit} from '@angular/core';
 import { Note } from '../models/note';
 import { NoteCategory } from '../models/noteCategory';
 import { NoteService } from '../services/note.service';
@@ -12,6 +12,10 @@ import { NoteCategoryService } from '../services/note-category.service';
 export class NoteAddComponent implements OnInit {
 
   note: Note;
+  noteCategoryId: number;
+
+  @Output() addNewNote = new EventEmitter<Note>();
+
   items: Array<NoteCategory>;
 
   constructor(private noteService: NoteService, private noteCategoryService: NoteCategoryService) { }
@@ -27,4 +31,7 @@ export class NoteAddComponent implements OnInit {
     })
   }
 
+  save(){
+    this.addNewNote.emit(this.note);
+  }
 }

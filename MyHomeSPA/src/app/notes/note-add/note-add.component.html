@@ -1,13 +1,16 @@
 <div class="form-group">
-  <label>Название</label>
   <input type="text" class="form-control" placeholder="Название"
   [(ngModel)]="note.name"
   [ngModelOptions]="{standalone: true}">
 </div>
 <div class="form-group">
-  <label>Выбрать категорию</label>
-  <select class="form-control" 
-  [(ngModel)]="note.noteCategoryId"
+  <textarea class="form-control" rows="3" placeholder="Описание"
+  [(ngModel)]='note.text'
+  [ngModelOptions]="{standalone: true}"></textarea>
+</div>
+<div class="form-group">
+  <select class="form-control" placeholder="Категория"
+  [(ngModel)]='note.noteCategoryId'
   [ngModelOptions]="{standalone: true}">
     <option
     *ngFor='let item of items'
@@ -15,9 +18,4 @@
     >{{item.name}}</option>
   </select>
 </div>
-<div class="form-group">
-  <label>Текст</label>
-  <textarea class="form-control" rows="3"
-  [(ngModel)]='item.text'
-  [ngModelOptions]="{standalone: true}"></textarea>
-</div>
+<button type="button" class="btn btn-primary" (click)='save()'>Сохранить</button>
