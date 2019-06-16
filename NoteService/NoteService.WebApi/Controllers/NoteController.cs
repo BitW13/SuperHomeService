@@ -3,6 +3,7 @@ using Common.Entity.NoteService;
 using Microsoft.AspNetCore.Mvc;
 using NoteService.Dal.DataAccess.Interfaces;
 using NotesService.WebApi.Models;
+using System;
 using System.Threading.Tasks;
 
 namespace NoteService.WebApi.Controllers
@@ -20,6 +21,19 @@ namespace NoteService.WebApi.Controllers
             this.mapper = mapper;
         }
 
+        [HttpGet("getbynotecategoryid/{id}")]
+        public async Task<IActionResult> Get(int id)
+        {
+            if (id <= 0)
+            {
+                return BadRequest();
+            }
+
+            var notes = await db.Notes.GetByNoteCategoryId(id);
+
+            return Ok(notes);
+        }
+
         [HttpPost]
         public async Task<IActionResult> Post([FromBody]CreateNote model)
         {
@@ -29,6 +43,8 @@ namespace NoteService.WebApi.Controllers
             }
             
             if(!ModelState.IsValid) { return BadRequest(ModelState); }
+
+            model.LastChange = DateTime.Now;
 
             Note note = await db.Notes.CreateAsync(mapper.Map<Note>(model));
 
@@ -49,6 +65,8 @@ namespace NoteService.WebApi.Controllers
                 return BadRequest();
             }
             if(!ModelState.IsValid) { return BadRequest(ModelState); }
+
+            model.LastChange = DateTime.Now;
 
             await db.Notes.UpdateAsync(mapper.Map<Note>(model));
 

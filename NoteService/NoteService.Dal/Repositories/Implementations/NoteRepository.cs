@@ -51,6 +51,13 @@ namespace NotesService.Dal.Repositories.Implementations
             return await db.Notes.ToListAsync();
         }
 
+        public async Task<IEnumerable<Note>> GetByNoteCategoryId(int noteCategoryId)
+        {
+            var notes = (await GetAllAsync()) as List<Note>;
+
+            return notes.FindAll(note => note.NoteCategoryId == noteCategoryId);
+        }
+
         public async Task<Note> GetItemByIdAsync(int id)
         {
             return await db.Notes.FindAsync(id);

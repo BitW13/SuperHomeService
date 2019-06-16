@@ -26,7 +26,6 @@ namespace NoteService.WebApi.Controllers
             return Ok(await db.NoteCategories.GetAllAsync());
         }
 
-
         [HttpPost]
         public async Task<IActionResult> Post([FromBody]CreateNoteCategory model)
         {
@@ -36,6 +35,8 @@ namespace NoteService.WebApi.Controllers
             }
 
             if (!ModelState.IsValid) { return BadRequest(ModelState); }
+
+            model.IsOn = true;
 
             NoteCategory noteCategory = await db.NoteCategories.CreateAsync(mapper.Map<NoteCategory>(model));
 
@@ -51,11 +52,15 @@ namespace NoteService.WebApi.Controllers
             {
                 return BadRequest();
             }
+
             if (id != model.Id)
             {
                 return BadRequest();
             }
+
             if (!ModelState.IsValid) { return BadRequest(ModelState); }
+
+            model.IsOn = true;
 
             await db.NoteCategories.UpdateAsync(mapper.Map<NoteCategory>(model));
 
