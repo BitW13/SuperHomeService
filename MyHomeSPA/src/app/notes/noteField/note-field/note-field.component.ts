@@ -15,7 +15,7 @@ export class NoteFieldComponent implements OnInit {
 
   @Input() noteModels: Array<NoteModel>;
 
-  @Output() onReLoadItems = new EventEmitter<any>();
+  @Output() loadItems = new EventEmitter<any>();
 
   isNewNote: boolean;
 
@@ -27,7 +27,7 @@ export class NoteFieldComponent implements OnInit {
   }
 
   loadNoteModels(){
-    this.onReLoadItems.emit();
+    this.loadItems.emit();
   }
 
   switchingIsNewNote(){

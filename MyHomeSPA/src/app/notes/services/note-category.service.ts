@@ -11,12 +11,12 @@ export class NoteCategoryService {
   
   constructor(private http: HttpClient) { }
 
-  getItems(){
-    return this.http.get(this.url);
+  getItems() {
+    return this.http.get(this.url); 
   }
 
   createItem(item: NoteCategory){
-      return this.http.post(this.url, item); 
+    return this.http.post(this.url, item); 
   }
 
   updateItem(item: NoteCategory) {

@@ -13,7 +13,7 @@ export class NotePanelComponent implements OnInit {
 
   @Input() notesCategories: Array<NoteCategory>;
 
-  @Output() onReLoadItems = new EventEmitter<any>();
+  @Output() loadItems = new EventEmitter<any>();
 
   constructor(private service: NoteCategoryService) { }
 
@@ -26,7 +26,7 @@ export class NotePanelComponent implements OnInit {
 
   addNewNoteCategory(){
     this.switchingIsNewNoteCategory();
-    this.onReLoadItems.emit();
+    this.loadItems.emit();
   }
 
   edit(noteCategory){
@@ -36,13 +36,13 @@ export class NotePanelComponent implements OnInit {
   changeVisibility(noteCategory: NoteCategory){
     noteCategory.isOn = !noteCategory.isOn;
     this.service.updateItem(noteCategory).subscribe((data: NoteCategory) =>{
-      this.onReLoadItems.emit();
+      this.loadItems.emit();
     })
   }
 
   delete(noteCategory: NoteCategory){
     this.service.deleteItem(noteCategory.id).subscribe((data: NoteCategory) =>{
-      this.onReLoadItems.emit();
+      this.loadItems.emit();
     });
   }
 

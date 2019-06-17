@@ -4,7 +4,7 @@
     <app-add-note-category (addNewNoteCategory)="addNewNoteCategory($event)"></app-add-note-category>
   </div>
   <ng-template #listOfNoteCategory>
-    <button type="button" class="btn btn-primary" (click)='switchingIsNewNoteCategory()'>Добавить заметку</button>
+    <button type="button" class="btn btn-primary" (click)='switchingIsNewNoteCategory()'>Добавить rfn</button>
     <div *ngFor='let noteCategory of notesCategories'>
       <div class="border border-primary">
         <img src="{{noteCategory.imagePath}}" width="200" height="150">
