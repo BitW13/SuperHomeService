@@ -10,7 +10,6 @@ using System.Threading.Tasks;
 
 namespace NoteService.WebApi.Controllers
 {
-    [EnableCors]
     [Route("api/[controller]")]
     [ApiController]
     public class NoteCategoryController : ControllerBase
