@@ -1,0 +1,20 @@
+<div>
+  <div *ngIf='isNewNoteCategory, else listOfNoteCategory'>
+    <button type="button" class="btn btn-primary" (click)='switchingIsNewNoteCategory()'>Отмена</button>
+    <app-add-note-category (addNewNoteCategory)="addNewNoteCategory($event)"></app-add-note-category>
+  </div>
+  <ng-template #listOfNoteCategory>
+    <button type="button" class="btn btn-primary" (click)='switchingIsNewNoteCategory()'>Добавить заметку</button>
+    <div *ngFor='let noteCategory of notesCategories'>
+      <div class="border border-primary">
+        <img src="{{noteCategory.imagePath}}" width="200" height="150">
+        <h2>{{noteCategory.name}}</h2>
+        <div class="btn-group" role="group">
+          <button type="button" class="btn btn-danger" (click)='delete(noteCategory)'>Удалить</button>
+          <button type="button" class="btn btn-primary" (click)='changeVisibility(noteCategory)'>Отображать</button>
+          <button type="button" class="btn btn-primary" (click)='edit(noteCategory)'>Изменить</button>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</div>

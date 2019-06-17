@@ -13,9 +13,10 @@
   [(ngModel)]='note.noteCategoryId'
   [ngModelOptions]="{standalone: true}">
     <option
-    *ngFor='let item of items'
-    value={{item.id}}
-    >{{item.name}}</option>
+    *ngFor='let noteCategory of notesCategories'
+    value={{noteCategory.id}}
+    >{{noteCategory.name}}</option>
   </select>
 </div>
 <button type="button" class="btn btn-primary" (click)='save()'>Сохранить</button>
+<button type="button" class="btn btn-primary" (click)='clear()'>Очистить</button>

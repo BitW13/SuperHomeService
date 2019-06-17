@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class NoteModelService {
 
-  private url = "https://shsnoteservice.azurewebsites.net/api/notemodel/";
+  private url = "https://noteservicewebapi20190616040752.azurewebsites.net/api/notemodel/";
   
   constructor(private http: HttpClient) { }
 

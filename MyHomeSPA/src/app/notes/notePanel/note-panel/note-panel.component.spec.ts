@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NoteAddComponent } from './note-add.component';
+import { NotePanelComponent } from './note-panel.component';
 
-describe('NoteAddComponent', () => {
-  let component: NoteAddComponent;
-  let fixture: ComponentFixture<NoteAddComponent>;
+describe('NotePanelComponent', () => {
+  let component: NotePanelComponent;
+  let fixture: ComponentFixture<NotePanelComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ NoteAddComponent ]
+      declarations: [ NotePanelComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(NoteAddComponent);
+    fixture = TestBed.createComponent(NotePanelComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

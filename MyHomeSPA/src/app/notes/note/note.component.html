@@ -1,4 +1,4 @@
-<div class="row">
+<!--<div class="row">
   <div>
     <div *ngIf='!ifNewNoteCategory, else newCategory'>
       <div *ngIf='ifActiveFilterPanel, else panel'>
@@ -32,5 +32,14 @@
           [noteCategory]='noteCategory'></app-note-list></div>
       </ng-template>
     </div>
+  </div>
+</div>-->
+
+<div class="row">
+  <div>
+    <app-note-panel [notesCategories]='notesCategories' (onReLoadItems)='onReLoadItems($event)'></app-note-panel>
+  </div>
+  <div>
+    <app-note-field [notesCategories]='notesCategories' [noteModels]='noteModels' (onReLoadItems)='onReLoadItems($event)'></app-note-field>
   </div>
 </div>

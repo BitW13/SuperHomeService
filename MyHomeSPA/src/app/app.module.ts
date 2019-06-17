@@ -8,13 +8,13 @@ import { FormsModule }   from '@angular/forms';
 import { HomeComponent } from './home/home.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { NoteComponent } from './notes/note/note.component';
-import { NoteFilterComponent } from './notes/note-filter/note-filter.component';
 import { NoteService } from './notes/services/note.service';
 import { NoteCategoryService } from './notes/services/note-category.service';
 import { NoteModelService } from './notes/services/note-model.service';
-import { NoteListComponent } from './notes/note-list/note-list.component';
-import { NoteAddComponent } from './notes/note-add/note-add.component';
-import { NoteCategoryAddComponent } from './notes/note-category-add/note-category-add.component';
+import { NotePanelComponent } from './notes/notePanel/note-panel/note-panel.component';
+import { AddNoteCategoryComponent } from './notes/notePanel/add-note-category/add-note-category.component';
+import { NoteFieldComponent } from './notes/noteField/note-field/note-field.component';
+import { AddNoteComponent } from './notes/noteField/add-note/add-note.component';
 
 @NgModule({
   declarations: [
@@ -22,10 +22,10 @@ import { NoteCategoryAddComponent } from './notes/note-category-add/note-categor
     HomeComponent,
     NavbarComponent,
     NoteComponent,
-    NoteFilterComponent,
-    NoteListComponent,
-    NoteAddComponent,
-    NoteCategoryAddComponent
+    NotePanelComponent,
+    AddNoteCategoryComponent,
+    NoteFieldComponent,
+    AddNoteComponent
   ],
   imports: [
     BrowserModule,
