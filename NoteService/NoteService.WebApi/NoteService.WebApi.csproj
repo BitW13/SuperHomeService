@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\NoteService.Dal\NoteService.Dal.csproj" />
+    <ProjectReference Include="..\NoteService.Bll\NoteService.Bll.csproj" />
     <ProjectReference Include="..\NoteService.DI\NoteService.DI.csproj" />
   </ItemGroup>
 

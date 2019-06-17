@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using Common.Entity.NoteService;
 using Microsoft.AspNetCore.Mvc;
-using NoteService.Dal.DataAccess.Interfaces;
+using NoteService.Bll.BusinessLogic.Interfaces;
 using NotesService.WebApi.Models;
 using System;
 using System.Threading.Tasks;
@@ -13,9 +13,9 @@ namespace NoteService.WebApi.Controllers
     public class NoteController : ControllerBase
     {
         private readonly IMapper mapper;
-        private readonly IDataAccess db;
+        private readonly IBusinessLogic db;
 
-        public NoteController(IDataAccess db, IMapper mapper)
+        public NoteController(IBusinessLogic db, IMapper mapper)
         {
             this.db = db;
             this.mapper = mapper;
@@ -29,7 +29,7 @@ namespace NoteService.WebApi.Controllers
                 return BadRequest();
             }
 
-            var notes = await db.Notes.GetByNoteCategoryId(id);
+            var notes = await db.Notes.GetByNoteCategoryIdAsync(id);
 
             return Ok(notes);
         }
@@ -37,12 +37,12 @@ namespace NoteService.WebApi.Controllers
         [HttpPost]
         public async Task<IActionResult> Post([FromBody]CreateNote model)
         {
-            if(model == null)
+            if (model == null)
             {
                 return BadRequest();
             }
-            
-            if(!ModelState.IsValid) { return BadRequest(ModelState); }
+
+            if (!ModelState.IsValid) { return BadRequest(ModelState); }
 
             model.LastChange = DateTime.Now;
 
@@ -56,15 +56,15 @@ namespace NoteService.WebApi.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> Put(int id, [FromBody]EditNote model)
         {
-            if(model == null)
+            if (model == null)
             {
                 return BadRequest();
             }
-            if(id != model.Id)
+            if (id != model.Id)
             {
                 return BadRequest();
             }
-            if(!ModelState.IsValid) { return BadRequest(ModelState); }
+            if (!ModelState.IsValid) { return BadRequest(ModelState); }
 
             model.LastChange = DateTime.Now;
 
@@ -76,14 +76,14 @@ namespace NoteService.WebApi.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            if(id <= 0)
+            if (id <= 0)
             {
                 return BadRequest();
             }
 
             Note note = await db.Notes.GetItemByIdAsync(id);
 
-            if(note == null)
+            if (note == null)
             {
                 return BadRequest();
             }

@@ -1,14 +1,15 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using NoteService.Bll.BusinessLogic.Implementations;
+using NoteService.Bll.BusinessLogic.Interfaces;
+using NoteService.Bll.Services.Implementations;
+using NoteService.Bll.Services.Interfaces;
 using NoteService.Dal.DataAccess.Implementations;
 using NoteService.Dal.DataAccess.Interfaces;
 using NotesService.Dal.Contexts;
 using NotesService.Dal.Repositories.Implementations;
 using NotesService.Dal.Repositories.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace NoteService.DI
 {
@@ -24,6 +25,12 @@ namespace NoteService.DI
 
             services.AddDbContext<NoteServiceContext>(options =>
                 options.UseSqlServer(connectionString));
+
+
+            services.AddTransient<IBusinessLogic, BusinessLogic>();
+            services.AddTransient<INoteEntityService, NoteEntityService>();
+            services.AddTransient<INoteCategoryService, NoteCategoryService>();
+            services.AddTransient<ISortService, SortService>();
         }
     }
 }

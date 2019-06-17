@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using Common.Entity.NoteService;
 using Microsoft.AspNetCore.Mvc;
-using NoteService.Dal.DataAccess.Interfaces;
+using NoteService.Bll.BusinessLogic.Interfaces;
 using NotesService.WebApi.Models;
 using System.Threading.Tasks;
 
@@ -12,9 +12,9 @@ namespace NoteService.WebApi.Controllers
     public class NoteCategoryController : ControllerBase
     {
         private readonly IMapper mapper;
-        private readonly IDataAccess db;
+        private readonly IBusinessLogic db;
 
-        public NoteCategoryController(IMapper mapper, IDataAccess db)
+        public NoteCategoryController(IMapper mapper, IBusinessLogic db)
         {
             this.mapper = mapper;
             this.db = db;
