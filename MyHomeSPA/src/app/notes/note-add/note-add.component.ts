@@ -12,13 +12,12 @@ import { NoteCategoryService } from '../services/note-category.service';
 export class NoteAddComponent implements OnInit {
 
   note: Note;
-  noteCategoryId: number;
 
   @Output() addNewNote = new EventEmitter<Note>();
 
   items: Array<NoteCategory>;
 
-  constructor(private noteService: NoteService, private noteCategoryService: NoteCategoryService) { }
+  constructor(private noteCategoryService: NoteCategoryService) { }
 
   ngOnInit() {
     this.loadItems();

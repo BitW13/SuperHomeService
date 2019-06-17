@@ -10,7 +10,7 @@ import { NoteCategoryService } from '../services/note-category.service';
 export class NoteFilterComponent implements OnInit {
 
   @Input() noteCategory: NoteCategory;
-  @Output() onVisibilitySwitching = new EventEmitter<NoteCategory>();
+  @Output() changeVisibility = new EventEmitter<NoteCategory>();
 
   constructor() { }
 
@@ -19,7 +19,7 @@ export class NoteFilterComponent implements OnInit {
 
   visibilitySwitching(){
     this.noteCategory.isOn = !this.noteCategory.isOn;
-    this.onVisibilitySwitching.emit(this.noteCategory);
+    this.changeVisibility.emit(this.noteCategory);
   }
 
 }

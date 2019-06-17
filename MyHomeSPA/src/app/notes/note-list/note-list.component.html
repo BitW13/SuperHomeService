@@ -1,4 +1,5 @@
 <div><button type="button" class="btn btn-primary" (click)='itemMappingIsEnabled()'>{{noteCategory.name}}</button></div> 
+<p>{{noteCategory.isOn}}</p>
 <div *ngIf='ifItemMappingIsEnabled' class="row">
     <div class="row">
       <div *ngFor='let item of items'>

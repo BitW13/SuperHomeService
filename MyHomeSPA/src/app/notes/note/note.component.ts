@@ -14,6 +14,7 @@ export class NoteComponent implements OnInit {
   items: Array<NoteCategory>;
   ifNewNote: boolean = false;
   ifActiveFilterPanel: boolean = true;
+  ifNewNoteCategory: boolean;
 
   constructor(private service: NoteCategoryService, private noteService: NoteService) { 
     this.items = new Array<NoteCategory>();
@@ -48,5 +49,22 @@ export class NoteComponent implements OnInit {
     this.service.updateItem(noteCategory).subscribe((data: NoteCategory) => {
       this.loadItems();
     })
+  }
+
+  onNewCategory(){
+    this.ifNewNoteCategory = !this.ifNewNoteCategory;
+  }
+
+  addNewNoteCategory(noteCategory: NoteCategory){
+    this.service.createItem(noteCategory).subscribe((data: NoteCategory) => {
+      this.onNewCategory();
+      this.loadItems();
+    });
+  }
+
+  changeVisibility(noteCategory: NoteCategory){
+    this.service.updateItem(noteCategory).subscribe((data: NoteCategory) => {
+      this.loadItems();
+    });
   }
 }

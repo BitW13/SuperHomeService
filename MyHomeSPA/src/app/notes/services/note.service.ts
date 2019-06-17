@@ -7,7 +7,7 @@ import { Note } from '../models/note';
 })
 export class NoteService {
 
-  private url = "https://shsnoteservice.azurewebsites.net/api/note/";
+  private url = "https://noteservicewebapi20190616040752.azurewebsites.net/api/note/";
   
   constructor(private http: HttpClient) { }
 

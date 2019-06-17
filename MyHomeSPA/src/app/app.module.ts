@@ -14,6 +14,7 @@ import { NoteCategoryService } from './notes/services/note-category.service';
 import { NoteModelService } from './notes/services/note-model.service';
 import { NoteListComponent } from './notes/note-list/note-list.component';
 import { NoteAddComponent } from './notes/note-add/note-add.component';
+import { NoteCategoryAddComponent } from './notes/note-category-add/note-category-add.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { NoteAddComponent } from './notes/note-add/note-add.component';
     NoteComponent,
     NoteFilterComponent,
     NoteListComponent,
-    NoteAddComponent
+    NoteAddComponent,
+    NoteCategoryAddComponent
   ],
   imports: [
     BrowserModule,
