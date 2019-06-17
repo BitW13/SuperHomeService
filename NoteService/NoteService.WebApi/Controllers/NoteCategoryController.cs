@@ -60,8 +60,6 @@ namespace NoteService.WebApi.Controllers
 
             if (!ModelState.IsValid) { return BadRequest(ModelState); }
 
-            model.IsOn = true;
-
             await db.NoteCategories.UpdateAsync(mapper.Map<NoteCategory>(model));
 
             return Ok(model);
