@@ -1,4 +1,5 @@
 ﻿using Common.Entity.NoteService;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using NoteService.Bll.BusinessLogic.Interfaces;
 using NoteService.WebApi.Models;
@@ -7,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace NoteService.WebApi.Controllers
 {
+    [EnableCors]
     [Route("api/[controller]")]
     [ApiController]
     public class NoteModelController : ControllerBase
