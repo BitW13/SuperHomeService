@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using NoteService.Bll.BusinessLogic.Interfaces;
 using NotesService.WebApi.Models;
+using System.Collections;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace NoteService.WebApi.Controllers
@@ -23,10 +25,35 @@ namespace NoteService.WebApi.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Get()
+        public async Task<IEnumerable<EditNoteCategory>> Get()
         {
-            return Ok(await db.NoteCategories.GetAllAsync());
+            IEnumerable<NoteCategory> noteCategories = await db.NoteCategories.GetAllAsync();
+
+            IEnumerable<EditNoteCategory> models = mapper.Map<IEnumerable<EditNoteCategory>>(noteCategories);
+
+            return models;
         }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> Get(int id)
+        {
+            if (id <= 0)
+            {
+                return BadRequest();
+            }
+
+            NoteCategory category = await db.NoteCategories.GetItemByIdAsync(id);
+
+            if(category == null)
+            {
+                return NotFound();
+            }
+
+            EditNoteCategory model = mapper.Map<EditNoteCategory>(category);
+
+            return Ok(model);
+        }
+
 
         [HttpPost]
         public async Task<IActionResult> Post([FromBody]CreateNoteCategory model)
