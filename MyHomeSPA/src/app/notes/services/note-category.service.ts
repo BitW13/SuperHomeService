@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { NoteCategory } from '../models/noteCategory';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -11,19 +12,19 @@ export class NoteCategoryService {
   
   constructor(private http: HttpClient) { }
 
-  getItems() {
-    return this.http.get(this.url); 
+  getItems(): Observable<NoteCategory[]> {
+    return this.http.get<NoteCategory[]>(this.url);
   }
 
-  createItem(item: NoteCategory){
-    return this.http.post(this.url, item); 
+  createItem(item: NoteCategory): Observable<NoteCategory> {
+    return this.http.post<NoteCategory>(this.url, item);
   }
 
-  updateItem(item: NoteCategory) {
-    return this.http.put(this.url + item.id, item);
+  updateItem(item: NoteCategory): Observable<NoteCategory> {
+    return this.http.put<NoteCategory>(this.url + item.id, item);
   }
   
-  deleteItem(id: number){
-    return this.http.delete(this.url + id);
+  deleteItem(id: number): Observable<NoteCategory> {
+    return this.http.delete<NoteCategory>(this.url + id);
   }
 }

@@ -11,7 +11,7 @@ import { NoteModel } from '../../models/noteModel';
 })
 export class NoteFieldComponent implements OnInit {
 
-  @Input() notesCategories: Array<NoteCategory>;
+  @Input() noteCategories: Array<NoteCategory>;
 
   @Input() noteModels: Array<NoteModel>;
 
@@ -45,14 +45,12 @@ export class NoteFieldComponent implements OnInit {
 
   save(noteModel: NoteModel){
     noteModel.isChange = !noteModel.isChange;
-    this.noteService.updateItem(noteModel.note).subscribe((data: Note) =>{
-      this.loadNoteModels();
-    });
+    this.noteService.updateItem(noteModel.note);
+    this.loadNoteModels();
   }
 
   delete(note: Note){
-    this.noteService.deleteItem(note.id).subscribe((data: Note) =>{
-      this.loadNoteModels();
-    })
+    this.noteService.deleteItem(note.id);
+    this.loadNoteModels();
   }
 }

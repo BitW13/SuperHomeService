@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NoteCategoryService } from '../services/note-category.service';
-import { NoteCategory } from '../models/noteCategory';
-import { NoteModel } from '../models/noteModel';
 import { NoteModelService } from '../services/note-model.service';
+import { NoteModel } from '../models/noteModel';
+import { NoteCategory } from '../models/noteCategory';
 
 @Component({
   selector: 'app-note',
@@ -11,17 +11,14 @@ import { NoteModelService } from '../services/note-model.service';
 })
 export class NoteComponent implements OnInit {
 
-  noteCategories: Array<NoteCategory>;
+  noteCategories;
 
-  noteModels: Array<NoteModel>;
+  noteModels;
 
   constructor(private noteCategoryservice: NoteCategoryService, private noteModelService: NoteModelService) { }
 
   ngOnInit() {
-    this.noteCategoryservice.getItems().subscribe((data: NoteCategory[]) => {
-      this.noteCategories = data;
-    });
-    console.log(this.noteCategories)
+    this.loadItems();
   }
 
   loadItems(){
@@ -30,14 +27,14 @@ export class NoteComponent implements OnInit {
   }
 
   loadNoteCatigories(){
-    this.noteCategoryservice.getItems().subscribe((data1: NoteCategory[]) => {
-      this.noteCategories = data1;
+    this.noteCategoryservice.getItems().subscribe((data) => {
+      this.noteCategories = data as NoteCategory[]
     });
   }
 
   loadNoteModels(){
-    this.noteModelService.getItems().subscribe((data2: NoteModel[]) => {
-      this.noteModels = data2;
+    this.noteModelService.getItems().subscribe((data) => {
+      this.noteModels = data as NoteModel[]
     });
   }
 }

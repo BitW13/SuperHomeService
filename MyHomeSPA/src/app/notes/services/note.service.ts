@@ -11,19 +11,33 @@ export class NoteService {
   
   constructor(private http: HttpClient) { }
 
-  getByNoteCategoryId(noteCategoryId: number){
-    return this.http.get(this.url + 'getbynotecategoryid/' + noteCategoryId)
+  getByNoteCategoryId(noteCategoryId: number): Note[] {
+    let  items;
+    this.http.get(this.url + 'getbynotecategoryid/' + noteCategoryId).subscribe((data: Note[]) =>{
+      items = data;
+    });
+    return items;
   }
 
-  createItem(item: Note){
-    return this.http.post(this.url, item); 
+  createItem(item: Note): Note {
+    this.http.post(this.url, item).subscribe((data: Note) =>{
+      item = data;
+    });
+    return item
   }
 
-  updateItem(item: Note) {
-    return this.http.put(this.url + item.id, item);
+  updateItem(item: Note): Note {
+    this.http.put(this.url + item.id, item).subscribe((data: Note) =>{
+      item = data;
+    });
+    return item;
   }
   
-  deleteItem(id: number){
-    return this.http.delete(this.url + id);
+  deleteItem(id: number): Note {
+    let item;
+    this.http.delete(this.url + id).subscribe((data: Note) =>{
+      item = data;
+    });
+    return item;
   }
 }

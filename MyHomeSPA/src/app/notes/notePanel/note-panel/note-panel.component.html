@@ -5,7 +5,7 @@
   </div>
   <ng-template #listOfNoteCategory>
     <button type="button" class="btn btn-primary" (click)='switchingIsNewNoteCategory()'>Добавить rfn</button>
-    <div *ngFor='let noteCategory of notesCategories'>
+    <div *ngFor='let noteCategory of noteCategories'>
       <div class="border border-primary">
         <img src="{{noteCategory.imagePath}}" width="200" height="150">
         <h2>{{noteCategory.name}}</h2>

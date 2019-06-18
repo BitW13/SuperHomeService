@@ -24,9 +24,8 @@ export class AddNoteComponent implements OnInit {
   }
 
   save(){
-    this.noteService.createItem(this.note).subscribe((data: Note) => {
-      this.loadNoteModels.emit();
-    });
+    this.noteService.createItem(this.note);
+    this.loadNoteModels.emit();
   }
 
   clear(){

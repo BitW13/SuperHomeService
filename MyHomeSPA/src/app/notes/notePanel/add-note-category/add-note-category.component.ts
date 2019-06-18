@@ -10,7 +10,7 @@ import { NoteCategoryService } from '../../services/note-category.service';
 })
 export class AddNoteCategoryComponent implements OnInit {
 
-  noteCategory: NoteCategory;
+  noteCategory;
 
   @Output() addNewNoteCategory = new EventEmitter<any>();
 
@@ -21,14 +21,11 @@ export class AddNoteCategoryComponent implements OnInit {
   }
 
   save(){
-    this.service.createItem(this.noteCategory).subscribe((data: NoteCategory) => {
-      this.noteCategory = data;
-      this.addNewNoteCategory.emit();
-    });
+    this.noteCategory = this.service.createItem(this.noteCategory);
+    this.addNewNoteCategory.emit();
   }
 
   clear(){
     this.noteCategory = new NoteCategory();
   }
-
 }
