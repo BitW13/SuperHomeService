@@ -13,9 +13,9 @@ export class AddNoteComponent implements OnInit {
 
   note: Note;
 
-  @Input() notesCategories: Array<NoteCategory>;
+  @Input() noteCategories: Array<NoteCategory>;
   
-  @Output() loadNoteModels = new EventEmitter<any>();
+  @Output() addNewNote = new EventEmitter<any>();
 
   constructor(private noteCategoryservice: NoteCategoryService, private noteService: NoteService) { }
 
@@ -25,7 +25,7 @@ export class AddNoteComponent implements OnInit {
 
   save(){
     this.noteService.createItem(this.note);
-    this.loadNoteModels.emit();
+    this.addNewNote.emit();
   }
 
   clear(){

@@ -15,10 +15,13 @@ export class NoteComponent implements OnInit {
 
   noteModels;
 
+  isActiveNotePanel: boolean;
+
   constructor(private noteCategoryservice: NoteCategoryService, private noteModelService: NoteModelService) { }
 
   ngOnInit() {
     this.loadItems();
+    this.isActiveNotePanel = true;
   }
 
   loadItems(){
@@ -27,8 +30,8 @@ export class NoteComponent implements OnInit {
   }
 
   loadNoteCatigories(){
-    this.noteCategoryservice.getItems().subscribe((data) => {
-      this.noteCategories = data as NoteCategory[]
+    this.noteCategoryservice.getItems().subscribe((data: NoteCategory[]) =>{
+      this.noteCategories = data
     });
   }
 
@@ -36,5 +39,9 @@ export class NoteComponent implements OnInit {
     this.noteModelService.getItems().subscribe((data) => {
       this.noteModels = data as NoteModel[]
     });
+  }
+
+  switchingNotePanel(){
+    this.isActiveNotePanel = !this.isActiveNotePanel;
   }
 }

@@ -1,44 +1,11 @@
-<!--<div class="row">
-  <div>
-    <div *ngIf='!ifNewNoteCategory, else newCategory'>
-      <div *ngIf='ifActiveFilterPanel, else panel'>
-        <button type="button" class="btn btn-primary" (click)='onNewCategory()'>Новая категория</button>
-        <app-note-filter 
-        *ngFor='let noteCategory of items'
-        [noteCategory]='noteCategory'
-        (changeVisibility)="changeVisibility($event)"></app-note-filter>
-      </div>
-      <ng-template #panel>
-      </ng-template>
-    </div>
-    <ng-template #newCategory>
-      <button type="button" class="btn btn-primary" (click)='onNewCategory()'>Отмена</button>
-      <app-note-category-add
-      (addNewNoteCategory)="addNewNoteCategory($event)"></app-note-category-add>
-    </ng-template>
-  </div>
-  <button type="button" class="btn btn-primary" (click)='activateFilterPanel()'>Панель</button>
-  <div class="col-auto">
-    <div *ngIf='ifNewNote, else list'>
-      <button type="button" class="btn btn-primary" (click)='newNote()'>Отмена</button>
-      <app-note-add
-      (addNewNote)="addNewNote($event)"></app-note-add>
-    </div>
-    <div>
-      <ng-template #list>
-        <div><button type="button" class="btn btn-primary" (click)='newNote()'>Добавить заметку</button></div>
-        <div *ngFor='let noteCategory of items'>
-          <app-note-list *ngIf='noteCategory.isOn'
-          [noteCategory]='noteCategory'></app-note-list></div>
-      </ng-template>
-    </div>
-  </div>
-</div>-->
-
 <div class="row">
-  <div>
-    <app-note-panel [noteCategories]='noteCategories' (loadItems)='loadItems($event)'></app-note-panel>
+  <div *ngIf='isActiveNotePanel, else offPanel'>
+    <div>
+      <app-note-panel [noteCategories]='noteCategories' (loadItems)='loadItems($event)'></app-note-panel>
+    </div>
   </div>
+  <ng-template #offPanel></ng-template>
+  <button type="button" class="btn btn-primary" (click)='switchingNotePanel()'>Панель</button>
   <div>
     <app-note-field [noteCategories]='noteCategories' [noteModels]='noteModels' (loadItems)='loadItems($event)'></app-note-field>
   </div>

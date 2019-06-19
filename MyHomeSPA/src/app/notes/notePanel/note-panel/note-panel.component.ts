@@ -9,15 +9,16 @@ import { NoteCategoryService } from '../../services/note-category.service';
 })
 export class NotePanelComponent implements OnInit {
 
-  isNewNoteCategory: boolean = false;
+  isNewNoteCategory: boolean;
 
-  @Input() noteCategories: Array<NoteCategory>;
+  @Input() noteCategories;
 
   @Output() loadItems = new EventEmitter<any>();
 
   constructor(private service: NoteCategoryService) { }
 
   ngOnInit() {
+    this.isNewNoteCategory = false;
   }
 
   switchingIsNewNoteCategory(){
@@ -35,6 +36,7 @@ export class NotePanelComponent implements OnInit {
 
   changeVisibility(noteCategory: NoteCategory){
     noteCategory.isOn = !noteCategory.isOn;
+    this.service.updateItem(noteCategory);
     this.loadItems.emit();
   }
 

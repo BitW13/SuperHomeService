@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { NoteCategory } from '../../models/noteCategory';
 import { NoteService } from '../../services/note.service';
 import { NoteCategoryService } from '../../services/note-category.service';
@@ -21,7 +21,7 @@ export class AddNoteCategoryComponent implements OnInit {
   }
 
   save(){
-    this.noteCategory = this.service.createItem(this.noteCategory);
+    this.service.createItem(this.noteCategory);
     this.addNewNoteCategory.emit();
   }
 

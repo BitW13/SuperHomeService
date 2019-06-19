@@ -11,9 +11,9 @@ import { NoteModel } from '../../models/noteModel';
 })
 export class NoteFieldComponent implements OnInit {
 
-  @Input() noteCategories: Array<NoteCategory>;
+  @Input() noteCategories;
 
-  @Input() noteModels: Array<NoteModel>;
+  @Input() noteModels;
 
   @Output() loadItems = new EventEmitter<any>();
 

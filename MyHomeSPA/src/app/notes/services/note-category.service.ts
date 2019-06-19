@@ -16,15 +16,25 @@ export class NoteCategoryService {
     return this.http.get<NoteCategory[]>(this.url);
   }
 
-  createItem(item: NoteCategory): Observable<NoteCategory> {
-    return this.http.post<NoteCategory>(this.url, item);
+  createItem(item: NoteCategory): NoteCategory {
+    this.http.post(this.url, item).subscribe((data: NoteCategory) =>{
+      item = data;
+    });
+    return item
   }
 
-  updateItem(item: NoteCategory): Observable<NoteCategory> {
-    return this.http.put<NoteCategory>(this.url + item.id, item);
+  updateItem(item: NoteCategory): NoteCategory {
+    this.http.put(this.url + item.id, item).subscribe((data: NoteCategory) =>{
+      item = data;
+    });
+    return item;
   }
   
-  deleteItem(id: number): Observable<NoteCategory> {
-    return this.http.delete<NoteCategory>(this.url + id);
+  deleteItem(id: number): NoteCategory {
+    let item;
+    this.http.delete(this.url + id).subscribe((data: NoteCategory) =>{
+      item = data;
+    });
+    return item;
   }
 }

@@ -13,7 +13,7 @@
   [(ngModel)]='note.noteCategoryId'
   [ngModelOptions]="{standalone: true}">
     <option
-    *ngFor='let noteCategory of notesCategories'
+    *ngFor='let noteCategory of noteCategories'
     value={{noteCategory.id}}
     >{{noteCategory.name}}</option>
   </select>
