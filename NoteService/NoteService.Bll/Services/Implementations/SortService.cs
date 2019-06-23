@@ -1,5 +1,5 @@
 ﻿using Common.Entity.NoteService;
-using Common.Interfaces;
+using NoteService.Bll.Services.Interfaces;
 using NoteService.Dal.DataAccess.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace NoteService.Bll.Services.Implementations
 {
-    public class SortService : ISortService<Note>
+    public class SortService : INoteSortService
     {
         private readonly IDataAccess db;
 

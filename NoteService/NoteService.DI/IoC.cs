@@ -30,7 +30,7 @@ namespace NoteService.DI
             services.AddTransient<IBusinessLogic, BusinessLogic>();
             services.AddTransient<INoteEntityService, NoteEntityService>();
             services.AddTransient<INoteCategoryService, NoteCategoryService>();
-            services.AddTransient<ISortService, SortService>();
+            services.AddTransient<INoteSortService, SortService>();
         }
     }
 }

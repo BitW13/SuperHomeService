@@ -1,5 +1,4 @@
 ﻿using Common.Entity.NoteService;
-using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using NoteService.Bll.BusinessLogic.Interfaces;
 using NoteService.WebApi.Models;
@@ -22,7 +21,7 @@ namespace NoteService.WebApi.Controllers
         [HttpGet]
         public async Task<IEnumerable<NoteModel>> Get()
         {
-            IEnumerable<Note> notes = await db.Sort.GetNotesByLastChangedAsync();
+            IEnumerable<Note> notes = await db.Sort.GetItemsByLastChangedAsync();
 
             List<NoteModel> models = new List<NoteModel>();
 
