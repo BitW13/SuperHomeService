@@ -105,7 +105,7 @@ namespace NoteService.WebApi.Controllers
 
             if (noteCategory == null)
             {
-                return BadRequest();
+                return NotFound();
             }
 
             await db.NoteCategories.DeleteAsync(noteCategory.Id);
