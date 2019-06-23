@@ -1,42 +1,13 @@
-<div>
-  <div *ngIf='isNewNote, else listOfNote'>
-    <button type="button" class="btn btn-primary" (click)='switchingIsNewNote()'>Отмена</button>
-    <app-add-note [noteCategories]='noteCategories' (addNewNote)="addNewNote($event)"></app-add-note>
-  </div>
-  <ng-template #listOfNote>
-    <button type="button" class="btn btn-primary" (click)='switchingIsNewNote()'>Добавить заметку</button>    
-  </ng-template>
-  <div class="row">
-    <div class="col-auto" *ngFor='let noteModel of noteModels'>
-      <div *ngIf='noteModel.noteCategory.isOn'>
-        <div *ngIf='!noteModel.isChange, else editForm' class="card" style="width: 18rem;">
-          <img src="{{noteModel.noteCategory.imagePath}}" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">{{noteModel.note.name}}</h5>
-            <p class="card-text">{{noteModel.note.text}}</p>
-            <div class="btn-group" role="group" aria-label="Basic example">
-              <button type="button" class="btn btn-primary" (click)='edit(noteModel)'>Изменить</button>
-              <button type="button" class="btn btn-primary" (click)='delete(noteModel.note)'>Удалить</button>
-            </div>
-          </div>
-        </div>
-        <ng-template #editForm >
-          <div class="form-group">
-            <input type="text" class="form-control" placeholder="Название"
-            [(ngModel)]="noteModel.note.name"
-            [ngModelOptions]="{standalone: true}">
-          </div>
-          <div class="form-group">
-            <textarea class="form-control" rows="3" placeholder="Описание"
-            [(ngModel)]='noteModel.note.text'
-            [ngModelOptions]="{standalone: true}"></textarea>
-          </div>
-          <div class="btn-group" role="group" aria-label="Basic example">
-            <button type="button" class="btn btn-primary" (click)='save(noteModel)'>Сохранить</button>
-            <button type="button" class="btn btn-primary" (click)='edit(noteModel)'>Отмена</button>
-          </div>
-        </ng-template>
+<div class='container-fluid'>
+  <div class=row>
+    <div class='col-auto'>
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalForNote">Новая карточка</button>
+      <div class="modal fade" id="modalForNote" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <app-form-note [noteCategories]="noteCategories" [(newNote)]='newNote' [(isNewNote)]='isNewNote'></app-form-note>
       </div>
+    </div>
+    <div class='col-auto' *ngFor='let noteModel of noteModels'>
+      <app-item-note [(noteModel)]='noteModel' (deleteNoteCategory)='deleteNote($event)'></app-item-note>
     </div>
   </div>
 </div>

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { NoteModel } from '../models/noteModel';
-import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -12,11 +12,13 @@ export class NoteModelService {
   
   constructor(private http: HttpClient) { }
 
-  getItems(): Observable<NoteModel[]> {
-    return this.http.get<NoteModel[]>(this.url);
+  getItems() {
+    return this.http.get<{data: NoteModel[]}>(this.url)
+      .pipe(map(res=> res));
   }
 
-  getItem(id: number): Observable<NoteModel> {
-    return this.http.get<NoteModel>(this.url + id);
+  getItem(id: number) {
+    return this.http.get<{data: NoteModel}>(this.url)
+      .pipe(map(res=> res));
   }
 }

@@ -12,9 +12,11 @@ import { NoteService } from './notes/services/note.service';
 import { NoteCategoryService } from './notes/services/note-category.service';
 import { NoteModelService } from './notes/services/note-model.service';
 import { NotePanelComponent } from './notes/notePanel/note-panel/note-panel.component';
-import { AddNoteCategoryComponent } from './notes/notePanel/add-note-category/add-note-category.component';
 import { NoteFieldComponent } from './notes/noteField/note-field/note-field.component';
-import { AddNoteComponent } from './notes/noteField/add-note/add-note.component';
+import { ItemNoteCategoryComponent } from './notes/notePanel/item-note-category/item-note-category.component';
+import { FormNoteCategoryComponent } from './notes/notePanel/form-note-category/form-note-category.component';
+import { ItemNoteComponent } from './notes/noteField/item-note/item-note.component';
+import { FormNoteComponent } from './notes/noteField/form-note/form-note.component';
 
 @NgModule({
   declarations: [
@@ -23,9 +25,11 @@ import { AddNoteComponent } from './notes/noteField/add-note/add-note.component'
     NavbarComponent,
     NoteComponent,
     NotePanelComponent,
-    AddNoteCategoryComponent,
     NoteFieldComponent,
-    AddNoteComponent
+    ItemNoteCategoryComponent,
+    FormNoteCategoryComponent,
+    ItemNoteComponent,
+    FormNoteComponent
   ],
   imports: [
     BrowserModule,

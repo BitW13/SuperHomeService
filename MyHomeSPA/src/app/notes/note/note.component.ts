@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NoteCategoryService } from '../services/note-category.service';
 import { NoteModelService } from '../services/note-model.service';
-import { NoteModel } from '../models/noteModel';
-import { NoteCategory } from '../models/noteCategory';
 
 @Component({
   selector: 'app-note',
@@ -15,13 +13,10 @@ export class NoteComponent implements OnInit {
 
   noteModels;
 
-  isActiveNotePanel: boolean;
-
-  constructor(private noteCategoryservice: NoteCategoryService, private noteModelService: NoteModelService) { }
+  constructor(private noteCategoriesService: NoteCategoryService, private noteModelService: NoteModelService) { }
 
   ngOnInit() {
     this.loadItems();
-    this.isActiveNotePanel = true;
   }
 
   loadItems(){
@@ -29,19 +24,15 @@ export class NoteComponent implements OnInit {
     this.loadNoteModels();
   }
 
-  loadNoteCatigories(){
-    this.noteCategoryservice.getItems().subscribe((data: NoteCategory[]) =>{
-      this.noteCategories = data
+  loadNoteCatigories() {
+    this.noteCategoriesService.getItems().subscribe((data) => {
+      this.noteCategories = data;
     });
   }
 
   loadNoteModels(){
     this.noteModelService.getItems().subscribe((data) => {
-      this.noteModels = data as NoteModel[]
+      this.noteModels = data;
     });
-  }
-
-  switchingNotePanel(){
-    this.isActiveNotePanel = !this.isActiveNotePanel;
   }
 }

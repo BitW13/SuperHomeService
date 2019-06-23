@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { NoteCategory } from '../models/noteCategory';
-import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -9,32 +9,26 @@ import { Observable } from 'rxjs';
 export class NoteCategoryService {
 
   private url = "https://noteservicewebapi20190616040752.azurewebsites.net/api/notecategory/";
-  
+
   constructor(private http: HttpClient) { }
 
-  getItems(): Observable<NoteCategory[]> {
-    return this.http.get<NoteCategory[]>(this.url);
+  getItems() {
+    return this.http.get<{data: NoteCategory[]}>(this.url)
+      .pipe(map(res=> res));
   }
 
-  createItem(item: NoteCategory): NoteCategory {
-    this.http.post(this.url, item).subscribe((data: NoteCategory) =>{
-      item = data;
-    });
-    return item
+  post(item: NoteCategory) {
+    return this.http.post<{data: NoteCategory}>(this.url, item)
+      .pipe(map(res=> res));
   }
 
-  updateItem(item: NoteCategory): NoteCategory {
-    this.http.put(this.url + item.id, item).subscribe((data: NoteCategory) =>{
-      item = data;
-    });
-    return item;
+  put(item: NoteCategory) {
+    return this.http.put<{data: NoteCategory}>(this.url + item.id, item)
+      .pipe(map(res=> res));
   }
-  
-  deleteItem(id: number): NoteCategory {
-    let item;
-    this.http.delete(this.url + id).subscribe((data: NoteCategory) =>{
-      item = data;
-    });
-    return item;
+
+  delete(id: number) {
+    return this.http.delete<{data: NoteCategory}>(this.url + id)
+      .pipe(map(res=> res));
   }
 }

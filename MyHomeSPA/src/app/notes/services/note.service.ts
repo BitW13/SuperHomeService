@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Note } from '../models/note';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -11,33 +12,23 @@ export class NoteService {
   
   constructor(private http: HttpClient) { }
 
-  getByNoteCategoryId(noteCategoryId: number): Note[] {
-    let  items;
-    this.http.get(this.url + 'getbynotecategoryid/' + noteCategoryId).subscribe((data: Note[]) =>{
-      items = data;
-    });
-    return items;
+  getByNoteCategoryId(noteCategoryId: number) {
+    return this.http.get<{data: Note[]}>(this.url + 'getbynotecategoryid/' + noteCategoryId)
+      .pipe(map(res=> res));
   }
 
-  createItem(item: Note): Note {
-    this.http.post(this.url, item).subscribe((data: Note) =>{
-      item = data;
-    });
-    return item
+  post(item: Note) {
+    return this.http.post<{data: Note}>(this.url, item)
+      .pipe(map(res=> res));
   }
 
-  updateItem(item: Note): Note {
-    this.http.put(this.url + item.id, item).subscribe((data: Note) =>{
-      item = data;
-    });
-    return item;
+  put(item: Note) {
+    return this.http.put<{data: Note}>(this.url + item.id, item)
+      .pipe(map(res=> res));
   }
-  
-  deleteItem(id: number): Note {
-    let item;
-    this.http.delete(this.url + id).subscribe((data: Note) =>{
-      item = data;
-    });
-    return item;
+
+  delete(id: number) {
+    return this.http.delete<{data: Note}>(this.url + id)
+      .pipe(map(res=> res));
   }
 }

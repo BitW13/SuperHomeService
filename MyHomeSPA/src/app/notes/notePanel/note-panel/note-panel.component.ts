@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { NoteCategory } from '../../models/noteCategory';
 import { NoteCategoryService } from '../../services/note-category.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-note-panel',
@@ -9,39 +10,34 @@ import { NoteCategoryService } from '../../services/note-category.service';
 })
 export class NotePanelComponent implements OnInit {
 
-  isNewNoteCategory: boolean;
+  isNewNoteCategory: boolean = true;
 
-  @Input() noteCategories;
+  newNoteCategory: NoteCategory = new NoteCategory();
+
+  @Input() noteCategories: Observable<any>;
 
   @Output() loadItems = new EventEmitter<any>();
 
   constructor(private service: NoteCategoryService) { }
 
   ngOnInit() {
-    this.isNewNoteCategory = false;
   }
 
-  switchingIsNewNoteCategory(){
-    this.isNewNoteCategory = !this.isNewNoteCategory;
+  addNoteCategory(item: NoteCategory){
+    this.service.post(item).subscribe((data) => {
+      this.loadItems.emit();
+    });
   }
 
-  addNewNoteCategory(){
-    this.switchingIsNewNoteCategory();
-    this.loadItems.emit();
+  editNoteCategory(item: NoteCategory){
+    this.service.put(item).subscribe((data) => {
+      this.loadItems.emit();
+    });
   }
 
-  edit(noteCategory){
-
-  }
-
-  changeVisibility(noteCategory: NoteCategory){
-    noteCategory.isOn = !noteCategory.isOn;
-    this.service.updateItem(noteCategory);
-    this.loadItems.emit();
-  }
-
-  delete(noteCategory: NoteCategory){
-    this.service.deleteItem(noteCategory.id);
-    this.loadItems.emit();
+  deleteNoteCategory(id: number){
+    this.service.delete(id).subscribe((data) => {
+      this.loadItems.emit();
+    });
   }
 }

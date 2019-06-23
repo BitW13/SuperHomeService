@@ -1,12 +1,14 @@
 <div class="row">
-  <div *ngIf='isActiveNotePanel, else offPanel'>
-    <div>
-      <app-note-panel [noteCategories]='noteCategories' (loadItems)='loadItems($event)'></app-note-panel>
+  <div class="col-12">
+    <div class="row">
+      <div class="col-4">
+        <app-note-panel [noteCategories]="noteCategories" (loadItems)='loadItems($event)'></app-note-panel>
+      </div>
+      <div class="col-8">
+        <div class="container-fluid">
+          <app-note-field [noteCategories]="noteCategories" [noteModels]="noteModels" (loadItems)='loadItems($event)'></app-note-field>
+        </div>
+      </div>
     </div>
-  </div>
-  <ng-template #offPanel></ng-template>
-  <button type="button" class="btn btn-primary" (click)='switchingNotePanel()'>Панель</button>
-  <div>
-    <app-note-field [noteCategories]='noteCategories' [noteModels]='noteModels' (loadItems)='loadItems($event)'></app-note-field>
   </div>
 </div>

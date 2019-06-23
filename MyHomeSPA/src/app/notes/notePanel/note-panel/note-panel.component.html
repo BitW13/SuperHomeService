@@ -1,18 +1,11 @@
-<div *ngIf='isNewNoteCategory, else listOfNoteCategory'>
-  <button type="button" class="btn btn-primary" (click)='switchingIsNewNoteCategory()'>Отмена</button>
-  <app-add-note-category (addNewNoteCategory)="addNewNoteCategory($event)"></app-add-note-category>
-</div>
-<ng-template #listOfNoteCategory>
-  <button type="button" class="btn btn-primary" (click)='switchingIsNewNoteCategory()'>Добавить категорию</button>
-  <div *ngFor='let noteCategory of noteCategories'>
-    <div>
-      <img src="{{noteCategory.imagePath}}" width="200" height="150">
-      <h2>{{noteCategory.name}}</h2>
-      <div class="btn-group" role="group">
-        <button type="button" class="btn btn-danger" (click)='delete(noteCategory)'>Удалить</button>
-        <button type="button" class="btn btn-primary" (click)='changeVisibility(noteCategory)'>Отображать</button>
-        <button type="button" class="btn btn-primary" (click)='edit(noteCategory)'>Изменить</button>
-      </div>
+<ul class="nav flex-column">
+  <li>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalForNoteCategory">Новая категория</button>
+    <div class="modal fade" id="modalForNoteCategory" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <app-form-note-category [(newNoteCategory)]='newNoteCategory' [(isNewNoteCategory)]='isNewNoteCategory'></app-form-note-category>
     </div>
-  </div>
-</ng-template>
+  </li>
+  <li class="nav-item" *ngFor='let noteCategory of noteCategories'>
+    <app-item-note-category [(noteCategory)]='noteCategory' (deleteNoteCategory)='deleteNoteCategory($event)'></app-item-note-category>
+  </li>
+</ul>
