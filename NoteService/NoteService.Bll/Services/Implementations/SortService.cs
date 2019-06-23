@@ -1,5 +1,5 @@
 ﻿using Common.Entity.NoteService;
-using NoteService.Bll.Services.Interfaces;
+using Common.Interfaces;
 using NoteService.Dal.DataAccess.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace NoteService.Bll.Services.Implementations
 {
-    public class SortService : ISortService
+    public class SortService : ISortService<Note>
     {
         private readonly IDataAccess db;
 
@@ -16,7 +16,7 @@ namespace NoteService.Bll.Services.Implementations
             this.db = db;
         }
 
-        public async Task<IEnumerable<Note>> GetNotesByLastChangedAsync()
+        public async Task<IEnumerable<Note>> GetItemsByLastChangedAsync()
         {
             List<Note> notes = (await db.Notes.GetAllAsync()).ToList();
 
