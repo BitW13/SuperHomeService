@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
 using Common.Entity.NoteService;
-using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using NoteService.Bll.BusinessLogic.Interfaces;
 using NotesService.WebApi.Models;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace NoteService.WebApi.Controllers
@@ -30,7 +30,7 @@ namespace NoteService.WebApi.Controllers
                 return BadRequest();
             }
 
-            var notes = await db.Notes.GetByNoteCategoryIdAsync(id);
+            var notes = mapper.Map<IEnumerable<EditNote>>(await db.Notes.GetByNoteCategoryIdAsync(id));
 
             return Ok(notes);
         }
