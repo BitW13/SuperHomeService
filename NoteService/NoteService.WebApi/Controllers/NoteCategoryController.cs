@@ -6,6 +6,7 @@ using NoteService.Bll.BusinessLogic.Interfaces;
 using NotesService.WebApi.Models;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace NoteService.WebApi.Controllers
@@ -108,6 +109,14 @@ namespace NoteService.WebApi.Controllers
                 return BadRequest();
             }
 
+            IEnumerable<Note> notes = await db.Notes.GetByNoteCategoryIdAsync(id);
+            if ((notes.ToList()).Count != 0)
+            {
+                foreach(var note in notes)
+                {
+                    await db.Notes.DeleteAsync(note.Id);
+                }
+            }
             await db.NoteCategories.DeleteAsync(noteCategory.Id);
 
             EditNoteCategory model = mapper.Map<EditNoteCategory>(noteCategory);
