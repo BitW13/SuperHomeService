@@ -5,7 +5,7 @@ namespace NoteService.Bll.BusinessLogic.Implementations
 {
     public class BusinessLogic : IBusinessLogic
     {
-        public BusinessLogic(INoteEntityService notes, INoteCategoryService noteCategories, ISortService sort)
+        public BusinessLogic(INoteEntityService notes, INoteCategoryService noteCategories, INoteSortService sort)
         {
             Notes = notes;
             NoteCategories = noteCategories;
@@ -16,6 +16,6 @@ namespace NoteService.Bll.BusinessLogic.Implementations
 
         public INoteCategoryService NoteCategories { get; set; }
 
-        public ISortService Sort { get; set; }
+        public INoteSortService Sort { get; set; }
     }
 }

@@ -8,6 +8,6 @@ namespace NoteService.Bll.BusinessLogic.Interfaces
 
         INoteCategoryService NoteCategories { get; set; }
 
-        ISortService Sort { get; set; }
+        INoteSortService Sort { get; set; }
     }
 }

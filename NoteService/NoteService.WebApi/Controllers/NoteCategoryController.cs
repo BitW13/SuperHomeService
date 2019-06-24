@@ -106,7 +106,7 @@ namespace NoteService.WebApi.Controllers
 
             if (noteCategory == null)
             {
-                return BadRequest();
+                return NotFound();
             }
 
             IEnumerable<Note> notes = await db.Notes.GetByNoteCategoryIdAsync(id);
