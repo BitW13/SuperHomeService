@@ -3,11 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.28917.181
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoteService.WebApi", "NoteService.WebApi\NoteService.WebApi.csproj", "{2718CDE6-F5DA-4CBB-9C99-46C41A059713}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NoteService.WebApi", "NoteService.WebApi\NoteService.WebApi.csproj", "{2718CDE6-F5DA-4CBB-9C99-46C41A059713}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoteService.Dal", "NoteService.Dal\NoteService.Dal.csproj", "{3CC932C5-4838-4AEF-95E9-56949C9D91A2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NoteService.Dal", "NoteService.Dal\NoteService.Dal.csproj", "{3CC932C5-4838-4AEF-95E9-56949C9D91A2}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common", "..\Common\Common.csproj", "{6666413F-B7EE-46F0-BDD5-F7AE914C6450}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NoteService.DI", "NoteService.DI\NoteService.DI.csproj", "{9C22664E-3EF3-4C7E-9FA7-5D9954D59B0E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoteService.Bll", "NoteService.Bll\NoteService.Bll.csproj", "{7A050631-02D9-4616-89C3-2A89E2E9AD03}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +31,14 @@ Global
 		{6666413F-B7EE-46F0-BDD5-F7AE914C6450}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6666413F-B7EE-46F0-BDD5-F7AE914C6450}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6666413F-B7EE-46F0-BDD5-F7AE914C6450}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9C22664E-3EF3-4C7E-9FA7-5D9954D59B0E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C22664E-3EF3-4C7E-9FA7-5D9954D59B0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C22664E-3EF3-4C7E-9FA7-5D9954D59B0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C22664E-3EF3-4C7E-9FA7-5D9954D59B0E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7A050631-02D9-4616-89C3-2A89E2E9AD03}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A050631-02D9-4616-89C3-2A89E2E9AD03}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A050631-02D9-4616-89C3-2A89E2E9AD03}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A050631-02D9-4616-89C3-2A89E2E9AD03}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
