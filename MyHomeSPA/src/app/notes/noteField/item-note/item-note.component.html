@@ -1,12 +1,17 @@
-<div class="card" style="width: 18rem;">
-  <img src="{{noteModel.noteCategory.imagePath}}" class="card-img-top" alt="...">
-  <div class="card-body">
-    <h5 class="card-title">{{noteModel.note.name}}</h5>
-    <p class="card-text">{{noteModel.note.text}}</p>
-    <div class="btn-group" role="group" aria-label="Basic example">
-      <button type="button" class="btn btn-primary" data-dismiss="modal" (click)='delete(noteModel.note.id)'>Удалить</button>
-      <button type="button" class="btn btn-primary">Изменить</button>
-      <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+<div *ngIf='noteModel.noteCategory.isOn'>
+  <div class="card" style="width: 18rem;">
+    <img src="{{noteModel.noteCategory.imagePath}}" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">{{noteModel.note.name}}</h5>
+      <p class="card-text">{{noteModel.note.text}}</p>
+      <div class="btn-group" role="group" aria-label="Basic example">
+        <button type="button" class="btn btn-primary" (click)='delete(noteModel.note.id)'>Удалить</button>
+        
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalForNote">Изменить</button>
+        <div class="modal fade" id="modalForNote" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <app-form-note [(note)]='noteModel.note' [(isNewNote)]='isNewNote'></app-form-note>
+        </div>
+      </div>
     </div>
   </div>
 </div>

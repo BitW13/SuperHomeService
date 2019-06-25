@@ -1,13 +1,24 @@
 <div class='container-fluid'>
   <div class=row>
     <div class='col-auto'>
-      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalForNote">Новая карточка</button>
+
+      <!--New note-->
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalForNote">Новая заметка</button>
+      <!--Modal-->
       <div class="modal fade" id="modalForNote" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <app-form-note [noteCategories]="noteCategories" [(newNote)]='newNote' [(isNewNote)]='isNewNote'></app-form-note>
+        <app-form-note
+        [(noteCategories)]='noteCategories'
+        [(note)]='note' 
+        [(isNewNote)]='isNewNote' 
+        (addNote)='addNote($event)'
+        (editNote)='editNote($event)'></app-form-note>
       </div>
+
     </div>
+
     <div class='col-auto' *ngFor='let noteModel of noteModels'>
-      <app-item-note [(noteModel)]='noteModel' (deleteNoteCategory)='deleteNote($event)'></app-item-note>
+      <app-item-note [(noteModel)]='noteModel' (deleteNote)='deleteNote($event)'></app-item-note>
     </div>
+    
   </div>
 </div>

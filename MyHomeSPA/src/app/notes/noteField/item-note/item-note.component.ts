@@ -8,6 +8,8 @@ import { NoteModel } from '../../models/noteModel';
 })
 export class ItemNoteComponent implements OnInit {
 
+  isNewNote: boolean = false;
+
   @Input() noteModel: NoteModel;
 
   @Output() deleteNote = new EventEmitter<number>();
