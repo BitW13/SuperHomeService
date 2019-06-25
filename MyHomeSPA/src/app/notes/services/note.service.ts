@@ -8,7 +8,7 @@ import { map } from 'rxjs/operators';
 })
 export class NoteService {
 
-  private url = "https://noteservicewebapi20190616040752.azurewebsites.net/api/note/";
+  private url = "https://noteservicewebapi.azurewebsites.net/api/note/";
   
   constructor(private http: HttpClient) { }
 

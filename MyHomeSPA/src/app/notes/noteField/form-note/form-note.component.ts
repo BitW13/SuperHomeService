@@ -9,32 +9,34 @@ import { Note } from '../../models/note';
 })
 export class FormNoteComponent implements OnInit {
 
-  saveNoteCategory: Note;
-
-  @Input() noteCategories: NoteCategory[];
-
-  @Input() newNote: Note;
+  saveNote: Note;
 
   @Input() isNewNote: boolean;
 
+  @Input() noteCategories: NoteCategory[];
+
+  @Input() note: Note;
+
   @Output() addNote = new EventEmitter<Note>();
+
+  @Output() editNote = new EventEmitter<Note>();
 
   constructor() { }
 
   ngOnInit() {
-    this.saveNoteCategory = this.newNote;
     this.clear();
   }
 
   save(){
-    this.addNote.emit(this.newNote);
+    if(this.isNewNote){
+      this.addNote.emit(this.note);
+    }
+    else{
+      this.editNote.emit(this.note);
+    }
   }
 
   clear(){
-    if(this.isNewNote){
-      this.newNote = new Note();
-    }else{
-      this.newNote = this.saveNoteCategory;
-    }
+    
   }
 }

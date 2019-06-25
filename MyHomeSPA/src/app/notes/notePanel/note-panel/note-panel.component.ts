@@ -12,7 +12,7 @@ export class NotePanelComponent implements OnInit {
 
   isNewNoteCategory: boolean = true;
 
-  newNoteCategory: NoteCategory = new NoteCategory();
+  noteCategory: NoteCategory = new NoteCategory();
 
   @Input() noteCategories: Observable<any>;
 

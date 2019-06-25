@@ -1,7 +1,6 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { Note } from '../../models/note';
 import { NoteService } from '../../services/note.service';
-import { NoteCategory } from '../../models/noteCategory';
 
 @Component({
   selector: 'app-note-field',
@@ -12,7 +11,7 @@ export class NoteFieldComponent implements OnInit {
 
   isNewNote: boolean = true;
 
-  newNote: Note = new Note();
+  note: Note = new Note();
 
   @Input() noteCategories;
 

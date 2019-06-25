@@ -8,30 +8,31 @@ import { NoteCategory } from '../../models/noteCategory';
 })
 export class FormNoteCategoryComponent implements OnInit {
   
-  saveNoteCategory: NoteCategory;
-  
-  @Input() newNoteCategory: NoteCategory;
+  @Input() noteCategory: NoteCategory;
+
+  @Input() saveNoteCategory: NoteCategory;
 
   @Input() isNewNoteCategory: boolean;
 
   @Output() addNoteCategory = new EventEmitter<NoteCategory>();
 
+  @Output() editNoteCategory = new EventEmitter<NoteCategory>();
+
   constructor() { }
 
   ngOnInit() {
-    this.saveNoteCategory = this.newNoteCategory;
-    this.clear();
   }
 
   save(){
-    this.addNoteCategory.emit(this.newNoteCategory);
+    if(this.isNewNoteCategory){
+      this.addNoteCategory.emit(this.noteCategory);
+    }
+    else{
+      this.editNoteCategory.emit(this.noteCategory);
+    }
   }
 
   clear(){
-    if(this.isNewNoteCategory){
-      this.newNoteCategory = new NoteCategory();
-    }else{
-      this.newNoteCategory = this.saveNoteCategory;
-    }
+    this.noteCategory = this.saveNoteCategory;
   }
 }

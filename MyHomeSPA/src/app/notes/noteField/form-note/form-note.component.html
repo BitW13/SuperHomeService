@@ -10,17 +10,17 @@
       <form>
         <div class="form-group">
           <input type="text" class="form-control" placeholder="Название"
-          [(ngModel)]="newNote.name"
+          [(ngModel)]="note.name"
           [ngModelOptions]="{standalone: true}">
         </div>
         <div class="form-group">
           <textarea class="form-control" rows="3" placeholder="Описание"
-          [(ngModel)]='newNote.text'
+          [(ngModel)]='note.text'
           [ngModelOptions]="{standalone: true}"></textarea>
         </div>
         <div class="form-group">
           <select class="form-control" placeholder="Категория"
-          [(ngModel)]='newNote.noteCategoryId'
+          [(ngModel)]='note.noteCategoryId'
           [ngModelOptions]="{standalone: true}">
             <option
             *ngFor='let noteCategory of noteCategories'
@@ -33,8 +33,8 @@
     <div class="modal-footer">
       <div class="btn-group" role="group" aria-label="Basic example">
         <button type="button" class="btn btn-primary" (click)='clear()'>Очистить</button>
-        <button type="button" class="btn btn-primary" (click)='save()'>Сохранить</button>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)='save()'>Сохранить</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
       </div>
     </div>
   </div>

@@ -8,6 +8,8 @@ import { NoteCategory } from '../../models/noteCategory';
 })
 export class ItemNoteCategoryComponent implements OnInit {
 
+  isNewNoteCategory: boolean = true;
+
   @Input() noteCategory: NoteCategory;
 
   @Output() deleteNoteCategory = new EventEmitter<number>();
