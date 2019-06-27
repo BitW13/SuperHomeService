@@ -2,11 +2,11 @@
   <div class="col-12">
     <div class="row">
       <div class="col-4">
-        <app-note-panel [noteCategories]="noteCategories" (loadItems)='loadItems($event)'></app-note-panel>
+        <app-note-panel [noteCategories]="noteCategories" (loadItems)='loadItems()'></app-note-panel>
       </div>
       <div class="col-8">
         <div class="container-fluid">
-          <app-note-field [noteCategories]="noteCategories" [noteModels]="noteModels" (loadItems)='loadItems($event)'></app-note-field>
+          <app-note-field [noteCategories]="noteCategories" [noteModels]="noteModels" (loadItems)='loadItems()'></app-note-field>
         </div>
       </div>
     </div>
