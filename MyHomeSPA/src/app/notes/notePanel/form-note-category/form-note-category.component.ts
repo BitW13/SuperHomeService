@@ -33,6 +33,7 @@ export class FormNoteCategoryComponent implements OnInit {
   }
 
   clear(){
-    this.noteCategory = this.saveNoteCategory;
+    this.noteCategory.imagePath = '';
+    this.noteCategory.name = '';
   }
 }
