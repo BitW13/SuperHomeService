@@ -4,6 +4,7 @@
     <div class="card-body">
       <h5 class="card-title">{{noteModel.note.name}}</h5>
       <p class="card-text">{{noteModel.note.text}}</p>
+      <p class="card-text">{{noteModel.note.lastChange | date:'yyyy-MM-dd HH:mm:ss'}}</p>
       <div class="btn-group" role="group" aria-label="Basic example">
         <button type="button" class="btn btn-primary" (click)='delete(noteModel.note.id)'>Удалить</button>
         
