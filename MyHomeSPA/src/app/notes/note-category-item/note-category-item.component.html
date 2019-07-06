@@ -1,0 +1,10 @@
+<div *ngIf='!isEditNoteCategory; else editTemplate'>
+    <button (click)='editNoteCategory()'>
+        <label>{{category.name}}</label>
+        <label>{{category.color}}</label>
+    </button>
+</div>
+
+<ng-template #editTemplate>
+    <input type="text" [(ngModel)]='category.name'><input type='color' [(ngModel)]='category.color'><button type="button" class="btn btn-success" (click)='saveNoteCategory()'>Сохранить</button>
+</ng-template>

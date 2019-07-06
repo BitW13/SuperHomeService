@@ -5,11 +5,11 @@ import { NoteComponent } from './notes/note/note.component';
 
 const routes: Routes = [
   {
-    path: '',
+    path:'',
     component: HomeComponent
   },
   {
-    path: 'notes',
+    path:'notes',
     component: NoteComponent
   }
 ];

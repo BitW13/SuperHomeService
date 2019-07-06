@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { NoteCategoryService } from '../services/note-category.service';
-import { NoteModelService } from '../services/note-model.service';
+import { Note } from 'src/app/models/note';
+import { NoteCategory } from 'src/app/models/noteCategory';
 
 @Component({
   selector: 'app-note',
@@ -9,30 +9,38 @@ import { NoteModelService } from '../services/note-model.service';
 })
 export class NoteComponent implements OnInit {
 
-  noteCategories;
+  notes: Array<Note>;
+  categories: Array<NoteCategory>;
 
-  noteModels;
-
-  constructor(private noteCategoriesService: NoteCategoryService, private noteModelService: NoteModelService) { }
+  constructor() { }
 
   ngOnInit() {
-    this.loadItems();
+    this.getNotes();
+    this.getCategories();
   }
 
-  loadItems(){
-    this.loadNoteCatigories();
-    this.loadNoteModels();
+  getCategories(){
+    this.categories = [
+      new NoteCategory(),
+      new NoteCategory(),
+      new NoteCategory()
+    ]
   }
 
-  loadNoteCatigories() {
-    this.noteCategoriesService.getItems().subscribe((data) => {
-      this.noteCategories = data;
-    });
+  getNotes(){
+    this.notes = [
+      new Note(),
+      new Note(),
+      new Note(),
+      new Note(),
+      new Note(),
+      new Note()
+    ]
+    console.log(this.notes)
   }
 
-  loadNoteModels(){
-    this.noteModelService.getItems().subscribe((data) => {
-      this.noteModels = data;
-    });
+  addNote(){
+    this.notes.unshift(new Note());
   }
+
 }

@@ -1,14 +1,16 @@
-<div class="row">
-  <div class="col-12">
-    <div class="row">
-      <div class="col-4">
-        <app-note-panel [noteCategories]="noteCategories" (loadItems)='loadItems()'></app-note-panel>
-      </div>
-      <div class="col-8">
-        <div class="container-fluid">
-          <app-note-field [noteCategories]="noteCategories" [noteModels]="noteModels" (loadItems)='loadItems()'></app-note-field>
+<div>
+    <button type="button" class="btn btn-success btn-lg btn-block" (click)='addNote()'>Новая заметка</button>
+    <div class='container-fluid'>
+        <div class='row'>
+            <div class='col-2 border border-dark'>
+                <button type="button" class="btn btn-success btn-lg btn-block" (click)='addNote()'>Новая категория</button>
+                <div *ngFor='let category of categories'>
+                    <app-note-category-item [(category)]='category'></app-note-category-item>
+                </div>
+            </div>
+            <div class='col-auto' *ngFor='let note of notes'>
+                <app-note-item [(note)]='note' [(categories)]='categories'></app-note-item>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
 </div>
