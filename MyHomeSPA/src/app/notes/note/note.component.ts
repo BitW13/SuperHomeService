@@ -52,4 +52,8 @@ export class NoteComponent implements OnInit {
     });
   }
 
+  addCategory(){
+    this.categories.push(new NoteCategory());
+  }
+
 }
