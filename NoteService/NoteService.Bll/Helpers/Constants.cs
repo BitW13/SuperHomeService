@@ -11,5 +11,10 @@
         {
             public static readonly string Name = "Категория";
         }
+
+        public static class DefaultIsOn
+        {
+            public static readonly bool IsOn = true;
+        }
     }
 }
