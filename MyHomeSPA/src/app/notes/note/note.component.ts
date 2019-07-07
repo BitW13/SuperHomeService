@@ -21,30 +21,30 @@ export class NoteComponent implements OnInit {
     this.loadItems();
   }
 
-  loadItems(){
+  loadItems() {
     this.getModels();
     this.getCategories();
   }
 
-  getCategories(){
+  getCategories() {
     this.categoryService.getItems().subscribe((data) => {
       this.categories = data;
     });
   }
 
-  getModels(){
+  getModels() {
     this.noteService.getCards().subscribe((data) => {
       this.noteCards = data;
     });
   }
 
-  addNote(){
+  addNote() {
     this.noteService.post(new Note()).subscribe((data) => {
       this.loadItems();
     });
   }
 
-  addCategory(){
+  addCategory() {
     this.categoryService.post(new NoteCategory()).subscribe((data) => {
       this.loadItems();
     });

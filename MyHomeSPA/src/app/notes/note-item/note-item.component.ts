@@ -1,6 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { NoteService } from '../services/note.service';
 import { NoteCard } from '../models/noteCard';
+import { Note } from '../models/note';
+import { NoteCategory } from '../models/noteCategory';
 
 @Component({
   selector: 'app-note-item',
@@ -25,9 +27,30 @@ export class NoteItemComponent implements OnInit {
   }
 
   editNote() {
+    const copyNote = new Note();
 
-    this.saveForCard = this.noteCard.getCopy();
+    copyNote.id = this.noteCard.note.id;
+    copyNote.name = this.noteCard.note.name;
+    copyNote.text = this.noteCard.note.text;
+    copyNote.lastChange = this.noteCard.note.lastChange;
+    copyNote.noteCategoryId = this.noteCard.note.noteCategoryId;
 
+    const copyCategory = new NoteCategory();
+    const copyNoteCard = new NoteCard();
+
+    if (this.noteCard.category) {
+      copyCategory.id = this.noteCard.category.id;
+      copyCategory.name = this.noteCard.category.name;
+      copyCategory.color = this.noteCard.category.color;
+      copyCategory.isOn = this.noteCard.category.isOn;
+      copyNoteCard.category = copyCategory;
+    }
+
+    copyNoteCard.note = copyNote;
+
+    this.saveForCard = copyNoteCard;
+
+    console.log(this.saveForCard);
     this.isEditNote = !this.isEditNote;
   }
 
@@ -44,7 +67,7 @@ export class NoteItemComponent implements OnInit {
 
   cancel() {
 
-    this.noteCard = this.noteCard.getCopy();
+    this.noteCard = this.saveForCard;
 
     this.isEditNote = !this.isEditNote;
   }
