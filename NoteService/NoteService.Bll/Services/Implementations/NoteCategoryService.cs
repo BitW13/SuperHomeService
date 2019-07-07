@@ -36,9 +36,9 @@ namespace NoteService.Bll.Services.Implementations
         {
             NoteCategory noteCategory = await db.GetItemByIdAsync(id);
 
-            if(noteCategory == null)
+            if (noteCategory == null)
             {
-                return SetDefaultCategoryIfNull();
+                return Constants.DefaultNoteCategories.NoteCategory;
             }
 
             return noteCategory;
@@ -47,16 +47,6 @@ namespace NoteService.Bll.Services.Implementations
         public async Task UpdateAsync(NoteCategory item)
         {
             await db.UpdateAsync(item);
-        }
-
-        private NoteCategory SetDefaultCategoryIfNull()
-        {
-            return new NoteCategory
-            {
-                Color = Constants.DefaultColors.Color,
-                Name = Constants.DefaultNoteCategoryNames.Name,
-                IsOn = Constants.DefaultIsOn.IsOn
-            };
         }
     }
 }

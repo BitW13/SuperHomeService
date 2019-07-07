@@ -1,20 +1,18 @@
-﻿namespace NoteService.Bll.Helpers
+﻿using Common.Entity.NoteService;
+
+namespace NoteService.Bll.Helpers
 {
     public static class Constants
     {
-        public static class DefaultColors
+        public static class DefaultNoteCategories
         {
-            public static readonly string Color = "000";            
-        }
-        
-        public static class DefaultNoteCategoryNames
-        {
-            public static readonly string Name = "Категория";
-        }
-
-        public static class DefaultIsOn
-        {
-            public static readonly bool IsOn = true;
+            public static readonly NoteCategory NoteCategory = new NoteCategory
+            {
+                Id = 0,
+                Color = "000",
+                Name = "Категория",
+                IsOn = true
+            };
         }
     }
 }

@@ -24,17 +24,17 @@ namespace NoteService.WebApi.Controllers
         }
 
         [HttpGet]
-        public async Task<IEnumerable<NoteModel>> Get()
+        public async Task<IEnumerable<NoteCard>> Get()
         {
             IEnumerable<Note> notes = await db.Sort.GetItemsByLastChangedAsync();
 
-            List<NoteModel> models = new List<NoteModel>();
+            List<NoteCard> models = new List<NoteCard>();
 
             foreach(var note in notes)
             {
                 NoteCategory category = await db.NoteCategories.GetItemByIdAsync(note.NoteCategoryId);
 
-                models.Add(new NoteModel { Note = note, NoteCategory = category });
+                models.Add(new NoteCard { Note = note, NoteCategory = category });
             }
 
             return models;
@@ -56,7 +56,7 @@ namespace NoteService.WebApi.Controllers
 
             NoteCategory category = await db.NoteCategories.GetItemByIdAsync(note.NoteCategoryId);
 
-            NoteModel model = new NoteModel
+            NoteCard model = new NoteCard
             {
                 Note = note,
                 NoteCategory = category

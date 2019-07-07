@@ -2,7 +2,7 @@
 
 namespace NoteService.WebApi.Models
 {
-    public class NoteModel
+    public class NoteCard
     {
         public Note Note { get; set; }
 
