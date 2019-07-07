@@ -45,8 +45,6 @@ namespace NoteService.WebApi.Controllers
 
             if (!ModelState.IsValid) { return BadRequest(ModelState); }
 
-            model.LastChange = DateTime.Now;
-
             Note note = await db.Notes.CreateAsync(mapper.Map<Note>(model));
 
             EditNote newModel = mapper.Map<EditNote>(note);
@@ -66,8 +64,6 @@ namespace NoteService.WebApi.Controllers
                 return BadRequest();
             }
             if (!ModelState.IsValid) { return BadRequest(ModelState); }
-
-            model.LastChange = DateTime.Now;
 
             await db.Notes.UpdateAsync(mapper.Map<Note>(model));
 
