@@ -6,6 +6,8 @@ export class NoteCategory {
 
     public color: any;
 
+    public isOn: boolean;
+
     constructor() {
 
         this.id = 0;
@@ -13,6 +15,8 @@ export class NoteCategory {
         this.name = 'Категория';
 
         this.color = '000';
+
+        this.isOn = true;
     }
 
     getCopy(): NoteCategory {
@@ -24,6 +28,8 @@ export class NoteCategory {
         copy.name = this.name;
 
         copy.color = this.color;
+
+        copy.isOn = this.isOn;
 
         return copy;
     }
