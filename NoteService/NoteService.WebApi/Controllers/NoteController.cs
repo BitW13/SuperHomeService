@@ -2,6 +2,7 @@
 using Common.Entity.NoteService;
 using Microsoft.AspNetCore.Mvc;
 using NoteService.Bll.BusinessLogic.Interfaces;
+using NoteService.WebApi.Models;
 using NotesService.WebApi.Models;
 using System;
 using System.Collections.Generic;
@@ -22,18 +23,47 @@ namespace NoteService.WebApi.Controllers
             this.mapper = mapper;
         }
 
-        [HttpGet("getbynotecategoryid/{id}")]
+        [HttpGet]
+        public async Task<IEnumerable<NoteModel>> Get()
+        {
+            IEnumerable<Note> notes = await db.Sort.GetItemsByLastChangedAsync();
+
+            List<NoteModel> models = new List<NoteModel>();
+
+            foreach(var note in notes)
+            {
+                NoteCategory category = await db.NoteCategories.GetItemByIdAsync(note.NoteCategoryId);
+
+                models.Add(new NoteModel { Note = note, NoteCategory = category });
+            }
+
+            return models;
+        }
+
+        [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {
-            if (id <= 0)
+            if(id <= 0)
             {
                 return BadRequest();
             }
+            Note note = await db.Notes.GetItemByIdAsync(id);
 
-            var notes = mapper.Map<IEnumerable<EditNote>>(await db.Notes.GetByNoteCategoryIdAsync(id));
+            if(note == null)
+            {
+                return NotFound();
+            }
 
-            return Ok(notes);
-        }
+            NoteCategory category = await db.NoteCategories.GetItemByIdAsync(note.NoteCategoryId);
+
+            NoteModel model = new NoteModel
+            {
+                Note = note,
+                NoteCategory = category
+            };
+
+            return Ok(model);
+        } 
 
         [HttpPost]
         public async Task<IActionResult> Post([FromBody]CreateNote model)

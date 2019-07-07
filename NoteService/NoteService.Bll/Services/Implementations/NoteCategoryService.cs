@@ -35,10 +35,12 @@ namespace NoteService.Bll.Services.Implementations
         public async Task<NoteCategory> GetItemByIdAsync(int id)
         {
             NoteCategory noteCategory = await db.GetItemByIdAsync(id);
+
             if(noteCategory == null)
             {
-                noteCategory = SetDefaultCategoryIfNull();
+                return SetDefaultCategoryIfNull();
             }
+
             return noteCategory;
         }
 
