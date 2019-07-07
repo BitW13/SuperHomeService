@@ -1,7 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { NoteCategory } from 'src/app/notes/models/noteCategory';
 import { NoteCategoryService } from '../services/note-category.service';
-import { SaveData } from '../models/saveData';
 
 @Component({
   selector: 'app-note-category-item',
@@ -14,8 +13,6 @@ export class NoteCategoryItemComponent implements OnInit {
 
   isEditNoteCategory: boolean;
 
-  saveData: SaveData = new SaveData();
-
   saveForNoteCategory: NoteCategory;
 
   constructor(private categoryService: NoteCategoryService) { }
@@ -24,9 +21,6 @@ export class NoteCategoryItemComponent implements OnInit {
   }
 
   editNoteCategory() {
-
-    this.saveForNoteCategory = this.saveData.getCategoryCopy(this.category);
-
     this.isEditNoteCategory = !this.isEditNoteCategory;
   }
 
@@ -42,9 +36,6 @@ export class NoteCategoryItemComponent implements OnInit {
   }
 
   cancel(){
-
-    this.category = this.saveData.getCategoryCopy(this.saveForNoteCategory);
-
     this.isEditNoteCategory = !this.isEditNoteCategory;
   }
 
