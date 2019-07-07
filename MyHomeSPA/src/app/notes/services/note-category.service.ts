@@ -8,17 +8,12 @@ import { NoteCategory } from '../models/noteCategory';
 })
 export class NoteCategoryService {
 
-  private url = "https://noteservicewebapi.azurewebsites.net/api/note/";
+  private url = "https://noteservicewebapi.azurewebsites.net/api/notecategory/";
   
   constructor(private http: HttpClient) { }
 
   getItems() {
     return this.http.get<{data: NoteCategory[]}>(this.url)
-      .pipe(map(res=> res));
-  }
-
-  getByNoteCategoryId(noteCategoryId: number) {
-    return this.http.get<{data: NoteCategory[]}>(this.url + 'getbynotecategoryid/' + noteCategoryId)
       .pipe(map(res=> res));
   }
 
@@ -32,8 +27,8 @@ export class NoteCategoryService {
       .pipe(map(res=> res));
   }
 
-  delete(id: number) {
-    return this.http.delete<{data: NoteCategory}>(this.url + id)
+  delete(item: NoteCategory) {
+    return this.http.delete<{data: NoteCategory}>(this.url + item.id)
       .pipe(map(res=> res));
   }
 }

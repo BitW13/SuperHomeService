@@ -3,8 +3,6 @@ import { Note } from 'src/app/notes/models/note';
 import { NoteCategory } from 'src/app/notes/models/noteCategory';
 import { NoteService } from '../services/note.service';
 import { NoteCategoryService } from '../services/note-category.service';
-import { NoteModelService } from '../services/note-model.service';
-import { NoteModel } from '../models/noteModel';
 
 @Component({
   selector: 'app-note',
@@ -13,11 +11,11 @@ import { NoteModel } from '../models/noteModel';
 })
 export class NoteComponent implements OnInit {
 
-  models;
+  noteCards;
 
   categories;
 
-  constructor(private noteService: NoteService, private categoryService: NoteCategoryService, private modelsService: NoteModelService) { }
+  constructor(private noteService: NoteService, private categoryService: NoteCategoryService) { }
 
   ngOnInit() {
     this.loadItems();
@@ -35,8 +33,8 @@ export class NoteComponent implements OnInit {
   }
 
   getModels(){
-    this.modelsService.getModels().subscribe((data) => {
-      this.models = data;
+    this.noteService.getCards().subscribe((data) => {
+      this.noteCards = data;
     });
   }
 
@@ -51,9 +49,4 @@ export class NoteComponent implements OnInit {
       this.loadItems();
     });
   }
-
-  addCategory(){
-    this.categories.push(new NoteCategory());
-  }
-
 }

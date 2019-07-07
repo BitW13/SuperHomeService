@@ -10,6 +10,8 @@ import { NavpanelComponent } from './navpanel/navpanel.component';
 import { NoteComponent } from './notes/note/note.component';
 import { NoteItemComponent } from './notes/note-item/note-item.component';
 import { NoteCategoryItemComponent } from './notes/note-category-item/note-category-item.component';
+import { NoteService } from './notes/services/note.service';
+import { NoteCategoryService } from './notes/services/note-category.service';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,7 @@ import { NoteCategoryItemComponent } from './notes/note-category-item/note-categ
     FormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [NoteService, NoteCategoryService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

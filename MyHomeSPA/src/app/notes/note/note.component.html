@@ -8,8 +8,8 @@
                     <app-note-category-item [(category)]='category'></app-note-category-item>
                 </div>
             </div>
-            <div class='col-auto' *ngFor='let model of models'>
-                <app-note-item [(model)]='model' [(categories)]='categories'></app-note-item>
+            <div class='col-auto' *ngFor='let noteCard of noteCards'>
+                <app-note-item [(noteCard)]='noteCard' [(categories)]='categories'></app-note-item>
             </div>
         </div>
     </div>

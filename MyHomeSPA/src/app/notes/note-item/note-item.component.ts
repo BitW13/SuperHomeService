@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Note } from 'src/app/notes/models/note';
 import { NoteService } from '../services/note.service';
+import { NoteCard } from '../models/noteCard';
 
 @Component({
   selector: 'app-note-item',
@@ -9,40 +10,49 @@ import { NoteService } from '../services/note.service';
 })
 export class NoteItemComponent implements OnInit {
 
-  @Input() model;
+  @Input() noteCard;
 
   @Input() categories;
 
-  isEditNote: boolean;
+  isEditNote: boolean = false;
 
-  saveForNote: Note;
+  saveForCard: NoteCard;
 
   constructor(private noteService: NoteService) { }
 
   ngOnInit() {
+    console.log(this.noteCard)
   }
 
   editNote() {
-    this.saveForNote = this.model.note.getCopy();
+
+    this.saveForCard = this.noteCard.note.getCopy();
+
     this.isEditNote = !this.isEditNote;
   }
 
   saveNote() {
-    this.saveForNote = null;
+
+    this.saveForCard = null;
+
     this.isEditNote = !this.isEditNote;
-    this.noteService.put(this.model.note).subscribe((data) => {
-      this.model.note = data;
+
+    this.noteService.put(this.noteCard.note).subscribe((data) => {
+      this.noteCard.note = data;
     });
   }
 
-  cansel(){
-    this.model.note = this.saveForNote.getCopy();
+  cancel() {
+
+    this.noteCard.note = this.saveForCard.getCopy();
+
     this.isEditNote = !this.isEditNote;
   }
 
   deleteNote() {
-    this.noteService.delete(this.model.note.id).subscribe((data) => {
-      this.model.note = data;
+    
+    this.noteService.delete(this.noteCard.note.id).subscribe((data) => {
+      this.noteCard.note = data;
     });
   }
 
