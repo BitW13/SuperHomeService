@@ -43,4 +43,8 @@ export class NoteComponent implements OnInit {
     this.notes.unshift(new Note());
   }
 
+  addCategory(){
+    this.categories.push(new NoteCategory());
+  }
+
 }
