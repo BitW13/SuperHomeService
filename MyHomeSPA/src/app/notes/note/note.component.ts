@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Note } from 'src/app/models/note';
-import { NoteCategory } from 'src/app/models/noteCategory';
+import { Note } from 'src/app/notes/models/note';
+import { NoteCategory } from 'src/app/notes/models/noteCategory';
+import { NoteService } from '../services/note.service';
+import { NoteCategoryService } from '../services/note-category.service';
+import { NoteModelService } from '../services/note-model.service';
+import { NoteModel } from '../models/noteModel';
 
 @Component({
   selector: 'app-note',
@@ -9,38 +13,43 @@ import { NoteCategory } from 'src/app/models/noteCategory';
 })
 export class NoteComponent implements OnInit {
 
-  notes: Array<Note>;
-  categories: Array<NoteCategory>;
+  models;
 
-  constructor() { }
+  categories;
+
+  constructor(private noteService: NoteService, private categoryService: NoteCategoryService, private modelsService: NoteModelService) { }
 
   ngOnInit() {
-    this.getNotes();
+    this.loadItems();
+  }
+
+  loadItems(){
+    this.getModels();
     this.getCategories();
   }
 
   getCategories(){
-    this.categories = [
-      new NoteCategory(),
-      new NoteCategory(),
-      new NoteCategory()
-    ]
+    this.categoryService.getItems().subscribe((data) => {
+      this.categories = data;
+    });
   }
 
-  getNotes(){
-    this.notes = [
-      new Note(),
-      new Note(),
-      new Note(),
-      new Note(),
-      new Note(),
-      new Note()
-    ]
-    console.log(this.notes)
+  getModels(){
+    this.modelsService.getModels().subscribe((data) => {
+      this.models = data;
+    });
   }
 
   addNote(){
-    this.notes.unshift(new Note());
+    this.noteService.post(new Note()).subscribe((data) => {
+      this.loadItems();
+    });
+  }
+
+  addCategory(){
+    this.categoryService.post(new NoteCategory()).subscribe((data) => {
+      this.loadItems();
+    });
   }
 
 }

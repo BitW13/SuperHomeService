@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Note } from 'src/app/models/note';
-import { NoteCategory } from 'src/app/models/noteCategory';
+import { Note } from 'src/app/notes/models/note';
+import { NoteService } from '../services/note.service';
 
 @Component({
   selector: 'app-note-item',
@@ -9,40 +9,41 @@ import { NoteCategory } from 'src/app/models/noteCategory';
 })
 export class NoteItemComponent implements OnInit {
 
-  @Input() note: Note;
+  @Input() model;
 
-  @Input() categories: Array<NoteCategory>;
+  @Input() categories;
 
   isEditNote: boolean;
 
   saveForNote: Note;
 
-  constructor() { }
+  constructor(private noteService: NoteService) { }
 
   ngOnInit() {
   }
 
   editNote() {
-    this.saveForNote = this.note.getCopy();
+    this.saveForNote = this.model.note.getCopy();
     this.isEditNote = !this.isEditNote;
   }
 
   saveNote() {
     this.saveForNote = null;
     this.isEditNote = !this.isEditNote;
+    this.noteService.put(this.model.note).subscribe((data) => {
+      this.model.note = data;
+    });
   }
 
   cansel(){
-    this.note = this.saveForNote.getCopy();
+    this.model.note = this.saveForNote.getCopy();
     this.isEditNote = !this.isEditNote;
   }
 
   deleteNote() {
-    
-  }
-
-  changeNoteCategory(){
-    
+    this.noteService.delete(this.model.note.id).subscribe((data) => {
+      this.model.note = data;
+    });
   }
 
 }

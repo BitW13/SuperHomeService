@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { NoteCategory } from 'src/app/models/noteCategory';
+import { NoteCategory } from 'src/app/notes/models/noteCategory';
 
 @Component({
   selector: 'app-note-category-item',
