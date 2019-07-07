@@ -22,21 +22,4 @@ export class Note {
 
         this.noteCategoryId = 0;
     }
-
-    getCopy(): Note {
-
-        let copy: Note = new Note();
-
-        copy.id = this.id;
-
-        copy.name = this.name;
-
-        copy.text = this.text;
-
-        copy.lastChange = this.lastChange;
-
-        copy.noteCategoryId = this.noteCategoryId;
-
-        return copy;
-    }
 }

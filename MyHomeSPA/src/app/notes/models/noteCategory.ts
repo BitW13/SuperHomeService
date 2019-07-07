@@ -18,19 +18,4 @@ export class NoteCategory {
 
         this.isOn = true;
     }
-
-    getCopy(): NoteCategory {
-
-        let copy: NoteCategory = new NoteCategory();
-
-        copy.id = this.id;
-
-        copy.name = this.name;
-
-        copy.color = this.color;
-
-        copy.isOn = this.isOn;
-
-        return copy;
-    }
 }

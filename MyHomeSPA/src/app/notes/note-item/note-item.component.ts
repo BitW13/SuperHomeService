@@ -1,7 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { Note } from 'src/app/notes/models/note';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { NoteService } from '../services/note.service';
 import { NoteCard } from '../models/noteCard';
+import { SaveData } from '../models/saveData';
 
 @Component({
   selector: 'app-note-item',
@@ -14,19 +14,22 @@ export class NoteItemComponent implements OnInit {
 
   @Input() categories;
 
+  @Output() loadItems = new EventEmitter();
+
   isEditNote: boolean = false;
+
+  saveData: SaveData = new SaveData();
 
   saveForCard: NoteCard;
 
   constructor(private noteService: NoteService) { }
 
   ngOnInit() {
-    console.log(this.noteCard)
   }
 
   editNote() {
 
-    this.saveForCard = this.noteCard.note.getCopy();
+    this.saveForCard = this.saveData.getCardCopy(this.noteCard);
 
     this.isEditNote = !this.isEditNote;
   }
@@ -44,16 +47,15 @@ export class NoteItemComponent implements OnInit {
 
   cancel() {
 
-    this.noteCard.note = this.saveForCard.getCopy();
+    this.noteCard = this.saveData.getCardCopy(this.saveForCard);
 
     this.isEditNote = !this.isEditNote;
   }
 
   deleteNote() {
-    
-    this.noteService.delete(this.noteCard.note.id).subscribe((data) => {
-      this.noteCard.note = data;
+    console.log(this.noteCard.note);
+    this.noteService.delete(this.noteCard.note).subscribe((data) => {
+      this.loadItems.emit();
     });
   }
-
 }

@@ -5,11 +5,11 @@
             <div class='col-2 border border-dark'>
                 <button type="button" class="btn btn-success btn-lg btn-block" (click)='addCategory()'>Новая категория</button>
                 <div *ngFor='let category of categories'>
-                    <app-note-category-item [(category)]='category'></app-note-category-item>
+                    asdasdasdasd
                 </div>
             </div>
             <div class='col-auto' *ngFor='let noteCard of noteCards'>
-                <app-note-item [(noteCard)]='noteCard' [(categories)]='categories'></app-note-item>
+                <app-note-item [(noteCard)]='noteCard' [(categories)]='categories' (loadItems)='loadItems()'></app-note-item>
             </div>
         </div>
     </div>

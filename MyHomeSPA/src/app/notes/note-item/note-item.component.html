@@ -1,7 +1,7 @@
 <div *ngIf='!isEditNote; else editTemplate'>
     <div class="card" style="width: 18rem;">
         <div class="card-body">
-            <app-note-category-item [(category)]='noteCard.category'></app-note-category-item>
+            asdasdasd
             <hr/>
             <h5 class="card-title">{{noteCard.note.name}}</h5>
             <hr/>
@@ -11,7 +11,7 @@
             <p class="card-text">{{noteCard.note.lastChange | date:'fullDate'}}</p>
             <div class="btn-group" role="group" aria-label="Basic example">
                 <button type="button" class="btn btn-warning" (click)='editNote()'>Изменить</button>
-                <button type="button" class="btn btn-danger">Удалить</button>
+                <button type="button" class="btn btn-danger" (click)='deleteNote()'>Удалить</button>
             </div>
         </div>
     </div>
@@ -21,7 +21,7 @@
     <div class="card" style="width: 18rem;">
         <select>
             <option *ngFor='let category of categories'>
-                <app-note-category-item></app-note-category-item>
+                asdasd
             </option>
         </select>
 
