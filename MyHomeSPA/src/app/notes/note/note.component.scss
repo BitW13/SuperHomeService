@@ -1,0 +1,32 @@
+.btn-add-note {
+  position: fixed;
+  bottom: calc(100% - 130px);
+  left: calc(100% - 90px);
+  z-index: 1000;
+  transition: .3s ease;
+
+  &:hover {
+    cursor: pointer;
+    
+    img {
+      width: 80%;
+      height: 80%;
+    }
+  }
+
+  &:active {
+    cursor: pointer;
+
+    img {
+      width: 70%;
+      height: 70%;
+    }
+  }
+
+
+  img {
+    transition: .3s ease;
+    width: 75%;
+    height: 75%;
+  }
+}
