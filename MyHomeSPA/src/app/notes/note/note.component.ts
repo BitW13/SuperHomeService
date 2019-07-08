@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Note } from 'src/app/notes/models/note';
+import { NoteCategory } from 'src/app/notes/models/noteCategory';
+import { NoteService } from '../services/note.service';
 import { NoteCategoryService } from '../services/note-category.service';
-import { NoteModelService } from '../services/note-model.service';
 
 @Component({
   selector: 'app-note',
@@ -9,30 +11,42 @@ import { NoteModelService } from '../services/note-model.service';
 })
 export class NoteComponent implements OnInit {
 
-  noteCategories;
+  noteCards;
 
-  noteModels;
+  categories;
 
-  constructor(private noteCategoriesService: NoteCategoryService, private noteModelService: NoteModelService) { }
+  constructor(private noteService: NoteService, private categoryService: NoteCategoryService) { }
 
   ngOnInit() {
     this.loadItems();
   }
 
-  loadItems(){
-    this.loadNoteCatigories();
-    this.loadNoteModels();
+  loadItems() {
+    this.getModels();
+    this.getCategories();
   }
 
-  loadNoteCatigories() {
-    this.noteCategoriesService.getItems().subscribe((data) => {
-      this.noteCategories = data;
+  getCategories() {
+    this.categoryService.getItems().subscribe((data) => {
+      this.categories = data;
     });
   }
 
-  loadNoteModels(){
-    this.noteModelService.getItems().subscribe((data) => {
-      this.noteModels = data;
+  getModels() {
+    this.noteService.getCards().subscribe((data) => {
+      this.noteCards = data;
+    });
+  }
+
+  addNote() {
+    this.noteService.post(new Note()).subscribe((data) => {
+      this.loadItems();
+    });
+  }
+
+  addCategory() {
+    this.categoryService.post(new NoteCategory()).subscribe((data) => {
+      this.loadItems();
     });
   }
 }

@@ -1,0 +1,50 @@
+<div *ngIf='!isEditNote; else editTemplate'>
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+            <div *ngIf='noteCard.note.noteCategoryId != 0; else defaultCategory'>
+                <label><h6>Категория:</h6>{{noteCard.noteCategory.name}}</label>
+            </div>
+            <ng-template #defaultCategory>
+                <label>Без категории</label>
+            </ng-template>
+            <hr/>
+            <h5 class="card-title">{{noteCard.note.name}}</h5>
+            <hr/>
+            <p class="card-text">{{noteCard.note.text}}</p>
+            <hr/>
+            <label class="card-text">Дата изменения:</label>
+            <p class="card-text">{{noteCard.note.lastChange | date:'fullDate'}}</p>
+            <div class="btn-group" role="group" aria-label="Basic example">
+                <button type="button" class="btn btn-warning" (click)='editNote()'>Изменить</button>
+                <button type="button" class="btn btn-danger" (click)='deleteNote()'>Удалить</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template #editTemplate>
+    <div class="card" style="width: 18rem;">
+        <select [(ngModel)]='noteCard.note.noteCategoryId' [ngModelOptions]="{standalone: true}" [(value)]='noteCard.note.noteCategoryId'>
+            <option value='0'>
+                Без категории
+            </option>
+            <option *ngFor='let category of categories' value='{{category.id}}' >
+                {{category.name}}
+            </option>
+        </select>
+
+        <div class="card-body">
+            <div class="form-group">
+                <input type="text" class="form-control" [(ngModel)]='noteCard.note.name'>
+            </div>
+            <hr/>
+            <div class="form-group">
+                <textarea class="form-control" [(ngModel)]='noteCard.note.text' rows="3"></textarea>
+            </div>
+            <div class="btn-group" role="group" aria-label="Basic example">
+                <button type="button" class="btn btn-success" (click)='saveNote()'>Сохранить</button>
+                <button type="button" class="btn btn-danger" (click)='cancel()'>Отменить</button>
+            </div>
+        </div>
+    </div>
+</ng-template>
