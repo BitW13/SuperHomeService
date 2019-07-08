@@ -43,14 +43,13 @@ export class NoteItemComponent implements OnInit {
       copyCategory.name = this.noteCard.category.name;
       copyCategory.color = this.noteCard.category.color;
       copyCategory.isOn = this.noteCard.category.isOn;
-      copyNoteCard.category = copyCategory;
+      copyNoteCard.noteCategory = copyCategory;
     }
 
     copyNoteCard.note = copyNote;
 
     this.saveForCard = copyNoteCard;
 
-    console.log(this.saveForCard);
     this.isEditNote = !this.isEditNote;
   }
 
@@ -59,9 +58,9 @@ export class NoteItemComponent implements OnInit {
     this.saveForCard = null;
 
     this.isEditNote = !this.isEditNote;
-
+    
     this.noteService.put(this.noteCard.note).subscribe((data) => {
-      this.noteCard.note = data;
+      this.loadItems.emit();
     });
   }
 
@@ -73,7 +72,6 @@ export class NoteItemComponent implements OnInit {
   }
 
   deleteNote() {
-    console.log(this.noteCard.note);
     this.noteService.delete(this.noteCard.note).subscribe((data) => {
       this.loadItems.emit();
     });

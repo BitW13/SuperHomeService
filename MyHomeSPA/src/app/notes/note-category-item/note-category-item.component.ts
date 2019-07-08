@@ -40,7 +40,7 @@ export class NoteCategoryItemComponent implements OnInit {
     this.isEditNoteCategory = !this.isEditNoteCategory;
 
     this.categoryService.put(this.category).subscribe((data) => {
-      this.category = data;
+      this.loadItems.emit();
     });
   }
 
