@@ -1,4 +1,5 @@
 ﻿using Common.Entity.NoteService;
+using NoteService.Bll.Helpers;
 using NoteService.Bll.Services.Interfaces;
 using NotesService.Dal.Repositories.Interfaces;
 using System.Collections.Generic;
@@ -28,11 +29,19 @@ namespace NoteService.Bll.Services.Implementations
         public async Task<IEnumerable<NoteCategory>> GetAllAsync()
         {
             return await db.GetAllAsync();
+
         }
 
         public async Task<NoteCategory> GetItemByIdAsync(int id)
         {
-            return await db.GetItemByIdAsync(id);
+            NoteCategory noteCategory = await db.GetItemByIdAsync(id);
+
+            if (noteCategory == null)
+            {
+                return Constants.DefaultNoteCategories.NoteCategory;
+            }
+
+            return noteCategory;
         }
 
         public async Task UpdateAsync(NoteCategory item)

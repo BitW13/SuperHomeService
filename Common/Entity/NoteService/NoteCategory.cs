@@ -11,7 +11,7 @@ namespace Common.Entity.NoteService
         public string Name { get; set; }
 
         [Required]
-        public string ImagePath { get; set; }
+        public string Color { get; set; }
 
         [Required]
         public bool IsOn { get; set; }

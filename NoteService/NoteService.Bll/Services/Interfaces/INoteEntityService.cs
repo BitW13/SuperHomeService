@@ -7,6 +7,6 @@ namespace NoteService.Bll.Services.Interfaces
 {
     public interface INoteEntityService : IService<Note>
     {
-        Task<IEnumerable<Note>> GetByNoteCategoryIdAsync(int noteCategoryId);
+        Task<IEnumerable<Note>> GetByNoteCategoryIdAsync(int id);
     }
 }
