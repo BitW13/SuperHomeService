@@ -12,6 +12,9 @@ import { NoteItemComponent } from './notes/note-item/note-item.component';
 import { NoteCategoryItemComponent } from './notes/note-category-item/note-category-item.component';
 import { NoteService } from './notes/services/note.service';
 import { NoteCategoryService } from './notes/services/note-category.service';
+import { TaskComponent } from './tasks/task/task.component';
+import { TaskCategoryItemComponent } from './tasks/task-category-item/task-category-item.component';
+import { TaskItemComponent } from './tasks/task-item/task-item.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +23,10 @@ import { NoteCategoryService } from './notes/services/note-category.service';
     NavpanelComponent,
     NoteComponent,
     NoteItemComponent,
-    NoteCategoryItemComponent
+    NoteCategoryItemComponent,
+    TaskComponent,
+    TaskCategoryItemComponent,
+    TaskItemComponent
   ],
   imports: [
     BrowserModule,

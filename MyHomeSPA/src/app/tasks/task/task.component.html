@@ -1,0 +1,18 @@
+<div>
+    <button type="button" class="btn btn-success btn-lg btn-block" (click)='addTask()'>Новая задача</button>
+    <div class='container-fluid'>
+        <div class='row'>
+            <div class='col-3 border border-dark'>
+                <button type="button" class="btn btn-success btn-lg btn-block" (click)='addCategory()'>Новая категория</button>
+                <div *ngFor='let category of categories'>
+                    <app-task-category-item [(category)]='category' (loadItems)='loadItems()'></app-task-category-item>
+                </div>
+            </div>
+            <table class='col-auto'>
+                <tr *ngFor='let taskCard of taskCards'>
+                        <app-task-item [(taskCard)]='taskCard' [(categories)]='categories' (loadItems)='loadItems()'></app-task-item>
+                </tr>                
+            </table>
+        </div>
+    </div>
+</div>
