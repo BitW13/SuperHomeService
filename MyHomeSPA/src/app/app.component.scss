@@ -6,3 +6,13 @@
 .active {
     border-bottom: 1px solid rgba(104, 104, 104, 0.719);
 }
+
+.show-categories {
+    margin-right: 12px;
+    color: aqua;
+    text-decoration: none;
+
+    &:hover {
+        color: aquamarine;
+    }
+}

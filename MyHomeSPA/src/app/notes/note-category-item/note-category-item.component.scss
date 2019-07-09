@@ -1,7 +1,12 @@
+.categories-bar {
+  height: 100%;
+}
+
 .label-cbx {
   user-select: none;
   cursor: pointer;
   margin-bottom: 0;
+  margin-left: auto;
   input:checked {
     & + .checkbox {
       border-color: #20c2e0;
@@ -32,8 +37,8 @@
     top: 2px;
     float: left;
     // margin-right: 8px;
-    width: 20px;
-    height: 20px;
+    width: 25px;
+    height: 25px;
     border: 2px solid #c8ccd4;
     border-radius: 3px;
     svg {

@@ -1,14 +1,14 @@
 <div class="note-element">
     <a class="btn-add-note" (click)='addNote()'><img src="https://cdn.icon-icons.com/icons2/902/PNG/512/plus_icon-icons.com_69322.png" alt="+"></a>
     <div class='container-fluid'>
-        <div class='row'>
-            <div class='col-3 border border-dark'>
+        <div class='row contains-categories'>
+            <div class='col-3 border border-dark categories-bar contains-categories'>
                 <button type="button" class="btn btn-success btn-lg btn-block" (click)='addCategory()'>Новая категория</button>
                 <div *ngFor='let category of categories'>
                     <app-note-category-item [(category)]='category' (loadItems)='loadItems()'></app-note-category-item>
                 </div>
             </div>
-            <div class='col-auto' *ngFor='let noteCard of noteCards'>
+            <div class='col-auto main' *ngFor='let noteCard of noteCards'>
                 <app-note-item [(noteCard)]='noteCard' [(categories)]='categories' (loadItems)='loadItems()'></app-note-item>
             </div>
         </div>
