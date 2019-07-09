@@ -4,10 +4,10 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using NoteService.DI;
-using NoteService.WebApi.AutoMapper;
+using ShoppingPlannerService.DI;
+using ShoppingPlannerService.WebApi.AutoMapper;
 
-namespace NoteService.WebApi
+namespace ShoppingPlannerService.WebApi
 {
     public class Startup
     {
