@@ -1,0 +1,16 @@
+<div *ngIf='!isEditTypeOfPurchase; else editTemplate'>
+    <div class="btn-group" role="group" aria-label="Basic example">
+        <button (click)='editTypeOfPurchase()'>
+            <label>{{type.name}}</label>
+        </button>
+        <button type="button" class="btn btn-danger">Удалить</button>
+    </div>
+</div>
+
+<ng-template #editTemplate>
+    <input type="text" [(ngModel)]='type.name'>
+    <div class="btn-group" role="group" aria-label="Basic example">            
+        <button type="button" class="btn btn-success" (click)='editTypeOfPurchase()'>Сохранить</button>
+        <button type="button" class="btn btn-danger">Отменить</button>
+    </div>
+</ng-template>

@@ -1,14 +1,14 @@
 <div>
-    <button type="button" class="btn btn-success btn-lg btn-block" (click)='addNote()'>Новая заметка</button>
     <div class='container-fluid'>
         <div class='row'>
+            <button type="button" class="btn btn-success btn-lg btn-block" (click)='addNote()'>Новая заметка</button>
             <div class='col-3 border border-dark'>
                 <button type="button" class="btn btn-success btn-lg btn-block" (click)='addCategory()'>Новая категория</button>
                 <div *ngFor='let category of categories'>
                     <app-note-category-item [(category)]='category' (loadItems)='loadItems()'></app-note-category-item>
                 </div>
             </div>
-            <div class='col-auto' *ngFor='let noteCard of noteCards'>
+            <div class='col-auto' *ngFor='let noteCard of noteCards'>                
                 <app-note-item [(noteCard)]='noteCard' [(categories)]='categories' (loadItems)='loadItems()'></app-note-item>
             </div>
         </div>

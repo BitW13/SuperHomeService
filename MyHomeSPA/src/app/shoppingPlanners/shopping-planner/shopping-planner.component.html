@@ -1,0 +1,31 @@
+<div class='container-fluid'>
+    <div class='row'>
+        <div class='col-3'>
+            <button type="button" class="btn btn-success btn-lg btn-block" (click)='addCategory()'>Новая категория</button>
+            <app-shopping-category-item *ngFor='let category of shoppingCategories' [(category)]='category'></app-shopping-category-item>
+        </div>
+        <div class='col-3'>
+            <button type="button" class="btn btn-success btn-lg btn-block" (click)='addCategory()'>Новый тип покупки</button>
+            <app-shopping-type-item *ngFor='let type of typeOfPurchases' [(type)]='type'></app-shopping-type-item>
+        </div>
+        <div class='col-12'>
+            <table class="table table-bordered">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col"><input type='checkbox'></th>
+                        <th scope="col">Название</th>
+                        <th scope="col">Категория покупки</th>
+                        <th scope="col">Единица измереия</th>
+                        <th scope="col">Итоговая стоимость</th>
+                        <th scope="col">Количество</th>
+                        <th scope="col">Цена за одну</th>            
+                        <th scope="col">Описание</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr app-shopping-planner-item *ngFor='let card of shoppingCards' [(card)]='card' [(shoppingCategories)]='shoppingCategories' [(typeOfPurchases)]='typeOfPurchases'>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

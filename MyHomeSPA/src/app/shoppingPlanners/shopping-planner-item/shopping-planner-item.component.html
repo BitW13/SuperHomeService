@@ -1,0 +1,72 @@
+<td *ngIf='!isEditShoppingCard'>
+    <input type='checkbox'>
+</td>
+<td *ngIf='isEditShoppingCard'>
+    <div class="btn-group" role="group" aria-label="Basic example">
+        <button type="button" class="btn btn-danger">Удалить</button>
+        <button (click)='editShoppingCard()' type="button" class="btn btn-success">Сохранить</button>
+    </div>
+</td>
+
+<td *ngIf='!isEditShoppingCard' (click)='editShoppingCard()'>
+    <p>{{card.purchase.name}}</p>
+</td>
+<td *ngIf='isEditShoppingCard'>
+    <input type='text' [(ngModel)]='card.purchase.name'>
+</td>
+
+<td *ngIf='!isEditShoppingCard' (click)='editShoppingCard()'>
+    {{card.shoppingCategory.name}}
+</td>
+<td *ngIf='isEditShoppingCard'>
+    <select [(ngModel)]='card.purchase.shoppingCategoryId' [ngModelOptions]="{standalone: true}" [(value)]='card.purchase.shoppingCategoryId'>
+        <option value='0'>
+            Без категории
+        </option>
+        <option *ngFor='let category of shoppingCategories' value='{{category.id}}' >
+            {{category.name}}
+        </option>
+    </select>
+</td>
+
+<td *ngIf='!isEditShoppingCard' (click)='editShoppingCard()'>
+    {{card.typeOfPurchase.name}}
+</td>
+<td *ngIf='isEditShoppingCard'>
+    <select [(ngModel)]='card.purchase.shoppingCategoryId' [ngModelOptions]="{standalone: true}" [(value)]='card.purchase.shoppingCategoryId'>
+        <option value='0'>
+            Штуки
+        </option>
+        <option *ngFor='let type of typeOfPurchases' value='{{type.id}}' >
+            {{type.name}}
+        </option>
+    </select>
+</td>
+
+<td *ngIf='!isEditShoppingCard' (click)='editShoppingCard()'>
+    {{card.purchase.getTotalPrice()}}
+</td>
+<td *ngIf='isEditShoppingCard'>
+    {{card.purchase.getTotalPrice()}}
+</td>
+
+<td *ngIf='!isEditShoppingCard' (click)='editShoppingCard()'>
+    {{card.purchase.amount}}
+</td>
+<td *ngIf='isEditShoppingCard'>
+    <input type='number' [(ngModel)]='card.purchase.amount'>
+</td>
+
+<td *ngIf='!isEditShoppingCard' (click)='editShoppingCard()'>
+    {{card.purchase.priceOfOneUnit}}
+</td>
+<td *ngIf='isEditShoppingCard'>
+    <input type='text' [(ngModel)]='card.purchase.priceOfOneUnit'>
+</td>
+
+<td *ngIf='!isEditShoppingCard' (click)='editShoppingCard()'>
+    {{card.purchase.description}}
+</td>   
+<td *ngIf='isEditShoppingCard'>
+    <textarea type='text' [(ngModel)]='card.purchase.description' rows="3"></textarea>
+</td>  
