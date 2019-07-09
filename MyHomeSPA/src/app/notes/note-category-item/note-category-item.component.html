@@ -1,6 +1,6 @@
 <div *ngIf='!isEditNoteCategory; else editTemplate'>
     <div class="btn-group" role="group" aria-label="Basic example">
-        <button (click)='editNoteCategory()'>
+        <button class="mycategory" (click)='editNoteCategory()'>
             <label>{{category.name}}</label>
             <label>{{category.color}}</label>
         </button>       
