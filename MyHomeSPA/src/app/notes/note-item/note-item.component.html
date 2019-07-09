@@ -10,7 +10,7 @@
             <hr/>
             <h5 class="card-title">{{noteCard.note.name}}</h5>
             <hr/>
-            <p class="card-text">{{noteCard.note.text}}</p>
+            <p class="card-text multiple-rows">{{noteCard.note.text}}</p>
             <hr/>
             <label class="card-text">Дата изменения:</label>
             <p class="card-text">{{noteCard.note.lastChange | date:'fullDate'}}</p>
@@ -39,7 +39,7 @@
             </div>
             <hr/>
             <div class="form-group">
-                <textarea class="form-control" [(ngModel)]='noteCard.note.text' rows="3"></textarea>
+                <textarea wrap="soft" class="form-control" [(ngModel)]='noteCard.note.text' rows="3"></textarea>
             </div>
             <div class="btn-group" role="group" aria-label="Basic example">
                 <button type="button" class="btn btn-success" (click)='saveNote()'>Сохранить</button>
