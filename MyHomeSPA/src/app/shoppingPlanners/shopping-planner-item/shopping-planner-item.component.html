@@ -61,7 +61,7 @@
     {{card.purchase.priceOfOneUnit}}
 </td>
 <td *ngIf='isEditShoppingCard'>
-    <input type='text' [(ngModel)]='card.purchase.priceOfOneUnit'>
+    <input type='number' [(ngModel)]='card.purchase.priceOfOneUnit'>
 </td>
 
 <td *ngIf='!isEditShoppingCard' (click)='editShoppingCard()'>
