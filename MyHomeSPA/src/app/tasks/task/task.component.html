@@ -8,11 +8,32 @@
                     <app-task-category-item [(category)]='category' (loadItems)='loadItems()'></app-task-category-item>
                 </div>
             </div>
-            <table class='col-auto'>
-                <tr *ngFor='let taskCard of taskCards'>
-                        <app-task-item [(taskCard)]='taskCard' [(categories)]='categories' (loadItems)='loadItems()'></app-task-item>
-                </tr>                
-            </table>
+            <div class="col-9">
+                <table class='col-auto table table-striped table-bordered'>
+                        <thead>
+                            <tr>
+                                <th scope="col">
+                                    Done
+                                </th>
+                                <th scope="col">
+                                    Category
+                                </th>
+                                <th scope="col">
+                                    Name
+                                </th>
+                                <th scope="col">
+                                    Description
+                                </th>
+                                <th scope="col">
+                                    Date
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr app-task-item *ngFor='let taskCard of taskCards' [(taskCard)]='taskCard'>
+                        </tbody>               
+                </table>
+            </div>            
         </div>
     </div>
 </div>

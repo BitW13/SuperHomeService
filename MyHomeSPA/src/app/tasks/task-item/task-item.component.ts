@@ -3,7 +3,7 @@ import { TaskCard } from '../models/taskCard';
 import { TaskService } from '../services/task.service';
 
 @Component({
-  selector: 'app-task-item',
+  selector: 'tr[app-task-item]',
   templateUrl: './task-item.component.html',
   styleUrls: ['./task-item.component.scss']
 })
