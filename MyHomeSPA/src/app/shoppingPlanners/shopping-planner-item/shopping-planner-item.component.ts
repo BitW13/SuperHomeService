@@ -18,9 +18,7 @@ export class ShoppingPlannerItemComponent implements OnInit {
 
   @Input() typeOfPurchases: TypeOfPurchase[];
 
-  @Output() loadItems = new EventEmitter();
-
-  
+  @Output() loadItems = new EventEmitter();  
 
   saveItemValue: Purchase;
 
@@ -76,4 +74,8 @@ export class ShoppingPlannerItemComponent implements OnInit {
 
       return copy;
   }
+
+  getTotalPrice(){
+    this.card.purchase.totalPrice = this.card.purchase.priceOfOneUnit * this.card.purchase.amount;
+}
 }

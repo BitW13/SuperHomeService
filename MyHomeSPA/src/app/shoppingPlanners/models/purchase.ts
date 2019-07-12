@@ -32,7 +32,7 @@ export class Purchase {
 
         this.priceOfOneUnit = 1;
 
-        this.totalPrice = 1;
+        this.totalPrice = this.amount*this.priceOfOneUnit;
 
         this.isDone = false;
 

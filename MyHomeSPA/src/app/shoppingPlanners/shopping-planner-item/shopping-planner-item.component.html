@@ -45,24 +45,24 @@
 </td>
 
 <td *ngIf='!isEditItem' (click)='edit()'>
-    Как же это бесит
+    <p>{{card.purchase.totalPrice}}</p>
 </td>
 <td *ngIf='isEditItem'>
-    Как же это бесит
+    <p>{{card.purchase.totalPrice}}</p>
 </td>
 
 <td *ngIf='!isEditItem' (click)='edit()'>
     {{card.purchase.amount}}
 </td>
 <td *ngIf='isEditItem'>
-    <input type='number' [(ngModel)]='card.purchase.amount'>
+    <input type='number' [(ngModel)]='card.purchase.amount' (ngModelChange)='getTotalPrice()'>
 </td>
 
 <td *ngIf='!isEditItem' (click)='edit()'>
     {{card.purchase.priceOfOneUnit}}
 </td>
 <td *ngIf='isEditItem'>
-    <input type='number' [(ngModel)]='card.purchase.priceOfOneUnit'>
+    <input type='number' [(ngModel)]='card.purchase.priceOfOneUnit' (ngModelChange)='getTotalPrice()'>
 </td>
 
 <td *ngIf='!isEditItem' (click)='edit()'>
