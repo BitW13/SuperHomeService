@@ -12,7 +12,7 @@ namespace Common.Entity.TaskPlannerService
 
         public string Description { get; set; }
 
-
+        [Required]
         public int TaskCategoryId { get; set; }
 
         [Required]

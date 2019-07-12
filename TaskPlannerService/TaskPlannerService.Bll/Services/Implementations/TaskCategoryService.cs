@@ -1,4 +1,5 @@
 ﻿using Common.Entity.TaskPlannerService;
+using Common.Helpers;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using TaskPlannerService.Bll.Services.Interfaces;
@@ -32,7 +33,14 @@ namespace TaskPlannerService.Bll.Services.Implementations
 
         public async Task<TaskCategory> GetItemByIdAsync(int id)
         {
-            return await db.GetItemByIdAsync(id);
+            TaskCategory taskCategory = await db.GetItemByIdAsync(id);
+
+            if(taskCategory == null)
+            {
+                return Constants.DefaultTaskCategories.TaskCategory;
+            }
+
+            return taskCategory;
         }
 
         public async Task UpdateAsync(TaskCategory item)

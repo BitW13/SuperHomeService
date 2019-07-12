@@ -1,5 +1,5 @@
 ﻿using Common.Entity.ShoppingPlannerService;
-using ShoppingPlannerService.Bll.Helpers;
+using Common.Helpers;
 using ShoppingPlannerService.Bll.Services.Interfaces;
 using ShoppingPlannerService.Dal.Repositories.Interfaces;
 using System.Collections.Generic;

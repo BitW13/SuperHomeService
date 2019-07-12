@@ -13,6 +13,7 @@ namespace Common.Entity.TaskPlannerService
         [Required]
         public string Color { get; set; }
 
+        [Required]
         public string ImagePath { get; set; }
 
         [Required]
