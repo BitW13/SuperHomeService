@@ -4,7 +4,7 @@ export class Note {
 
     public name: string;
 
-    public text: string
+    public text: string;
 
     public lastChange: Date;
 
