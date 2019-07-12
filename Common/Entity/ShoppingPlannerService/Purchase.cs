@@ -4,7 +4,7 @@ namespace Common.Entity.ShoppingPlannerService
 {
     public class Purchase
     {
-        [Required]
+        [Key]
         public int Id { get; set; }
 
         public string Name { get; set; }
@@ -26,6 +26,7 @@ namespace Common.Entity.ShoppingPlannerService
         [Required]
         public bool IsDone { get; set; }
 
+        [Required]
         public int ShoppingCategoryId { get; set; }
 
         public int PlannerDate { get; set; }

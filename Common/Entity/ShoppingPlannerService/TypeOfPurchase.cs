@@ -4,7 +4,7 @@ namespace Common.Entity.ShoppingPlannerService
 {
     public class TypeOfPurchase
     {
-        [Required]
+        [Key]
         public int Id { get; set; }
 
         [Required]

@@ -7,7 +7,7 @@ namespace Common.Entity.ShoppingPlannerService
 {
     public class ShoppingCategory
     {
-        [Required]
+        [Key]
         public int Id { get; set; }
 
         [Required]
