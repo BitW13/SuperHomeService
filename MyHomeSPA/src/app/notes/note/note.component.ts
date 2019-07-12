@@ -1,38 +1,67 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Note } from 'src/app/notes/models/note';
+import { NoteCategory } from 'src/app/notes/models/noteCategory';
+import { NoteService } from '../services/note.service';
 import { NoteCategoryService } from '../services/note-category.service';
-import { NoteModelService } from '../services/note-model.service';
 
 @Component({
   selector: 'app-note',
   templateUrl: './note.component.html',
   styleUrls: ['./note.component.scss']
 })
-export class NoteComponent implements OnInit {
+export class NoteComponent implements OnInit, AfterViewInit {
 
-  noteCategories;
+  noteCards;
 
-  noteModels;
+  categories;
 
-  constructor(private noteCategoriesService: NoteCategoryService, private noteModelService: NoteModelService) { }
+  constructor(private noteService: NoteService, private categoryService: NoteCategoryService) { }
 
   ngOnInit() {
     this.loadItems();
   }
 
-  loadItems(){
-    this.loadNoteCatigories();
-    this.loadNoteModels();
+  ngAfterViewInit() {
+    document.querySelector('.show-categories').addEventListener('click', this.showCategories);
   }
 
-  loadNoteCatigories() {
-    this.noteCategoriesService.getItems().subscribe((data) => {
-      this.noteCategories = data;
+  private showCategories() {
+    const blockCategories = document.querySelectorAll('.contains-categories');
+    blockCategories.forEach(item => {
+      if (item.classList.contains('active-categories')) {
+        item.classList.remove('active-categories');
+      } else {
+        item.classList.add('active-categories');
+      }
     });
   }
 
-  loadNoteModels(){
-    this.noteModelService.getItems().subscribe((data) => {
-      this.noteModels = data;
+  loadItems() {
+    this.getModels();
+    this.getCategories();
+  }
+
+  getCategories() {
+    this.categoryService.getItems().subscribe((data) => {
+      this.categories = data;
+    });
+  }
+
+  getModels() {
+    this.noteService.getCards().subscribe((data) => {
+      this.noteCards = data;
+    });
+  }
+
+  addNote() {
+    this.noteService.post(new Note()).subscribe((data) => {
+      this.loadItems();
+    });
+  }
+
+  addCategory() {
+    this.categoryService.post(new NoteCategory()).subscribe((data) => {
+      this.loadItems();
     });
   }
 }

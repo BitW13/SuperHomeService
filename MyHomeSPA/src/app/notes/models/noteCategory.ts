@@ -1,13 +1,21 @@
 export class NoteCategory {
 
-    constructor(
-        
-        public id?: number,
+    public id: number;
 
-        public name?: string,
+    public name: string;
 
-        public imagePath?: string,
+    public color: any;
 
-        public isOn?: boolean
-    ) { }
+    public isOn: boolean;
+
+    constructor() {
+
+        this.id = 0;
+
+        this.name = 'Категория';
+
+        this.color = '000';
+
+        this.isOn = true;
+    }
 }
