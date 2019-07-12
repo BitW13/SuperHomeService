@@ -2,14 +2,15 @@
         <div class='row contains-categories'>
             <div class='col-3 border border-dark contains-categories categories-bar'>
                 <button type="button" class="btn btn-success btn-lg btn-block" (click)='addCategory()'>Новая категория</button>
+                <div *ngFor='let category of categories'>
                     <app-task-category-item 
-                        *ngFor='let category of categories'
                         [(category)]='category'
                         (loadItems)='loadItems()'></app-task-category-item>
+                </div>                    
             </div>
             <div class="col-12">
                 <button type="button" class="btn btn-success btn-lg btn-block" (click)='addTask()'>Новая задача</button>
-                <table class='col-auto table table-striped table-bordered'>
+                <table class='table table-striped table-bordered'>
                         <thead class="thead-dark">
                             <tr>
                                 <th scope="col"><input type="checkbox"></th>

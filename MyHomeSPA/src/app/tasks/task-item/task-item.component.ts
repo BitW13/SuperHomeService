@@ -31,7 +31,6 @@ export class TaskItemComponent implements OnInit {
   }
 
   edit() {
-    console.log(this.taskCard);
     this.switchingIsEditItem();
     this.saveItemValue = this.getCopy(this.taskCard.task);
   }
