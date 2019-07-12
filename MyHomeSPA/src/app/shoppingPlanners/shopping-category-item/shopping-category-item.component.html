@@ -1,10 +1,9 @@
-<div *ngIf='!isEditCategory; else editTemplate'>
+<div *ngIf='!isEditItem; else editTemplate'>
     <div class="btn-group" role="group" aria-label="Basic example">
-        <button (click)='editCategory()'>
+        <button (click)='edit()'>
             <label>{{category.name}}</label>
             <label>{{category.color}}</label>
         </button>
-        <button type="button" class="btn btn-danger">Удалить</button>
     </div>
 </div>
 
@@ -12,7 +11,8 @@
     <input type="text" [(ngModel)]='category.name'>
     <input type='color' [(ngModel)]='category.color'>
     <div class="btn-group" role="group" aria-label="Basic example">            
-        <button type="button" class="btn btn-success" (click)='editCategory()'>Сохранить</button>
-        <button type="button" class="btn btn-danger">Отменить</button>
+        <button type="button" class="btn btn-success" (click)='save()'>Сохранить</button>
+        <button type="button" class="btn btn-danger" (click)='cancel()'>Отменить</button>
+        <button type="button" class="btn btn-danger" (click)='delete()'>Удалить</button>
     </div>
 </ng-template>

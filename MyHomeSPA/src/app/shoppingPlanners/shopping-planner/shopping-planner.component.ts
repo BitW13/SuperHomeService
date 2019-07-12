@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ShoppingCard } from '../models/shoppingCard';
 import { ShoppingCategory } from '../models/shoppingCategory';
 import { TypeOfPurchase } from '../models/typeOfPurchase';
+import { PurchaseService } from '../services/purchase.service';
+import { ShoppingCategoryService } from '../services/shopping-category.service';
+import { TypeOfPurchaseService } from '../services/type-of-purchase.service';
+import { Purchase } from '../models/purchase';
 
 @Component({
   selector: 'app-shopping-planner',
@@ -10,47 +13,57 @@ import { TypeOfPurchase } from '../models/typeOfPurchase';
 })
 export class ShoppingPlannerComponent implements OnInit {
 
-  shoppingCards = [
+  shoppingCards;
 
-    new ShoppingCard(),
+  shoppingCategories;
 
-    new ShoppingCard(),
+  typeOfPurchases;
 
-    new ShoppingCard(),
-
-    new ShoppingCard(),
-
-    new ShoppingCard()
-  ]
-
-  shoppingCategories = [
-
-    new ShoppingCategory(),
-
-    new ShoppingCategory()
-  ]
-
-  typeOfPurchases = [
-
-    new TypeOfPurchase(),
-
-    new TypeOfPurchase(),
-
-    new TypeOfPurchase(),
-
-    new TypeOfPurchase()
-  ]
-
-  constructor() { }
+  constructor(private purchaseService: PurchaseService, private categoryService: ShoppingCategoryService, private typeOfPurchaseService: TypeOfPurchaseService) { }
 
   ngOnInit() {
+    this.loadItems();
   }
 
-  addCategory(){
-    
+  loadItems() {
+    this.getModels();
+    this.getTypeOFPurshases();
+    this.getCategories();
+  }
+  
+  getModels() {
+    this.purchaseService.getCards().subscribe((data) => {
+      this.shoppingCards = data;
+    });
   }
 
-  addShoppingCard(){
-    
+  getTypeOFPurshases(){
+    this.typeOfPurchaseService.getItems().subscribe((data) => {
+      this.typeOfPurchases = data;
+    });
+  }
+
+  getCategories() {
+    this.categoryService.getItems().subscribe((data) => {
+      this.shoppingCategories = data;
+    });
+  }  
+
+  addPurchase() {
+    this.purchaseService.post(new Purchase()).subscribe((data) => {
+      this.loadItems();
+    });
+  }
+
+  addTypeOfPurchases(){
+    this.typeOfPurchaseService.post(new TypeOfPurchase()).subscribe((data) => {
+      this.loadItems();
+    });
+  }
+
+  addCategory() {
+    this.categoryService.post(new ShoppingCategory()).subscribe((data) => {
+      this.loadItems();
+    });
   }
 }

@@ -2,13 +2,20 @@
     <div class='row'>
         <div class='col-3'>
             <button type="button" class="btn btn-success btn-lg btn-block" (click)='addCategory()'>Новая категория</button>
-            <app-shopping-category-item *ngFor='let category of shoppingCategories' [(category)]='category'></app-shopping-category-item>
+            <app-shopping-category-item 
+                *ngFor='let category of shoppingCategories' 
+                [(category)]='category'
+                (loadItems)='loadItems()'></app-shopping-category-item>
         </div>
         <div class='col-3'>
-            <button type="button" class="btn btn-success btn-lg btn-block" (click)='addCategory()'>Новый тип покупки</button>
-            <app-shopping-type-item *ngFor='let type of typeOfPurchases' [(type)]='type'></app-shopping-type-item>
+            <button type="button" class="btn btn-success btn-lg btn-block" (click)='addTypeOfPurchases()'>Новый тип покупки</button>
+            <app-shopping-type-item 
+                *ngFor='let type of typeOfPurchases' 
+                [(type)]='type'
+                (loadItems)='loadItems()'></app-shopping-type-item>
         </div>
         <div class='col-12'>
+            <button type="button" class="btn btn-success btn-lg btn-block" (click)='addPurchase()'>Добавить запись</button>
             <table class="table table-bordered">
                 <thead class="thead-dark">
                     <tr>
@@ -23,7 +30,11 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr app-shopping-planner-item *ngFor='let card of shoppingCards' [(card)]='card' [(shoppingCategories)]='shoppingCategories' [(typeOfPurchases)]='typeOfPurchases'>
+                    <tr app-shopping-planner-item 
+                        *ngFor='let card of shoppingCards' 
+                        [(card)]='card' [(shoppingCategories)]='shoppingCategories' 
+                        [(typeOfPurchases)]='typeOfPurchases'
+                        (loadItems)='loadItems()'>
                 </tbody>
             </table>
         </div>

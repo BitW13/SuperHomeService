@@ -12,7 +12,7 @@ export class Purchase {
 
     public priceOfOneUnit: number;
 
-    private totalPrice: number;
+    public totalPrice: number;
 
     public isDone: boolean;
 
@@ -22,9 +22,9 @@ export class Purchase {
 
         this.id = 0;
 
-        this.name='Тестировщик';
+        this.name='';
 
-        this.description = 'Нужен. А то старый не хочет работать';
+        this.description = '';
 
         this.typeOfPurchaseId = 0;
 
