@@ -7,5 +7,7 @@ namespace ShoppingPlannerService.Bll.BusinessLogic.Interfaces
         IPurchaseService Purchases { get; set; }
 
         ITypeOfPurchaseService TypeOfPurchases { get; set; }
+
+        IShoppingCategoryService ShoppingCategories { get; set; }
     }
 }

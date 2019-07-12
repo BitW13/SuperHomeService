@@ -52,6 +52,20 @@ namespace ShoppingPlannerService.Dal.Repositories.Implementations
             return await db.Purchases.ToListAsync();
         }
 
+        public async Task<IEnumerable<Purchase>> GetByShoppingCategoryId(int shoppingCategoryId)
+        {
+            var purchases = (await GetAllAsync()) as List<Purchase>;
+
+            return purchases.FindAll(purchase => purchase.ShoppingCategoryId == shoppingCategoryId);
+        }
+
+        public async Task<IEnumerable<Purchase>> GetByTypeOfPurchaseId(int typeOfPurchaseId)
+        {
+            var purchases = (await GetAllAsync()) as List<Purchase>;
+
+            return purchases.FindAll(purchase => purchase.TypeOfPurchaseId == typeOfPurchaseId);
+        }
+
         public async Task<Purchase> GetItemByIdAsync(int id)
         {
             return await db.Purchases.FindAsync(id);

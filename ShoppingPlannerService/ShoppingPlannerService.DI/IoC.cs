@@ -23,10 +23,12 @@ namespace ShoppingPlannerService.DI
 
             services.AddTransient<IDataAccess, DataAccess>();
             services.AddTransient<IPurchaseRepository, PurchaseRepository>();
+            services.AddTransient<IShoppingCategoryRepository, ShoppingCategoryRepository>();
             services.AddTransient<ITypeOfPurchaseRepository, TypeOfPurchaseRepository>();
 
             services.AddTransient<IBusinessLogic, BusinessLogic>();
             services.AddTransient<IPurchaseService, PurchaseService>();
+            services.AddTransient<IShoppingCategoryService, ShoppingCategoryService>();
             services.AddTransient<ITypeOfPurchaseService, TypeOfPurchaseService>();
         }
     }

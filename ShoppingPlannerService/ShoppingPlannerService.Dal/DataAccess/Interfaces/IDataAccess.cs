@@ -7,5 +7,7 @@ namespace ShoppingPlannerService.Dal.DataAccess.Interfaces
         IPurchaseRepository Purchases { get; set; }
 
         ITypeOfPurchaseRepository TypeOfPurchases { get; set; }
+
+        IShoppingCategoryRepository ShoppingCategories { get; set; }
     }
 }

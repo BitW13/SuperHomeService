@@ -1,4 +1,5 @@
 ﻿using Common.Entity.ShoppingPlannerService;
+using ShoppingPlannerService.Bll.Helpers;
 using ShoppingPlannerService.Bll.Services.Interfaces;
 using ShoppingPlannerService.Dal.Repositories.Interfaces;
 using System.Collections.Generic;
@@ -36,7 +37,7 @@ namespace ShoppingPlannerService.Bll.Services.Implementations
 
             if (typeOfPurchase == null)
             {
-                
+                return Constants.DefaultTypeOfPurchase.TypeOfPurchase;
             }
 
             return typeOfPurchase;

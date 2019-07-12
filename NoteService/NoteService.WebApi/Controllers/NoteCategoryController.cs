@@ -1,10 +1,8 @@
 ﻿using AutoMapper;
 using Common.Entity.NoteService;
-using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using NoteService.Bll.BusinessLogic.Interfaces;
 using NotesService.WebApi.Models;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;

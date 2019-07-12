@@ -1,17 +1,13 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Common.Entity.ShoppingPlannerService
+namespace ShoppingPlannerService.WebApi.Models
 {
-    public class Purchase
+    public class CreatePurchase
     {
-        [Required]
-        public int Id { get; set; }
-
         public string Name { get; set; }
 
         public string Description { get; set; }
 
-        [Required]
         public int TypeOfPurchaseId { get; set; }
 
         [Required]
@@ -26,7 +22,7 @@ namespace Common.Entity.ShoppingPlannerService
         [Required]
         public bool IsDone { get; set; }
 
-        public int ShoppingCategoryId { get; set; }
+        public bool ShoppingCategoryId { get; set; }
 
         public int PlannerDate { get; set; }
     }

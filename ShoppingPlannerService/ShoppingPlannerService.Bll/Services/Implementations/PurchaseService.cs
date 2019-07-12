@@ -30,16 +30,19 @@ namespace ShoppingPlannerService.Bll.Services.Implementations
             return await db.GetAllAsync();
         }
 
+        public async Task<IEnumerable<Purchase>> GetByShoppingCategoryIdAsync(int shoppingCategoryId)
+        {
+            return await db.GetByShoppingCategoryId(shoppingCategoryId);
+        }
+
+        public async Task<IEnumerable<Purchase>> GetByTypeOfPurchaseIdAsync(int typeOfPurchaseId)
+        {
+            return await db.GetByTypeOfPurchaseId(typeOfPurchaseId);
+        }
+
         public async Task<Purchase> GetItemByIdAsync(int id)
         {
-            Purchase purchase = await db.GetItemByIdAsync(id);
-
-            if (purchase == null)
-            {
-                
-            }
-
-            return purchase;
+            return await db.GetItemByIdAsync(id);
         }
 
         public async Task UpdateAsync(Purchase item)

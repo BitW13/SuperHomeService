@@ -14,5 +14,7 @@ namespace ShoppingPlannerService.Dal.Context
         public DbSet<Purchase> Purchases { get; set; }
 
         public DbSet<TypeOfPurchase> TypeOfPurchases { get; set; }
+
+        public DbSet<ShoppingCategory> ShoppingCategories { get; set; }
     }
 }
