@@ -1,39 +1,32 @@
-<div>
-    <button type="button" class="btn btn-success btn-lg btn-block" (click)='addTask()'>Новая задача</button>
-    <div class='container-fluid'>
-        <div class='row'>
-            <div class='col-3 border border-dark'>
+<div class="container-fluid">
+        <div class='row contains-categories'>
+            <div class='col-3 border border-dark contains-categories categories-bar'>
                 <button type="button" class="btn btn-success btn-lg btn-block" (click)='addCategory()'>Новая категория</button>
-                <div *ngFor='let category of categories'>
-                    <app-task-category-item [(category)]='category' (loadItems)='loadItems()'></app-task-category-item>
-                </div>
+                    <app-task-category-item 
+                        *ngFor='let category of categories'
+                        [(category)]='category'
+                        (loadItems)='loadItems()'></app-task-category-item>
             </div>
-            <div class="col-9">
+            <div class="col-12">
+                <button type="button" class="btn btn-success btn-lg btn-block" (click)='addTask()'>Новая задача</button>
                 <table class='col-auto table table-striped table-bordered'>
-                        <thead>
+                        <thead class="thead-dark">
                             <tr>
-                                <th scope="col">
-                                    Done
-                                </th>
-                                <th scope="col">
-                                    Category
-                                </th>
-                                <th scope="col">
-                                    Name
-                                </th>
-                                <th scope="col">
-                                    Description
-                                </th>
-                                <th scope="col">
-                                    Date
-                                </th>
+                                <th scope="col"><input type="checkbox"></th>
+                                <th scope="col">Имя</th>
+                                <th scope="col">Категория</th>
+                                <th scope="col">Описание</th>
+                                <th scope="col">Дата</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr app-task-item *ngFor='let taskCard of taskCards' [(taskCard)]='taskCard'>
+                            <tr app-task-item 
+                                *ngFor='let taskCard of taskCards' 
+                                [(taskCard)]='taskCard'
+                                [(categories)]='categories'
+                                (loadItems)='loadItems()'>                                
                         </tbody>               
                 </table>
             </div>            
         </div>
-    </div>
 </div>

@@ -38,7 +38,7 @@ export class TaskComponent implements OnInit {
     });
   }
 
-  addNote() {
+  addTask() {
     this.taskService.post(new Task()).subscribe((data) => {
       this.loadItems();
     });

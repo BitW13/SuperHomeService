@@ -33,8 +33,7 @@ import { TypeOfPurchaseService } from './shoppingPlanners/services/type-of-purch
     NoteCategoryItemComponent,
     TaskComponent,
     TaskCategoryItemComponent,
-    TaskItemComponent
-    NoteCategoryItemComponent,
+    TaskItemComponent,
     ShoppingPlannerComponent,
     ShoppingPlannerItemComponent,
     ShoppingCategoryItemComponent,

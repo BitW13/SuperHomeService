@@ -9,32 +9,58 @@ import { TaskCategoryService } from '../services/task-category.service';
 })
 export class TaskCategoryItemComponent implements OnInit {
 
-  @Input() category;
+  @Input() category: TaskCategory;
 
   @Output() loadItems = new EventEmitter();
+
+  isEditItem: boolean = false;
+
+  saveItemValue: TaskCategory;
 
   constructor(private categoryService: TaskCategoryService) { }
 
   ngOnInit() {
   }
 
-  editTaskCategory() {
+  switchingIsEditItem() {
+    this.isEditItem = !this.isEditItem;
   }
 
-  saveNoteCategory() {
+  edit() {
+    this.switchingIsEditItem();
+    this.saveItemValue = this.getCopy(this.category);
+  }
 
+  save() {
+    this.saveItemValue = null;
+    this.switchingIsEditItem();
     this.categoryService.put(this.category).subscribe((data) => {
       this.loadItems.emit();
     });
   }
 
   cancel() {
+    this.category = this.getCopy(this.saveItemValue);
+    this.saveItemValue = null;
+    this.switchingIsEditItem();
   }
 
-  deleteNoteCategory() {
+  delete() {
     this.categoryService.delete(this.category).subscribe((data) => {
       this.loadItems.emit();
     });
+  }
+
+  getCopy(item: TaskCategory) : TaskCategory {
+    
+    let copy = new TaskCategory();
+
+    copy.id = item.id;
+    copy.name = item.name;
+    copy.color =item.color;
+    copy.isOn = copy.isOn;
+
+    return copy;
   }
 
 }
