@@ -1,8 +1,11 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Text;
 
-namespace Common.Entity.NoteService
+namespace Common.Entity.ShoppingPlannerService
 {
-    public class NoteCategory
+    public class ShoppingCategory
     {
         [Key]
         public int Id { get; set; }

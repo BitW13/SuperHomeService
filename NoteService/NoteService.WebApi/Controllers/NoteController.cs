@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 using NoteService.Bll.BusinessLogic.Interfaces;
 using NoteService.WebApi.Models;
 using NotesService.WebApi.Models;
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -47,6 +46,7 @@ namespace NoteService.WebApi.Controllers
             {
                 return BadRequest();
             }
+
             Note note = await db.Notes.GetItemByIdAsync(id);
 
             if(note == null)
