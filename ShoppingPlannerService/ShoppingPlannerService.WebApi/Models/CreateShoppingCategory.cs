@@ -1,12 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Common.Entity.NoteService
+namespace ShoppingPlannerService.WebApi.Models
 {
-    public class NoteCategory
+    public class CreateShoppingCategory
     {
-        [Key]
-        public int Id { get; set; }
-
         [Required]
         public string Name { get; set; }
 

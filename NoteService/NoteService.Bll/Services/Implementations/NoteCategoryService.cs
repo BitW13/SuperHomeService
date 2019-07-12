@@ -29,7 +29,6 @@ namespace NoteService.Bll.Services.Implementations
         public async Task<IEnumerable<NoteCategory>> GetAllAsync()
         {
             return await db.GetAllAsync();
-
         }
 
         public async Task<NoteCategory> GetItemByIdAsync(int id)
