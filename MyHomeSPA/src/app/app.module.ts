@@ -12,6 +12,13 @@ import { NoteItemComponent } from './notes/note-item/note-item.component';
 import { NoteCategoryItemComponent } from './notes/note-category-item/note-category-item.component';
 import { NoteService } from './notes/services/note.service';
 import { NoteCategoryService } from './notes/services/note-category.service';
+import { ShoppingPlannerComponent } from './shoppingPlanners/shopping-planner/shopping-planner.component';
+import { ShoppingPlannerItemComponent } from './shoppingPlanners/shopping-planner-item/shopping-planner-item.component';
+import { ShoppingCategoryItemComponent } from './shoppingPlanners/shopping-category-item/shopping-category-item.component';
+import { ShoppingTypeItemComponent } from './shoppingPlanners/shopping-type-item/shopping-type-item.component';
+import { PurchaseService } from './shoppingPlanners/services/purchase.service';
+import { ShoppingCategoryService } from './shoppingPlanners/services/shopping-category.service';
+import { TypeOfPurchaseService } from './shoppingPlanners/services/type-of-purchase.service';
 
 @NgModule({
   declarations: [
@@ -20,7 +27,11 @@ import { NoteCategoryService } from './notes/services/note-category.service';
     NavpanelComponent,
     NoteComponent,
     NoteItemComponent,
-    NoteCategoryItemComponent
+    NoteCategoryItemComponent,
+    ShoppingPlannerComponent,
+    ShoppingPlannerItemComponent,
+    ShoppingCategoryItemComponent,
+    ShoppingTypeItemComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +39,12 @@ import { NoteCategoryService } from './notes/services/note-category.service';
     FormsModule,
     HttpClientModule
   ],
-  providers: [NoteService, NoteCategoryService],
+  providers: [
+    NoteService, 
+    NoteCategoryService, 
+    PurchaseService, 
+    ShoppingCategoryService, 
+    TypeOfPurchaseService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
