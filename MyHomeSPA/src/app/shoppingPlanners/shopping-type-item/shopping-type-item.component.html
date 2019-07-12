@@ -1,0 +1,16 @@
+<div *ngIf='!isEditItem; else editTemplate'>
+    <div class="btn-group" role="group" aria-label="Basic example">
+        <button (click)='edit()'>
+            <label>{{type.name}}</label>
+        </button>
+    </div>
+</div>
+
+<ng-template #editTemplate>
+    <input type="text" [(ngModel)]='type.name'>
+    <div class="btn-group" role="group" aria-label="Basic example">            
+        <button type="button" class="btn btn-success" (click)='save()'>Сохранить</button>
+        <button type="button" class="btn btn-danger" (click)='cancel()'>Отменить</button>
+        <button type="button" class="btn btn-danger" (click)='delete()'>Удалить</button>
+    </div>
+</ng-template>
