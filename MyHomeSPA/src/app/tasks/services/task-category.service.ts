@@ -8,7 +8,7 @@ import { TaskCategory } from '../models/taskCategory';
 })
 export class TaskCategoryService {
 
-  private url = 'https://localhost:44369/api/taskcategory/';
+  private url = 'https://taskplannerservicewebapi.azurewebsites.net/api/taskcategory/';
 
   constructor(private http: HttpClient) { }
 
