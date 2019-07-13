@@ -88,7 +88,7 @@
   }
   
   .mycategory {
-    text-align: center;
+    text-align: start;
     width: 90%;
   }
 
@@ -97,6 +97,15 @@
   }
 
   .label-category {
-    width:100%;
+    width:85%;
     word-wrap: break-word;
+  }
+
+  .svg-color {
+    margin-left: 1%;
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
   }

@@ -2,7 +2,9 @@
     <div class="btn-group div-category" role="group" aria-label="Basic example">
         <button class="mycategory" (click)='edit()'>
             <label class="label-category">{{category.name}}</label>
-            <label>{{category.color}}</label>
+            <svg class="svg-color">
+                <circle cx="15" cy="15" r="15" stroke="black" stroke-width="1" attr.fill="{{category.color}}" />
+            </svg>
         </button>       
         <div class="cntr">
             <label class="label-cbx">
