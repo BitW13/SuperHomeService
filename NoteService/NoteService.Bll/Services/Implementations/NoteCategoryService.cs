@@ -1,5 +1,5 @@
 ﻿using Common.Entity.NoteService;
-using NoteService.Bll.Helpers;
+using Common.Helpers;
 using NoteService.Bll.Services.Interfaces;
 using NotesService.Dal.Repositories.Interfaces;
 using System.Collections.Generic;
