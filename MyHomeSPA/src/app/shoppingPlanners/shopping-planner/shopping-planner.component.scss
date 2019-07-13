@@ -1,0 +1,28 @@
+.categories-bar {
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: -500px;
+    z-index: 1000;
+    padding-top: 70px;
+    background-color: rgb(49, 48, 48);
+    min-width: 25%;
+  
+    transition: left .3s ease;
+  
+    &.active-categories {
+      left: 0;
+    }
+  }
+  
+  .row {
+    padding-top: 70px;
+    padding-left: 0;
+    justify-content: start !important;
+  
+    transition: padding-left .4s ease;
+  
+    &.active-categories{
+      padding-left: 25vw;
+    }
+  }

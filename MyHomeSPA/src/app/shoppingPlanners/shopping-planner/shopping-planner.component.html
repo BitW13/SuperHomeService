@@ -1,6 +1,6 @@
 <div class='container-fluid'>
-    <div class='row'>
-        <div class='col-3'>
+    <div class='row contains-categories'>
+        <div class='col-3 border border-dark contains-categories categories-bar'>
             <button type="button" class="btn btn-success btn-lg btn-block" (click)='addCategory()'>Новая категория</button>
             <app-shopping-category-item 
                 *ngFor='let category of shoppingCategories' 
