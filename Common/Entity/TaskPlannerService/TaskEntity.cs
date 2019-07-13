@@ -16,7 +16,7 @@ namespace Common.Entity.TaskPlannerService
         public int TaskCategoryId { get; set; }
 
         [Required]
-        public int DateId { get; set; }
+        public int PlannerDateId { get; set; }
 
         [Required]
         public bool IsDone { get; set; }
