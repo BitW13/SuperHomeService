@@ -15,6 +15,9 @@ import { NoteCategoryService } from './notes/services/note-category.service';
 import { ShoppingPlannerComponent } from './shoppingPlanners/shopping-planner/shopping-planner.component';
 import { ShoppingPlannerItemComponent } from './shoppingPlanners/shopping-planner-item/shopping-planner-item.component';
 import { ShoppingCategoryItemComponent } from './shoppingPlanners/shopping-category-item/shopping-category-item.component';
+import { TaskComponent } from './tasks/task/task.component';
+import { TaskCategoryItemComponent } from './tasks/task-category-item/task-category-item.component';
+import { TaskItemComponent } from './tasks/task-item/task-item.component';
 import { ShoppingTypeItemComponent } from './shoppingPlanners/shopping-type-item/shopping-type-item.component';
 import { PurchaseService } from './shoppingPlanners/services/purchase.service';
 import { ShoppingCategoryService } from './shoppingPlanners/services/shopping-category.service';
@@ -28,6 +31,9 @@ import { TypeOfPurchaseService } from './shoppingPlanners/services/type-of-purch
     NoteComponent,
     NoteItemComponent,
     NoteCategoryItemComponent,
+    TaskComponent,
+    TaskCategoryItemComponent,
+    TaskItemComponent,
     ShoppingPlannerComponent,
     ShoppingPlannerItemComponent,
     ShoppingCategoryItemComponent,

@@ -9,11 +9,11 @@ import { NoteCategoryService } from '../services/note-category.service';
 })
 export class NoteCategoryItemComponent implements OnInit {
 
-  @Input() category;
+  @Input() category :NoteCategory;
 
   @Output() loadItems = new EventEmitter();
 
-  isEditNoteCategory: boolean;
+  isEditNoteCategory: boolean = false;
 
   saveForNoteCategory: NoteCategory;
 
@@ -22,22 +22,19 @@ export class NoteCategoryItemComponent implements OnInit {
   ngOnInit() {
   }
 
-  editNoteCategory() {
-    const copyCategory = new NoteCategory();
-
-    copyCategory.id = this.category.id;
-    copyCategory.name = this.category.name;
-    copyCategory.color = this.category.color;
-    copyCategory.isOn = this.category.isOn;
-    this.saveForNoteCategory = copyCategory;
-
+  switchingIsEditItem() {
     this.isEditNoteCategory = !this.isEditNoteCategory;
+  }
+
+  editNoteCategory() {
+    this.switchingIsEditItem();
+    this.saveForNoteCategory = this.getCopy(this.category);
   }
 
   saveNoteCategory() {
     this.saveForNoteCategory = null;
 
-    this.isEditNoteCategory = !this.isEditNoteCategory;
+    this.switchingIsEditItem();
 
     this.categoryService.put(this.category).subscribe((data) => {
       this.loadItems.emit();
@@ -45,9 +42,9 @@ export class NoteCategoryItemComponent implements OnInit {
   }
 
   cancel() {
-    this.category = this.saveForNoteCategory;
-
-    this.isEditNoteCategory = !this.isEditNoteCategory;
+    this.category = this.getCopy(this.saveForNoteCategory);
+    this.saveForNoteCategory = null;
+    this.switchingIsEditItem();
   }
 
   deleteNoteCategory() {
@@ -56,4 +53,15 @@ export class NoteCategoryItemComponent implements OnInit {
     });
   }
 
+  getCopy(item: NoteCategory) : NoteCategory {
+    
+    let copy = new NoteCategory();
+
+    copy.id = item.id;
+    copy.name = item.name;
+    copy.color = item.color;
+    copy.isOn = item.isOn;
+
+    return copy;
+  }
 }
