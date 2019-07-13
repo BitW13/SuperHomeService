@@ -1,0 +1,55 @@
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark">
+
+  <a class="navbar-brand" routerLink='/notes'>
+    Ух
+    <img class="img-fluid img-thumbnail" src='https://image.flaticon.com/icons/svg/149/149071.svg' />
+  </a>
+  <button class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarCollapse"
+          aria-controls="navbarCollapse"
+          aria-expanded="false"
+          aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarCollapse">
+    <ul class="navbar-nav mr-auto sidenav" id="navAccordion">
+
+      <li class="nav-item">
+        <a class="nav-link" routerLink='/notes'>Заметки<span class="sr-only">(current)</span></a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" routerLink='/notes'>Планировщик покупок</a>
+      </li>
+
+      <li class="nav-item">
+        <a  class="nav-link nav-link-collapse"
+            routerLink='/notes'
+            id="hasSubItems"
+            data-toggle="collapse"
+            data-target="#collapseSubItems2"
+            aria-controls="collapseSubItems2"
+            aria-expanded="false">
+            Планировщик задач
+        </a>
+        <ul class="nav-second-level collapse" id="collapseSubItems2" data-parent="#navAccordion">
+          <li class="nav-item">
+            <a class="nav-link" routerLink='/notes'>
+              <span class="nav-link-text">Напоминания</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink='/notes'>
+              <span class="nav-link-text">Календарь</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+  <a class="navbar-brand" routerLink=''>Главная</a>
+</nav>

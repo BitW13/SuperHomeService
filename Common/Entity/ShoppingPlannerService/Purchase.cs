@@ -29,6 +29,6 @@ namespace Common.Entity.ShoppingPlannerService
         [Required]
         public int ShoppingCategoryId { get; set; }
 
-        public int PlannerDate { get; set; }
+        public int PlannerDateId { get; set; }
     }
 }

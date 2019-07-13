@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Note } from '../models/note';
 import { map } from 'rxjs/operators';
+import { NoteCard } from '../models/noteCard';
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +13,13 @@ export class NoteService {
   
   constructor(private http: HttpClient) { }
 
-  getByNoteCategoryId(noteCategoryId: number) {
-    return this.http.get<{data: Note[]}>(this.url + 'getbynotecategoryid/' + noteCategoryId)
+  getCards() {
+    return this.http.get<{data: NoteCard[]}>(this.url)
+      .pipe(map(res=> res));
+  }
+
+  getCard() {
+    return this.http.get<{data: NoteCard}>(this.url)
       .pipe(map(res=> res));
   }
 
@@ -27,8 +33,8 @@ export class NoteService {
       .pipe(map(res=> res));
   }
 
-  delete(id: number) {
-    return this.http.delete<{data: Note}>(this.url + id)
+  delete(item: Note) {
+    return this.http.delete<{data: Note}>(this.url + item.id)
       .pipe(map(res=> res));
   }
 }
