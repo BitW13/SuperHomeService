@@ -1,0 +1,45 @@
+<td *ngIf='!isEditItem'>
+    <input type="checkbox" value="{{taskCard.task.isDone}}">
+</td>
+<td *ngIf='isEditItem'>
+    <div class="btn-group" role="group" aria-label="Basic example">
+        <button (click)='delete()' type="button" class="btn btn-secondary">Удалить</button>
+        <button (click)='save()' type="button" class="btn btn-secondary">Сохранить</button>
+        <button (click)='cancel()' type="button" class="btn btn-secondary">Отменить</button>
+    </div>
+</td>
+
+<td *ngIf='!isEditItem' (click)='edit()'>
+    <p>{{taskCard.task.name}}</p>    
+</td>
+<td *ngIf='isEditItem'>
+    <input type="text" [(ngModel)]='taskCard.task.name'>
+</td>
+
+<td *ngIf='!isEditItem' (click)='edit()'>
+    {{taskCard.taskCategory.name}}
+</td>
+<td *ngIf='isEditItem'>
+    <select [(ngModel)]='taskCard.task.taskCategoryId' [ngModelOptions]="{standalone: true}" [(value)]='taskCard.task.taskCategoryId'>
+        <option value="0">
+            Без категории
+        </option>
+        <option *ngFor='let category of categories' value="{{category.id}}">
+            {{category.name}}
+        </option>
+    </select>
+</td>
+
+<td *ngIf='!isEditItem' (click)='edit()'>
+    <p>{{taskCard.task.description}}</p>
+</td>
+<td *ngIf='isEditItem'>
+    <textarea type="text" [(ngModel)]='taskCard.task.description' rows="3"></textarea>
+</td>
+
+<td *ngIf='!isEditItem' (click)='edit()'>
+    date
+</td>
+<td *ngIf='isEditItem'>
+    <input type="date">
+</td>
