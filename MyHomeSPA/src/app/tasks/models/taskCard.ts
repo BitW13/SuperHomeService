@@ -8,6 +8,7 @@ export class TaskCard {
     public taskCategory: TaskCategory;
 
     constructor() {
+      
         this.task = new Task();
 
         this.taskCategory = new TaskCategory();
