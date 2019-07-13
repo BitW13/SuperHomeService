@@ -3,6 +3,9 @@
   }
   
   .label-cbx {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
     user-select: none;
     cursor: pointer;
     margin-bottom: 0;
@@ -99,4 +102,8 @@
   .label-category {
     width:100%;
     word-wrap: break-word;
+  }
+
+  .edit-input {
+    width: 100%;
   }

@@ -3,6 +3,9 @@
   }
   
   .label-cbx {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
     user-select: none;
     cursor: pointer;
     margin-bottom: 0;
@@ -108,4 +111,13 @@
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
+  }
+
+  .edit-input {
+    width: 75%;
+  }
+  
+  .edit-color {
+    width: 24%;
+    margin-left: 1%;
   }

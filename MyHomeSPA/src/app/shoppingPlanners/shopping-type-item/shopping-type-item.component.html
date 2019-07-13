@@ -18,7 +18,7 @@
 </div>
 
 <ng-template #editTemplate>
-    <input type="text" [(ngModel)]='type.name'>
+    <input class="edit-input" type="text" [(ngModel)]='type.name'>
     <div class="btn-group" role="group" aria-label="Basic example">            
         <button type="button" class="btn btn-success" (click)='save()'>Сохранить</button>
         <button type="button" class="btn btn-danger" (click)='cancel()'>Отменить</button>
