@@ -64,3 +64,12 @@
     padding-left: 25vw;
   }
 }
+
+.category-with-scroll {
+  padding-top: 3%;
+  padding-bottom: 5%;
+  margin-bottom: 5%;
+  margin-top: 3%;
+  overflow-y: auto;
+  height: 92%;
+}

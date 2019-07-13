@@ -1,7 +1,7 @@
 <div class="categories-bar" *ngIf='!isEditItem; else editTemplate'>
-    <div class="btn-group" role="group" aria-label="Basic example">
+    <div class="btn-group div-category" role="group" aria-label="Basic example">
         <button class="mycategory" (click)='edit()'>
-            <label>{{category.name}}</label>
+            <label class="label-category">{{category.name}}</label>
             <label>{{category.color}}</label>
         </button>       
         <div class="cntr">

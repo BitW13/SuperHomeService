@@ -76,7 +76,7 @@
   left: 0;
   width: 5%;
   text-align: center;
-  margin-left: auto;
+  margin-left: 3%;
 }
 
 .invisible {
@@ -88,5 +88,15 @@
 }
 
 .mycategory {
-  text-align: start;
+  text-align: center;
+  width: 90%;
+}
+
+.div-category {
+  width: 100%;
+}
+
+.label-category {
+  width:100%;
+  word-wrap: break-word;
 }
