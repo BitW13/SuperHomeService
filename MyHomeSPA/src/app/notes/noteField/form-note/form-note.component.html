@@ -1,0 +1,41 @@
+<div class="modal-dialog" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" id="exampleModalLabel">Новая карточка</h5>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form>
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Название"
+          [(ngModel)]="note.name"
+          [ngModelOptions]="{standalone: true}">
+        </div>
+        <div class="form-group">
+          <textarea class="form-control" rows="3" placeholder="Описание"
+          [(ngModel)]='note.text'
+          [ngModelOptions]="{standalone: true}"></textarea>
+        </div>
+        <div class="form-group">
+          <select class="form-control" placeholder="Категория"
+          [(ngModel)]='note.noteCategoryId'
+          [ngModelOptions]="{standalone: true}">
+            <option
+            *ngFor='let noteCategory of noteCategories'
+            value={{noteCategory.id}}
+            >{{noteCategory.name}}</option>
+          </select>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <div class="btn-group" role="group" aria-label="Basic example">
+        <button type="button" class="btn btn-primary" (click)='clear()'>Очистить</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)='save()'>Сохранить</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+      </div>
+    </div>
+  </div>
+</div>
