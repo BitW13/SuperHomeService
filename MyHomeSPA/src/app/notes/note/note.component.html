@@ -4,8 +4,10 @@
         <div class='row contains-categories'>
             <div class='col-3 border border-dark categories-bar contains-categories'>
                 <button type="button" class="btn btn-success btn-lg btn-block" (click)='addCategory()'>Новая категория</button>
-                <div *ngFor='let category of categories'>
-                    <app-note-category-item [(category)]='category' (loadItems)='loadItems()'></app-note-category-item>
+                <div class="col category-with-scroll">
+                    <div *ngFor='let category of categories'>
+                        <app-note-category-item [(category)]='category' (loadItems)='loadItems()'></app-note-category-item>
+                    </div>
                 </div>
             </div>
             <div class='col-auto main' *ngFor='let noteCard of noteCards'>

@@ -1,8 +1,10 @@
 <div class="categories-bar" *ngIf='!isEditNoteCategory; else editTemplate'>
-    <div class="btn-group" role="group" aria-label="Basic example">
+    <div class="btn-group div-category" role="group" aria-label="Basic example">
         <button class="mycategory" (click)='editNoteCategory()'>
-            <label>{{category.name}}</label>
-            <label>{{category.color}}</label>
+            <label class="label-category">{{category.name}}</label>
+            <svg class="svg-color">
+                <circle cx="15" cy="15" r="15" stroke="black" stroke-width="1" attr.fill="{{category.color}}" />
+            </svg>
         </button>       
         <div class="cntr">
             <label class="label-cbx">
@@ -19,8 +21,8 @@
 </div>
 
 <ng-template #editTemplate>
-    <input type="text" [(ngModel)]='category.name'>
-    <input type='color' [(ngModel)]='category.color'>
+    <input class="edit-input" type="text" [(ngModel)]='category.name'>
+    <input class="edit-color" type='color' [(ngModel)]='category.color'>
     <div class="btn-group" role="group" aria-label="Basic example">            
         <button type="button" class="btn btn-success" (click)='saveNoteCategory()'>Сохранить</button>
         <button type="button" class="btn btn-danger" (click)='deleteNoteCategory()'>Удалить</button>
