@@ -29,6 +29,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
 import {MatCardModule} from '@angular/material/card';
 import {MatGridListModule} from '@angular/material/grid-list';
+import {MatToolbarModule} from '@angular/material/toolbar';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import {MatGridListModule} from '@angular/material/grid-list';
     MatSidenavModule,
     MatListModule,
     MatCardModule,
-    MatGridListModule
+    MatGridListModule,
+    MatToolbarModule
   ],
   providers: [
     NoteService, 
