@@ -1,0 +1,98 @@
+.content-button {
+  position: relative;
+  margin-bottom: 10px;
+  width: 50%;
+  height: 30%;
+}
+.container-menu {
+    width: 100%;
+    height: 100%;
+  }
+  
+  .mat-drawer-content {
+    padding: 12px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .sidenav {
+    padding: 20px;
+    height: 100%;
+  }
+
+
+  .note-element {
+    // margin-top: 7.4vh;
+    position: relative;
+  }
+  
+  .btn-add-note {
+    position: fixed;
+    bottom: calc(100% - 130px);
+    left: calc(100% - 90px);
+    z-index: 1000;
+    transition: .3s ease;
+  
+    &:hover {
+      cursor: pointer;
+      
+      img {
+        width: 80%;
+        height: 80%;
+      }
+    }
+  
+    &:active {
+      cursor: pointer;
+  
+      img {
+        width: 70%;
+        height: 70%;
+      }
+    }
+  
+  
+    img {
+      transition: .3s ease;
+      width: 75%;
+      height: 75%;
+    }
+  }
+  
+  .categories-bar {
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: -500px;
+    z-index: 1000;
+    padding-top: 70px;
+    background-color: rgb(49, 48, 48);
+    min-width: 25%;
+  
+    transition: left .3s ease;
+  
+    &.active-categories {
+      left: 0;
+    }
+  }
+  
+  .row {
+    padding-top: 70px;
+    padding-left: 0;
+    justify-content: start !important;
+  
+    transition: padding-left .4s ease;
+  
+    &.active-categories{
+      padding-left: 25vw;
+    }
+  }
+  
+//   .category-with-scroll {
+//     padding-top: 3%;
+//     padding-bottom: 5%;
+//     margin-bottom: 5%;
+//     margin-top: 3%;
+//     overflow-y: auto;
+//     height: 92%;
+//   }

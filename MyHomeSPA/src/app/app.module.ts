@@ -30,6 +30,10 @@ import {MatListModule} from '@angular/material/list';
 import {MatCardModule} from '@angular/material/card';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatInputModule} from '@angular/material/input';
+import {MatIconModule} from '@angular/material/icon';
+import {MatSelectModule} from '@angular/material/select';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [
@@ -59,7 +63,11 @@ import {MatToolbarModule} from '@angular/material/toolbar';
     MatListModule,
     MatCardModule,
     MatGridListModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatInputModule,
+    MatIconModule,
+    MatSelectModule,
+    MatCheckboxModule
   ],
   providers: [
     NoteService, 

@@ -1,50 +1,65 @@
 <div *ngIf='!isEditNote; else editTemplate'>
-    <div class="card" style="width: 18rem;">
-        <div class="card-body">
+    <mat-card class="example-card" style="width: 18rem;">
+        <mat-card-header>
+            <div mat-card-avatar class="example-header-image"></div>
+
             <div *ngIf='noteCard.note.noteCategoryId != 0; else defaultCategory'>
-                <label><h6>Категория:</h6>{{noteCard.noteCategory.name}}</label>
+                <mat-card-subtitle><h6>Категория:</h6>{{noteCard.noteCategory.name}}</mat-card-subtitle>
             </div>
             <ng-template #defaultCategory>
-                <label>Без категории</label>
+                <mat-card-subtitle>Без категории</mat-card-subtitle>
             </ng-template>
-            <hr/>
-            <h5 class="card-title">{{noteCard.note.name}}</h5>
-            <hr/>
-            <p class="card-text multiple-rows">{{noteCard.note.text}}</p>
+
+            <mat-card-title class="card-title">{{noteCard.note.name}}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <p>
+                {{noteCard.note.text}}
+            </p>
             <hr/>
             <label class="card-text">Дата изменения:</label>
             <p class="card-text">{{noteCard.note.lastChange | date:'fullDate'}}</p>
-            <div class="btn-group" role="group" aria-label="Basic example">
-                <button type="button" class="btn btn-warning" (click)='editNote()'>Изменить</button>
-                <button type="button" class="btn btn-danger" (click)='deleteNote()'>Удалить</button>
-            </div>
-        </div>
-    </div>
+        </mat-card-content>
+        <mat-card-actions>
+                <button color="primary" (click)='editNote()' mat-button>Изменить</button>
+                <button color="warn" (click)='deleteNote()' mat-button>Удалить</button>
+        </mat-card-actions>
+    </mat-card>
 </div>
 
 <ng-template #editTemplate>
-    <div class="card" style="width: 18rem;">
-        <select [(ngModel)]='noteCard.note.noteCategoryId' [ngModelOptions]="{standalone: true}" [(value)]='noteCard.note.noteCategoryId'>
-            <option value='0'>
-                Без категории
-            </option>
-            <option *ngFor='let category of categories' value='{{category.id}}' >
-                {{category.name}}
-            </option>
-        </select>
-
-        <div class="card-body">
-            <div class="form-group">
-                <input type="text" class="form-control" [(ngModel)]='noteCard.note.name'>
-            </div>
-            <hr/>
-            <div class="form-group">
-                <textarea wrap="soft" class="form-control" [(ngModel)]='noteCard.note.text' rows="3"></textarea>
-            </div>
-            <div class="btn-group" role="group" aria-label="Basic example">
-                <button type="button" class="btn btn-success" (click)='saveNote()'>Сохранить</button>
-                <button type="button" class="btn btn-danger" (click)='cancel()'>Отменить</button>
-            </div>
-        </div>
-    </div>
+    <mat-card class="example-card" style="width: 18rem;">
+        <mat-card-content>
+            <form class="example-form">
+                <mat-form-field>
+                    <mat-label>Категория</mat-label>
+                    <mat-select [(ngModel)]='noteCard.note.noteCategoryId' [ngModelOptions]="{standalone: true}" [(value)]='noteCard.note.noteCategoryId'>
+                        <mat-option value='0'>
+                            Без категории
+                        </mat-option>
+                        <mat-option *ngFor='let category of categories' value='{{category.id}}' >
+                            {{category.name}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Название" 
+                    [(ngModel)]='noteCard.note.name'
+                    [ngModelOptions]="{standalone: true}">
+                    <button mat-button *ngIf="noteCard.note.name" matSuffix mat-icon-button aria-label="Clear" (click)="noteCard.note.name=''">
+                        <mat-icon>close</mat-icon>
+                    </button>
+                </mat-form-field>
+                <mat-form-field class="example-full-width">
+                    <textarea wrap="soft" matInput placeholder="Описание" 
+                    [(ngModel)]='noteCard.note.text'
+                    [ngModelOptions]="{standalone: true}"></textarea>
+                </mat-form-field>
+            </form>
+        </mat-card-content>
+        <mat-card-actions>
+                <button color="primary" (click)='saveNote()' mat-button>Сохранить</button>
+                <button color="warn" (click)='cancel()' mat-button>Отменить</button>
+        </mat-card-actions>
+    </mat-card>
 </ng-template>
