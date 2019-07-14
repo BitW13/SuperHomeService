@@ -5,11 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Services\Implementations\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\..\Common\Common.csproj" />
+    <ProjectReference Include="..\CalendarService.Dal\CalendarService.Dal.csproj" />
   </ItemGroup>
 
 </Project>
