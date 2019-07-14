@@ -22,6 +22,13 @@ import { ShoppingTypeItemComponent } from './shoppingPlanners/shopping-type-item
 import { PurchaseService } from './shoppingPlanners/services/purchase.service';
 import { ShoppingCategoryService } from './shoppingPlanners/services/shopping-category.service';
 import { TypeOfPurchaseService } from './shoppingPlanners/services/type-of-purchase.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatButtonModule} from '@angular/material/button';
+import {MatMenuModule} from '@angular/material/menu';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatListModule} from '@angular/material/list';
+import {MatCardModule} from '@angular/material/card';
+import {MatGridListModule} from '@angular/material/grid-list';
 
 @NgModule({
   declarations: [
@@ -43,7 +50,14 @@ import { TypeOfPurchaseService } from './shoppingPlanners/services/type-of-purch
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule, 
+    MatButtonModule,
+    MatMenuModule,
+    MatSidenavModule,
+    MatListModule,
+    MatCardModule,
+    MatGridListModule
   ],
   providers: [
     NoteService, 

@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Note } from 'src/app/notes/models/note';
 import { NoteCategory } from 'src/app/notes/models/noteCategory';
 import { NoteService } from '../services/note.service';
@@ -9,7 +9,7 @@ import { NoteCategoryService } from '../services/note-category.service';
   templateUrl: './note.component.html',
   styleUrls: ['./note.component.scss']
 })
-export class NoteComponent implements OnInit, AfterViewInit {
+export class NoteComponent implements OnInit {
 
   noteCards;
 
@@ -20,22 +20,7 @@ export class NoteComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     this.loadItems();
   }
-
-  ngAfterViewInit() {
-    document.querySelector('.show-categories').addEventListener('click', this.showCategories);
-  }
-
-  private showCategories() {
-    const blockCategories = document.querySelectorAll('.contains-categories');
-    blockCategories.forEach(item => {
-      if (item.classList.contains('active-categories')) {
-        item.classList.remove('active-categories');
-      } else {
-        item.classList.add('active-categories');
-      }
-    });
-  }
-
+  
   loadItems() {
     this.getModels();
     this.getCategories();
