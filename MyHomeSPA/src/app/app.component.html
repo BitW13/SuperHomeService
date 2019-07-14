@@ -23,4 +23,24 @@
 </nav>
 <router-outlet></router-outlet> -->
 
+
+
+
+<button type="button"  mat-raised-button (click)="drawer.toggle()">
+  Фильтры
+</button>
 <app-navpanel></app-navpanel>
+
+<mat-drawer-container class="example-container">  
+  <mat-drawer #drawer class="sidenav" mode="side">
+    <mat-list>
+      <mat-list-item><a routerLink='/' mat-button>Главная</a></mat-list-item>
+      <mat-list-item><a routerLink='/notes' mat-button>Заметки</a></mat-list-item>
+      <mat-list-item><a routerLink='/shoppingPlanner' mat-button>Покупки</a></mat-list-item>
+      <mat-list-item><a routerLink='/tasks' mat-button>Задачи</a></mat-list-item>
+    </mat-list>
+  </mat-drawer>
+  <mat-drawer-content>
+    <router-outlet></router-outlet>
+  </mat-drawer-content> 
+</mat-drawer-container>
