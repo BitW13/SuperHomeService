@@ -89,4 +89,32 @@
   
   .mycategory {
     text-align: start;
+    width: 90%;
+  }
+
+  .div-category {
+    width: 100%;
+  }
+
+  .label-category {
+    width:85%;
+    word-wrap: break-word;
+  }
+
+  .svg-color {
+    margin-left: 1%;
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .edit-input {
+    width: 75%;
+  }
+  
+  .edit-color {
+    width: 24%;
+    margin-left: 1%;
   }
