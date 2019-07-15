@@ -13,9 +13,9 @@ import { Purchase } from '../models/purchase';
 })
 export class ShoppingPlannerComponent implements OnInit {
 
-  shoppingCards;
+  cards;
 
-  shoppingCategories;
+  categories;
 
   typeOfPurchases;
 
@@ -33,7 +33,7 @@ export class ShoppingPlannerComponent implements OnInit {
   
   getModels() {
     this.purchaseService.getCards().subscribe((data) => {
-      this.shoppingCards = data;
+      this.cards = data;
     });
   }
 
@@ -45,25 +45,25 @@ export class ShoppingPlannerComponent implements OnInit {
 
   getCategories() {
     this.categoryService.getItems().subscribe((data) => {
-      this.shoppingCategories = data;
+      this.categories = data;
     });
   }  
 
   addPurchase() {
     this.purchaseService.post(new Purchase()).subscribe((data) => {
-      this.loadItems();
+      this.getModels();
     });
   }
 
   addTypeOfPurchases(){
     this.typeOfPurchaseService.post(new TypeOfPurchase()).subscribe((data) => {
-      this.loadItems();
+      this.getTypeOFPurshases();
     });
   }
 
   addCategory() {
     this.categoryService.post(new ShoppingCategory()).subscribe((data) => {
-      this.loadItems();
+      this.getCategories();
     });
   }
 }

@@ -9,9 +9,11 @@ import { ShoppingCategoryService } from '../services/shopping-category.service';
 })
 export class ShoppingCategoryItemComponent implements OnInit {
 
+  panelOpenState = false;
+
   @Input() category: ShoppingCategory;
 
-  @Output() loadItems = new EventEmitter();
+  @Output() getCategories = new EventEmitter();
 
   isEditItem: boolean = false;
 
@@ -20,6 +22,7 @@ export class ShoppingCategoryItemComponent implements OnInit {
   constructor(private service: ShoppingCategoryService) { }
 
   ngOnInit() {
+    this.saveItemValue = this.getCopy(this.category)
   }
 
   switchingIsEditItem(){
@@ -32,10 +35,10 @@ export class ShoppingCategoryItemComponent implements OnInit {
   }
 
   save(){
-    this.saveItemValue = null;
+    this.saveItemValue = this.getCopy(this.category);
     this.switchingIsEditItem();
     this.service.put(this.category).subscribe((data) => {
-      this.loadItems.emit();
+      this.getCategories.emit();
     });
   }
 
@@ -47,7 +50,7 @@ export class ShoppingCategoryItemComponent implements OnInit {
 
   delete(){
     this.service.delete(this.category).subscribe((data) => {
-      this.loadItems.emit();
+      this.getCategories.emit();
     });
   }
 
