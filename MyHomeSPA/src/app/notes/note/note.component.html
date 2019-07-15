@@ -1,16 +1,18 @@
 <mat-drawer-container> 
         
         <mat-drawer #drawer class="sidenav col-3" mode="side">
-                <button class="btn-lg"
-                color="primary"
-                (click)='addCategory()'
-                mat-button>Новая категория</button>
-                <div class="col category-with-scroll">
-                    <div *ngFor='let category of categories'>
-                        <app-note-category-item [(category)]='category' (loadItems)='loadItems()'></app-note-category-item>
-                    </div>
-                </div>
+            <div>
+                <mat-card>
+                    <button color="primary" (click)='addCategory()' mat-button>Новая категория</button>
+                    <mat-slide-toggle>Когда-нибудь...</mat-slide-toggle>
+                </mat-card>
+                <mat-divider></mat-divider>
+            </div>
+            <div *ngFor='let category of categories'>
+                <app-note-category-item [(category)]='category' (loadItems)='loadItems()'></app-note-category-item>
+            </div>
         </mat-drawer>
+        
         <mat-drawer-content>
             <div class='container-fluid'>
                 <mat-toolbar class="container-menu">
