@@ -1,0 +1,7 @@
+<div class="container">
+    <a href="javascript: void(0)" (click)="next()">Next</a>
+    <a href="javascript: void(0)" (click)="previous()">Previous</a>
+  <div class="week" *ngFor="let week of month">
+    <div class="day" *ngFor="let day of week">{{day.context.date|date:'d'}}</div>
+  </div>    
+</div>

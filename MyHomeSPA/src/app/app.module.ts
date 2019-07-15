@@ -22,6 +22,7 @@ import { ShoppingTypeItemComponent } from './shoppingPlanners/shopping-type-item
 import { PurchaseService } from './shoppingPlanners/services/purchase.service';
 import { ShoppingCategoryService } from './shoppingPlanners/services/shopping-category.service';
 import { TypeOfPurchaseService } from './shoppingPlanners/services/type-of-purchase.service';
+import { CalendarComponent } from './calendar/calendar.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { TypeOfPurchaseService } from './shoppingPlanners/services/type-of-purch
     ShoppingPlannerComponent,
     ShoppingPlannerItemComponent,
     ShoppingCategoryItemComponent,
-    ShoppingTypeItemComponent
+    ShoppingTypeItemComponent,
+    CalendarComponent
   ],
   imports: [
     BrowserModule,
