@@ -11,53 +11,36 @@ import { NoteCategory } from '../models/noteCategory';
 })
 export class NoteItemComponent implements OnInit {
 
-  @Input() noteCard;
+  @Input() noteCard: NoteCard;
 
-  @Input() categories;
+  @Input() categories: NoteCategory[];
 
   @Output() loadItems = new EventEmitter();
 
   isEditNote: boolean = false;
 
-  saveForCard: NoteCard;
+  saveItemValue: Note;
 
   constructor(private noteService: NoteService) { }
 
   ngOnInit() {
   }
 
-  editNote() {
-    const copyNote = new Note();
-
-    copyNote.id = this.noteCard.note.id;
-    copyNote.name = this.noteCard.note.name;
-    copyNote.text = this.noteCard.note.text;
-    copyNote.lastChange = this.noteCard.note.lastChange;
-    copyNote.noteCategoryId = this.noteCard.note.noteCategoryId;
-
-    const copyCategory = new NoteCategory();
-    const copyNoteCard = new NoteCard();
-
-    if (this.noteCard.category) {
-      copyCategory.id = this.noteCard.category.id;
-      copyCategory.name = this.noteCard.category.name;
-      copyCategory.color = this.noteCard.category.color;
-      copyCategory.isOn = this.noteCard.category.isOn;
-      copyNoteCard.noteCategory = copyCategory;
-    }
-
-    copyNoteCard.note = copyNote;
-
-    this.saveForCard = copyNoteCard;
-
+  switchingIsEditItem(){
     this.isEditNote = !this.isEditNote;
+  }
+
+  editNote() {
+    this.switchingIsEditItem();
+    
+    this.saveItemValue = this.getCopy(this.noteCard.note);
   }
 
   saveNote() {
 
-    this.saveForCard = null;
+    this.saveItemValue = null;
 
-    this.isEditNote = !this.isEditNote;
+    this.switchingIsEditItem();
     
     this.noteService.put(this.noteCard.note).subscribe((data) => {
       this.loadItems.emit();
@@ -65,15 +48,28 @@ export class NoteItemComponent implements OnInit {
   }
 
   cancel() {
+    this.noteCard.note = this.getCopy(this.saveItemValue);
+    this.saveItemValue = null;
 
-    this.noteCard = this.saveForCard;
-
-    this.isEditNote = !this.isEditNote;
+    this.switchingIsEditItem();
   }
 
   deleteNote() {
     this.noteService.delete(this.noteCard.note).subscribe((data) => {
       this.loadItems.emit();
     });
+  }
+
+  getCopy(item: Note): Note {
+
+    let copy = new Note();
+
+    copy.id = item.id;
+    copy.name = item.name;
+    copy.text = item.text;
+    copy.lastChange = item.lastChange;
+    copy.noteCategoryId = item.noteCategoryId;  
+
+    return copy;
   }
 }
