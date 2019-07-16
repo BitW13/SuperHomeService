@@ -1,6 +1,7 @@
 <mat-drawer-container> 
         
-        <mat-drawer #drawer class="sidenav col-3" mode="side">
+        <mat-drawer #drawer class="sidenav" mode="side">
+            
             <div>
                 <mat-card>
                     <button color="primary" (click)='addCategory()' mat-button>Новая категория</button>
@@ -11,14 +12,26 @@
             <div *ngFor='let category of categories'>
                 <app-shopping-category-item [(category)]='category' (getCategories)='getCategories()'></app-shopping-category-item>
             </div>
+
+            <hr/>
+
+            <div>
+                <mat-card>
+                    <button color="primary" (click)='addTypeOfPurchases()' mat-button>Новый тип покупки</button>
+                    <mat-slide-toggle>Когда-нибудь...</mat-slide-toggle>
+                </mat-card>
+                <mat-divider></mat-divider>
+            </div>
+            <div *ngFor='let type of typeOfPurchases'>
+                <app-shopping-type-item [(type)]='type' (getTypeOfPurshases)='getTypeOfPurshases()'></app-shopping-type-item>
+            </div>
+
         </mat-drawer>
         
         <mat-drawer-content>
             
-            <mat-toolbar class="container-menu">
-                <button class="content-button" mat-button (click)="drawer.toggle()">Фильтры</button>
-                <button class="content-button" color="primary" mat-button color="primary" (click)='addPurchase()'>Добавить покупку</button>
-            </mat-toolbar>
+            <button class="content-button" mat-button (click)="drawer.toggle()">Фильтры</button>
+            <button class="content-button" color="primary" mat-button color="primary" (click)='addPurchase()'>Добавить покупку</button>
             <mat-accordion>
                 <div>
                     <mat-slide-toggle>Когда-нибудь...</mat-slide-toggle>
@@ -29,7 +42,7 @@
                     [(card)]='card' [(categories)]='categories' 
                     [(typeOfPurchases)]='typeOfPurchases'
                     (getModels)='getModels()'></app-shopping-planner-item>
-                </div>
+                </div>                
             </mat-accordion>
 
         </mat-drawer-content>

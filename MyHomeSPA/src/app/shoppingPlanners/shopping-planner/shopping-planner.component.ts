@@ -27,7 +27,7 @@ export class ShoppingPlannerComponent implements OnInit {
 
   loadItems() {
     this.getModels();
-    this.getTypeOFPurshases();
+    this.getTypeOfPurshases();
     this.getCategories();
   }
   
@@ -37,7 +37,7 @@ export class ShoppingPlannerComponent implements OnInit {
     });
   }
 
-  getTypeOFPurshases(){
+  getTypeOfPurshases(){
     this.typeOfPurchaseService.getItems().subscribe((data) => {
       this.typeOfPurchases = data;
     });
@@ -57,7 +57,7 @@ export class ShoppingPlannerComponent implements OnInit {
 
   addTypeOfPurchases(){
     this.typeOfPurchaseService.post(new TypeOfPurchase()).subscribe((data) => {
-      this.getTypeOFPurshases();
+      this.getTypeOfPurshases();
     });
   }
 

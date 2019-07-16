@@ -13,8 +13,7 @@
     <form class="form">
         <mat-form-field class="full-width">
             <input matInput placeholder="Название" [(ngModel)]='card.purchase.name' [ngModelOptions]="{standalone: true}">
-        </mat-form-field>
-        
+        </mat-form-field>        
         <mat-form-field class="full-width">
             <textarea matInput placeholder="Описание" rows='3' [(ngModel)]='card.purchase.description' [ngModelOptions]="{standalone: true}"></textarea>
         </mat-form-field>
@@ -30,7 +29,7 @@
                 <mat-option [value]="0">
                     Без категории
                 </mat-option>
-                <mat-option *ngFor="let category of categories" value='{{category.id}}'>
+                <mat-option *ngFor="let category of categories" [value]='category.id'>
                     {{category.name}}
                 </mat-option>
             </mat-select>
@@ -38,7 +37,10 @@
         
         <mat-form-field>
             <mat-label>Тип покупки</mat-label>
-            <mat-select [(ngModel)]='card.purchase.typeOfPurchaseId' [ngModelOptions]="{standalone: true}" [(value)]='card.purchase.typeOfPurchaseId'>
+            <mat-select 
+                [(ngModel)]='card.purchase.typeOfPurchaseId' 
+                [ngModelOptions]="{standalone: true}" 
+                [(value)]='card.purchase.typeOfPurchaseId'>
                 <mat-option [value]="0">
                     Шт
                 </mat-option>
@@ -46,7 +48,7 @@
                     {{typeOfPurchase.name}}
                 </mat-option>
             </mat-select>
-        </mat-form-field>
+        </mat-form-field>        
     </p> 
 
     <p>

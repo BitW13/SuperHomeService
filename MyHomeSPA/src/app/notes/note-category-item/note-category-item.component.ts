@@ -15,24 +15,25 @@ export class NoteCategoryItemComponent implements OnInit {
 
   isEditNoteCategory: boolean = false;
 
-  saveForNoteCategory: NoteCategory;
+  saveItemValue: NoteCategory;
 
   constructor(private categoryService: NoteCategoryService) { }
 
   ngOnInit() {
+    this.saveItemValue = this.getCopy(this.category)
   }
 
   switchingIsEditItem() {
     this.isEditNoteCategory = !this.isEditNoteCategory;
   }
 
-  editNoteCategory() {
+  edit() {
     this.switchingIsEditItem();
-    this.saveForNoteCategory = this.getCopy(this.category);
+    this.saveItemValue = this.getCopy(this.category);
   }
 
-  saveNoteCategory() {
-    this.saveForNoteCategory = null;
+  save() {
+    this.saveItemValue = this.getCopy(this.category);
 
     this.switchingIsEditItem();
 
@@ -42,12 +43,12 @@ export class NoteCategoryItemComponent implements OnInit {
   }
 
   cancel() {
-    this.category = this.getCopy(this.saveForNoteCategory);
-    this.saveForNoteCategory = null;
+    this.category = this.getCopy(this.saveItemValue);
+    
     this.switchingIsEditItem();
   }
 
-  deleteNoteCategory() {
+  delete() {
     this.categoryService.delete(this.category).subscribe((data) => {
       this.loadItems.emit();
     });

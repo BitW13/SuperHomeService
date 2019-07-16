@@ -1,64 +1,28 @@
-<!-- <div *ngIf='!isEditNoteCategory; else editTemplate'>
-    <div class="btn-group div-category" role="group" aria-label="Basic example">
-        <button class="mycategory" 
-        (click)='editNoteCategory()' mat-stroked-button>
-            <mat-label class="label-category">{{category.name}}</mat-label>
-            <div mat-card-avatar class="example-header-image svg-color"></div>
-        </button>      
-        <mat-checkbox class="checkbox-visible"></mat-checkbox> 
-    </div>    
-</div>
+<mat-accordion>
 
-<ng-template #editTemplate>
-    <mat-card>        
-        <mat-card-content>
-            <form class="example-form">
-                <mat-form-field>
-                    <input matInput placeholder="Название категории"
-                    [(ngModel)]='category.name'
-                    [ngModelOptions]="{standalone: true}">
-                </mat-form-field>
-                <mat-form-field>
-                    <input matInput type='color'
-                    [(ngModel)]='category.color'
-                    [ngModelOptions]="{standalone: true}">
-                </mat-form-field>
-            </form>
-        </mat-card-content>
-        <mat-card-actions>
-            <button color="primary" (click)='saveNoteCategory()' mat-button>Сохранить</button>
-            <button color="warn" (click)='deleteNoteCategory()' mat-button>Удалить</button>
-            <button color="warn" (click)='cancel()' mat-button>Отменить</button>
-        </mat-card-actions>
-    </mat-card>
-</ng-template> -->
+    <mat-expansion-panel>
+        <mat-expansion-panel-header>
+        <mat-panel-title>
+            {{category.name}}<div [style.backgroundColor]="category.color" style='width:20px; height:20px; border-radius: 10px;'></div>
+        </mat-panel-title>
+        <mat-panel-description>
+            
+        </mat-panel-description>
+        </mat-expansion-panel-header>
 
-<div *ngIf='!isEditNoteCategory; else editTemplate'>
-    <mat-card>
-        <button mat-button (click)='editNoteCategory()'>{{category.name}}</button>
-        <mat-slide-toggle [(ngModel)]='category.isOn' *ngIf='category.isOn'>Отображается</mat-slide-toggle>
-        <mat-slide-toggle [(ngModel)]='category.isOn' *ngIf='!category.isOn'>Выключено</mat-slide-toggle>
-    </mat-card>
-    <mat-divider></mat-divider>  
-</div>
-
-<ng-template #editTemplate>
-    <form class="form">
         <mat-form-field>
-            <input matInput placeholder="Название категории"
-            [(ngModel)]='category.name'
-            [ngModelOptions]="{standalone: true}">
+            <input matInput placeholder="Название" [(ngModel)]='category.name' [ngModelOptions]="{standalone: true}">
         </mat-form-field>
+
         <mat-form-field>
-            <input matInput type='color'
-            [(ngModel)]='category.color'
-            [ngModelOptions]="{standalone: true}">
+            <input type='color' matInput placeholder="Цвет" [(ngModel)]='category.color' [ngModelOptions]="{standalone: true}">
         </mat-form-field>
-    </form>
-    <mat-card-actions>
-        <button color="primary" (click)='saveNoteCategory()' mat-button>Сохранить</button>
-        <button color="warn" (click)='deleteNoteCategory()' mat-button>Удалить</button>
-        <button color="accent" (click)='cancel()' mat-button>Отменить</button>
-    </mat-card-actions>
-    <mat-divider></mat-divider>
-</ng-template>
+
+        <div>
+            <button color="primary" (click)='save()' mat-button>Сохранить</button>
+            <button color="accent" (click)='cancel()' mat-button>Отменить</button>
+            <button color="warn" (click)='delete()' mat-button>Удалить</button>
+        </div>
+    </mat-expansion-panel>
+
+</mat-accordion>

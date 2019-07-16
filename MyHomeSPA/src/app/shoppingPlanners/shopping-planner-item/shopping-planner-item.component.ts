@@ -28,34 +28,45 @@ export class ShoppingPlannerItemComponent implements OnInit {
 
   constructor(private service: PurchaseService) { }
 
-  switchingIsEditItem(){
+  
+
+  ngOnInit() {
+
+    this.saveItemValue = this.getCopy(this.card.purchase);
+  }
+
+  switchingIsEditItem() {
+
     this.isEditItem = !this.isEditItem;
   }
 
-  ngOnInit() {
-    this.saveItemValue = this.getCopy(this.card.purchase);
-  }
+  edit() {
 
-  edit(){
     this.switchingIsEditItem();
+
     this.saveItemValue = this.getCopy(this.card.purchase);
   }
 
-  save(){ console.log(this.card.purchase);
+  save() {
+
     this.saveItemValue = null;
+
     this.switchingIsEditItem();
-    this.service.put(this.card.purchase).subscribe((data) => {
-      
-    });
+
+    this.service.put(this.card.purchase).subscribe((data) => { });
   }
 
-  cancel(){
+  cancel() {
+
     this.card.purchase = this.getCopy(this.saveItemValue);
+
     this.saveItemValue = null;
+    
     this.switchingIsEditItem();
   }
 
-  delete(){
+  delete() {
+
     this.service.delete(this.card.purchase).subscribe((data) => {
       this.getModels.emit();
     });
@@ -78,7 +89,8 @@ export class ShoppingPlannerItemComponent implements OnInit {
       return copy;
   }
 
-  getTotalPrice(){
+  getTotalPrice() {
+
     this.card.purchase.totalPrice = this.card.purchase.priceOfOneUnit * this.card.purchase.amount;
   }
 }
