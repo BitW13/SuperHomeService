@@ -7,6 +7,10 @@ using NoteService.Bll.Services.Implementations;
 using NoteService.Bll.Services.Interfaces;
 using NoteService.Dal.DataAccess.Implementations;
 using NoteService.Dal.DataAccess.Interfaces;
+using NoteService.PL;
+using NoteService.PL.NoteCards;
+using NoteService.PL.NoteCategories;
+using NoteService.PL.Notes;
 using NotesService.Dal.Contexts;
 using NotesService.Dal.Repositories.Implementations;
 using NotesService.Dal.Repositories.Interfaces;
@@ -31,6 +35,11 @@ namespace NoteService.DI
             services.AddTransient<INoteEntityService, NoteEntityService>();
             services.AddTransient<INoteCategoryService, NoteCategoryService>();
             services.AddTransient<INoteSortService, SortService>();
+
+            services.AddTransient<IPresenterLayer, PresenterLayer>();
+            services.AddTransient<INotePresenter, NotePresenter>();
+            services.AddTransient<INoteCategoryPresenter, NoteCategoryPresenter>();
+            services.AddTransient<INoteCardPresenter, NoteCardPresenter>();
         }
     }
 }

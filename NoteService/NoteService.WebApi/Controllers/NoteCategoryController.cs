@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using Common.Entity.NoteService;
 using Microsoft.AspNetCore.Mvc;
-using NoteService.Bll.BusinessLogic.Interfaces;
+using NoteService.PL;
 using NotesService.WebApi.Models;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,12 +14,12 @@ namespace NoteService.WebApi.Controllers
     public class NoteCategoryController : ControllerBase
     {
         private readonly IMapper mapper;
-        private readonly IBusinessLogic db;
+        private readonly IPresenterLayer db;
 
-        public NoteCategoryController(IMapper mapper, IBusinessLogic db)
+        public NoteCategoryController(IPresenterLayer db, IMapper mapper)
         {
-            this.mapper = mapper;
             this.db = db;
+            this.mapper = mapper;
         }
 
         [HttpGet]
@@ -108,6 +108,7 @@ namespace NoteService.WebApi.Controllers
             }
 
             IEnumerable<Note> notes = await db.Notes.GetByNoteCategoryIdAsync(id);
+
             if ((notes.ToList()).Count != 0)
             {
                 foreach(var note in notes)

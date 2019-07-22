@@ -1,8 +1,7 @@
 ﻿using AutoMapper;
 using Common.Entity.NoteService;
 using Microsoft.AspNetCore.Mvc;
-using NoteService.Bll.BusinessLogic.Interfaces;
-using NoteService.WebApi.Models;
+using NoteService.PL;
 using NotesService.WebApi.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -14,9 +13,9 @@ namespace NoteService.WebApi.Controllers
     public class NoteController : ControllerBase
     {
         private readonly IMapper mapper;
-        private readonly IBusinessLogic db;
+        private readonly IPresenterLayer db;
 
-        public NoteController(IBusinessLogic db, IMapper mapper)
+        public NoteController(IPresenterLayer db, IMapper mapper)
         {
             this.db = db;
             this.mapper = mapper;
@@ -25,18 +24,7 @@ namespace NoteService.WebApi.Controllers
         [HttpGet]
         public async Task<IEnumerable<NoteCard>> Get()
         {
-            IEnumerable<Note> notes = await db.Sort.GetItemsByLastChangedAsync();
-
-            List<NoteCard> models = new List<NoteCard>();
-
-            foreach(var note in notes)
-            {
-                NoteCategory category = await db.NoteCategories.GetItemByIdAsync(note.NoteCategoryId);
-
-                models.Add(new NoteCard { Note = note, NoteCategory = category });
-            }
-
-            return models;
+            return await db.Cards.GetAllAsync();
         }
 
         [HttpGet("{id}")]
@@ -47,23 +35,23 @@ namespace NoteService.WebApi.Controllers
                 return BadRequest();
             }
 
-            Note note = await db.Notes.GetItemByIdAsync(id);
+            NoteCard card = await db.Cards.GetItemByIdAsync(id);
 
-            if(note == null)
+            if(card == null)
             {
                 return NotFound();
             }
 
-            NoteCategory category = await db.NoteCategories.GetItemByIdAsync(note.NoteCategoryId);
+            return Ok(card);
+        }
 
-            NoteCard model = new NoteCard
-            {
-                Note = note,
-                NoteCategory = category
-            };
+        [HttpPost]
+        public async Task<IActionResult> Post()
+        {
+            NoteCard card = await db.Cards.CreateAsync(NoteServiceDefaultValues.DefaultNote.Note);
 
-            return Ok(model);
-        } 
+            return Ok(card);
+        }
 
         [HttpPost]
         public async Task<IActionResult> Post([FromBody]CreateNote model)
@@ -75,11 +63,9 @@ namespace NoteService.WebApi.Controllers
 
             if (!ModelState.IsValid) { return BadRequest(ModelState); }
 
-            Note note = await db.Notes.CreateAsync(mapper.Map<Note>(model));
+            NoteCard card = await db.Cards.CreateAsync(mapper.Map<Note>(model));
 
-            EditNote newModel = mapper.Map<EditNote>(note);
-
-            return Ok(newModel);
+            return Ok(card);
         }
 
         [HttpPut("{id}")]
@@ -89,15 +75,17 @@ namespace NoteService.WebApi.Controllers
             {
                 return BadRequest();
             }
+
             if (id != model.Id)
             {
                 return BadRequest();
             }
+
             if (!ModelState.IsValid) { return BadRequest(ModelState); }
 
-            await db.Notes.UpdateAsync(mapper.Map<Note>(model));
+            NoteCard card = await db.Cards.UpdateAsync(mapper.Map<Note>(model));
 
-            return Ok(model);
+            return Ok(card);
         }
 
         [HttpDelete("{id}")]
@@ -108,18 +96,14 @@ namespace NoteService.WebApi.Controllers
                 return BadRequest();
             }
 
-            Note note = await db.Notes.GetItemByIdAsync(id);
+            Note note = await db.Notes.DeleteAsync(id);
 
-            if (note == null)
+            if(note == null)
             {
                 return NotFound();
             }
 
-            await db.Notes.DeleteAsync(note.Id);
-
-            EditNote model = mapper.Map<EditNote>(note);
-
-            return Ok(model);
+            return Ok();
         }
     }
 }

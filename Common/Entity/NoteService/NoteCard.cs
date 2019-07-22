@@ -1,6 +1,4 @@
-﻿using Common.Entity.NoteService;
-
-namespace NoteService.WebApi.Models
+﻿namespace Common.Entity.NoteService
 {
     public class NoteCard
     {

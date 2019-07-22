@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common", "..\Common\Common.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NoteService.DI", "NoteService.DI\NoteService.DI.csproj", "{9C22664E-3EF3-4C7E-9FA7-5D9954D59B0E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoteService.Bll", "NoteService.Bll\NoteService.Bll.csproj", "{7A050631-02D9-4616-89C3-2A89E2E9AD03}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NoteService.Bll", "NoteService.Bll\NoteService.Bll.csproj", "{7A050631-02D9-4616-89C3-2A89E2E9AD03}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoteService.PL", "NoteService.PL\NoteService.PL.csproj", "{DBAC86FC-459E-4530-B700-1E97ABEDFA41}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{7A050631-02D9-4616-89C3-2A89E2E9AD03}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7A050631-02D9-4616-89C3-2A89E2E9AD03}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7A050631-02D9-4616-89C3-2A89E2E9AD03}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DBAC86FC-459E-4530-B700-1E97ABEDFA41}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DBAC86FC-459E-4530-B700-1E97ABEDFA41}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DBAC86FC-459E-4530-B700-1E97ABEDFA41}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DBAC86FC-459E-4530-B700-1E97ABEDFA41}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

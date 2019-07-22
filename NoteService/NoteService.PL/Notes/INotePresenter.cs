@@ -3,9 +3,9 @@ using Common.Patterns.Repository;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace NoteService.Bll.Services.Interfaces
+namespace NoteService.PL.Notes
 {
-    public interface INoteEntityService : IService<Note>
+    public interface INotePresenter : IPresenter<Note>
     {
         Task<IEnumerable<Note>> GetByNoteCategoryIdAsync(int noteCategoryId);
     }

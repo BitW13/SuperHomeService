@@ -4,6 +4,7 @@ namespace ShoppingPlannerService.WebApi.Models
 {
     public class CreatePurchase
     {
+        [Required]
         public string Name { get; set; }
 
         public string Description { get; set; }
@@ -19,7 +20,6 @@ namespace ShoppingPlannerService.WebApi.Models
         [Required]
         public float TotalPrice { get; set; }
 
-        [Required]
         public bool IsDone { get; set; }
 
         public bool ShoppingCategoryId { get; set; }
