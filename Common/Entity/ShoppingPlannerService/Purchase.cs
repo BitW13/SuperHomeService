@@ -11,7 +11,6 @@ namespace Common.Entity.ShoppingPlannerService
 
         public string Description { get; set; }
 
-        [Required]
         public int TypeOfPurchaseId { get; set; }
 
         [Required]
@@ -23,10 +22,8 @@ namespace Common.Entity.ShoppingPlannerService
         [Required]
         public float TotalPrice { get; set; }
 
-        [Required]
         public bool IsDone { get; set; }
 
-        [Required]
         public int ShoppingCategoryId { get; set; }
 
         public int PlannerDateId { get; set; }

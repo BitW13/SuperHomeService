@@ -10,6 +10,10 @@ namespace NotesService.WebApi.Models
         [Required]
         public string Color { get; set; }
 
+        [Required]
+        public string ImagePath { get; set; }
+
+        [Required]
         public bool IsOn { get; set; }
     }
 }
