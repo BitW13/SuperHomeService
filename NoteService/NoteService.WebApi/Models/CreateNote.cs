@@ -9,10 +9,8 @@ namespace NotesService.WebApi.Models
 
         public string Text { get; set; }
 
-        [Required]
         public DateTime LastChange { get; set; }
 
-        [Required]
         public int NoteCategoryId { get; set; }
     }
 }

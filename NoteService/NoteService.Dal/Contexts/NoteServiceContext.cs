@@ -8,7 +8,7 @@ namespace NotesService.Dal.Contexts
         public NoteServiceContext(DbContextOptions<NoteServiceContext> options)
             : base(options)
         {
-            Database.EnsureCreatedAsync();
+            Database.EnsureCreated();
         }
 
         public DbSet<Note> Notes { get; set; }

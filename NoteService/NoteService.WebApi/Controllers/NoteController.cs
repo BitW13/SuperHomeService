@@ -46,24 +46,18 @@ namespace NoteService.WebApi.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post()
-        {
-            NoteCard card = await db.Cards.CreateAsync(NoteServiceDefaultValues.DefaultNote.Note);
-
-            return Ok(card);
-        }
-
-        [HttpPost]
         public async Task<IActionResult> Post([FromBody]CreateNote model)
         {
+            NoteCard card;
+
             if (model == null)
             {
-                return BadRequest();
+                card = await db.Cards.CreateAsync(NoteServiceDefaultValues.DefaultNote.Note);
+
+                return Ok(card);
             }
 
-            if (!ModelState.IsValid) { return BadRequest(ModelState); }
-
-            NoteCard card = await db.Cards.CreateAsync(mapper.Map<Note>(model));
+            card = await db.Cards.CreateAsync(NoteServiceDefaultValues.DefaultNote.VerificationAndCorrectioDataForCreating(mapper.Map<Note>(model)));
 
             return Ok(card);
         }
