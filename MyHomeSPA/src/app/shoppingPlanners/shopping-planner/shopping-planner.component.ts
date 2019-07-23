@@ -32,36 +32,42 @@ export class ShoppingPlannerComponent implements OnInit {
   }
   
   getModels() {
+
     this.purchaseService.getCards().subscribe((data) => {
       this.cards = data;
     });
   }
 
   getTypeOfPurshases(){
+
     this.typeOfPurchaseService.getItems().subscribe((data) => {
       this.typeOfPurchases = data;
     });
   }
 
   getCategories() {
+
     this.categoryService.getItems().subscribe((data) => {
       this.categories = data;
     });
   }  
 
   addPurchase() {
+
     this.purchaseService.post(new Purchase()).subscribe((data) => {
       this.getModels();
     });
   }
 
   addTypeOfPurchases(){
+
     this.typeOfPurchaseService.post(new TypeOfPurchase()).subscribe((data) => {
       this.getTypeOfPurshases();
     });
   }
 
   addCategory() {
+    
     this.categoryService.post(new ShoppingCategory()).subscribe((data) => {
       this.getCategories();
     });

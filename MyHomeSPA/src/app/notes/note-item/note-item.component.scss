@@ -1,19 +1,19 @@
-.example-card {
+.card {
     max-width: 400px;
     margin-bottom: 8px;
   }
   
-  .example-header-image {
-    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+  .header { 
+    border-radius: 40px;
     background-size: cover;
   }
 
-  .example-form {
+  .form {
     min-width: 150px;
     max-width: 500px;
     width: 100%;
   }
   
-  .example-full-width {
+  .full-width {
     width: 100%;
   }

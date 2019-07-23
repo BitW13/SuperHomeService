@@ -1,10 +1,10 @@
 <div *ngIf='!isEditNote; else editTemplate'>
-    <mat-card class="example-card" style="width: 18rem;">
+    <mat-card class="card" style="width: 18rem;">
         <mat-card-header>
-            <div mat-card-avatar class="example-header-image"></div>
+            <div mat-card-avatar class="header" [style.backgroundColor]="card.noteCategory.color"></div>
 
-            <div *ngIf='noteCard.note.noteCategoryId != 0; else defaultCategory'>
-                <mat-card-subtitle><h6>Категория:</h6>{{noteCard.noteCategory.name}}</mat-card-subtitle>
+            <div *ngIf='card.note.noteCategoryId != 0; else defaultCategory'>
+                <mat-card-subtitle><h6>Категория:</h6>{{card.noteCategory.name}}</mat-card-subtitle>
             </div>
             <ng-template #defaultCategory>
                 <mat-card-subtitle><h6>Категория:</h6>Без категории</mat-card-subtitle>
@@ -13,19 +13,19 @@
 
         <mat-card-content>
             <hr/>
-            <h6>{{noteCard.note.name}}</h6>
+            <h6>{{card.note.name}}</h6>
             <hr/>
             <p>
-                {{noteCard.note.text}}
+                {{card.note.text}}
             </p>
             <hr/>
-            <label class="card-text">Дата изменения:</label>
-            <p class="card-text">{{noteCard.note.lastChange | date:'fullDate'}}</p>
+            <label class="text">Дата изменения:</label>
+            <p class="text">{{card.note.lastChange | date:'fullDate'}}</p>
         </mat-card-content>
 
         <mat-card-actions>
-                <button color="primary" (click)='editNote()' mat-button>Изменить</button>
-                <button color="warn" (click)='deleteNote()' mat-button>Удалить</button>
+                <button color="primary" (click)='edit()' mat-button>Изменить</button>
+                <button color="warn" (click)='delete()' mat-button>Удалить</button>
         </mat-card-actions>
 
     </mat-card>
@@ -33,16 +33,16 @@
 
 <ng-template #editTemplate>
 
-    <mat-card class="example-card" style="width: 18rem;">
+    <mat-card class="card" style="width: 18rem;">
 
         <mat-card-content>
 
-            <form class="example-form">
+            <form class="form">
 
                 <mat-form-field>
                     <mat-label>Категория</mat-label>
 
-                    <mat-select [(ngModel)]='noteCard.note.noteCategoryId' [ngModelOptions]="{standalone: true}" [(value)]='noteCard.note.noteCategoryId'>
+                    <mat-select [(ngModel)]='card.note.noteCategoryId' [ngModelOptions]="{standalone: true}" [(value)]='card.note.noteCategoryId'>
                         <mat-option value='0'>
                             Без категории
                         </mat-option>
@@ -53,21 +53,21 @@
 
                 </mat-form-field>
 
-                <mat-form-field class="example-full-width">
+                <mat-form-field class="full-width">
 
                     <input matInput placeholder="Название" 
-                    [(ngModel)]='noteCard.note.name'
+                    [(ngModel)]='card.note.name'
                     [ngModelOptions]="{standalone: true}">
 
-                    <button mat-button *ngIf="noteCard.note.name" matSuffix mat-icon-button aria-label="Clear" (click)="noteCard.note.name=''">
+                    <button mat-button *ngIf="card.note.name" matSuffix mat-icon-button aria-label="Clear" (click)="noteCard.note.name=''">
                         <mat-icon>close</mat-icon>
                     </button>
 
                 </mat-form-field>
 
-                <mat-form-field class="example-full-width">
+                <mat-form-field class="full-width">
                     <textarea wrap="soft" matInput placeholder="Описание" 
-                    [(ngModel)]='noteCard.note.text'
+                    [(ngModel)]='card.note.text'
                     [ngModelOptions]="{standalone: true}"></textarea>
                 </mat-form-field>
                 
@@ -75,8 +75,8 @@
         </mat-card-content>
 
         <mat-card-actions>
-                <button color="primary" (click)='saveNote()' mat-button>Сохранить</button>
-                <button color="warn" (click)='cancel()' mat-button>Отменить</button>
+                <button color="primary" (click)='save()' mat-button>Сохранить</button>
+                <button color="accent" (click)='cancel()' mat-button>Отменить</button>
         </mat-card-actions>
 
     </mat-card>

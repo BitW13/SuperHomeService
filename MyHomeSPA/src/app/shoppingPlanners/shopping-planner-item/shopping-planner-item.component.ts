@@ -24,34 +24,19 @@ export class ShoppingPlannerItemComponent implements OnInit {
 
   saveItemValue: Purchase;
 
-  isEditItem: boolean = false;
-
-  constructor(private service: PurchaseService) { }
-
-  
+  constructor(private service: PurchaseService) { }  
 
   ngOnInit() {
-
     this.saveItemValue = this.getCopy(this.card.purchase);
   }
 
-  switchingIsEditItem() {
-
-    this.isEditItem = !this.isEditItem;
-  }
-
   edit() {
-
-    this.switchingIsEditItem();
-
     this.saveItemValue = this.getCopy(this.card.purchase);
   }
 
   save() {
 
     this.saveItemValue = null;
-
-    this.switchingIsEditItem();
 
     this.service.put(this.card.purchase).subscribe((data) => { });
   }
@@ -61,8 +46,6 @@ export class ShoppingPlannerItemComponent implements OnInit {
     this.card.purchase = this.getCopy(this.saveItemValue);
 
     this.saveItemValue = null;
-    
-    this.switchingIsEditItem();
   }
 
   delete() {

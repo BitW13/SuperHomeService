@@ -3,23 +3,28 @@ import { HttpClient } from '@angular/common/http';
 import { Note } from '../models/note';
 import { map } from 'rxjs/operators';
 import { NoteCard } from '../models/noteCard';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class NoteService {
 
-  private url = "https://noteservicewebapi.azurewebsites.net/api/note/";
+  private url = "https://localhost:44369/api/note";
   
   constructor(private http: HttpClient) { }
 
-  getCards() {
-    return this.http.get<{data: NoteCard[]}>(this.url)
-      .pipe(map(res=> res));
+  getCards() : Observable<NoteCard[]> {
+    return this.http.get(this.url).pipe(map(data=>{
+      let cards = data["cards"];
+      return cards.map(function(card:NoteCard) {
+        return card;
+      });
+    }));
   }
 
-  getCard() {
-    return this.http.get<{data: NoteCard}>(this.url)
+  getCard(item: NoteCard) {
+    return this.http.get<{data: NoteCard}>(this.url + item.note.id)
       .pipe(map(res=> res));
   }
 

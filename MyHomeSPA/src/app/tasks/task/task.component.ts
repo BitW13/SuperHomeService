@@ -11,7 +11,7 @@ import { TaskCategory } from '../models/taskCategory';
 })
 export class TaskComponent implements OnInit {
 
-  taskCards;
+  cards;
 
   categories;
 
@@ -27,24 +27,28 @@ export class TaskComponent implements OnInit {
   }
 
   getCategories() {
+
     this.categoryService.getItems().subscribe((data) => {
       this.categories = data;
     })
   }
 
   getModels() {
+
     this.taskService.getCards().subscribe((data) => {
-      this.taskCards = data;
+      this.cards = data;
     });
   }
 
   addTask() {
+
     this.taskService.post(new Task()).subscribe((data) => {
       this.loadItems();
     });
   }
 
   addCategory() {
+    
     this.categoryService.post(new TaskCategory()).subscribe((data) => {
       this.loadItems();
     });

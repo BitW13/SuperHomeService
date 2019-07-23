@@ -3,6 +3,7 @@ import { Note } from 'src/app/notes/models/note';
 import { NoteCategory } from 'src/app/notes/models/noteCategory';
 import { NoteService } from '../services/note.service';
 import { NoteCategoryService } from '../services/note-category.service';
+import { NoteCard } from '../models/noteCard';
 
 @Component({
   selector: 'app-note',
@@ -11,7 +12,7 @@ import { NoteCategoryService } from '../services/note-category.service';
 })
 export class NoteComponent implements OnInit {
 
-  noteCards;
+  cards: NoteCard[]=[];
 
   categories;
 
@@ -27,26 +28,32 @@ export class NoteComponent implements OnInit {
   }
 
   getCategories() {
+    
     this.categoryService.getItems().subscribe((data) => {
       this.categories = data;
     });
   }
 
   getModels() {
+    
     this.noteService.getCards().subscribe((data) => {
-      this.noteCards = data;
+      this.cards = data;
     });
   }
 
   addNote() {
+
     this.noteService.post(new Note()).subscribe((data) => {
-      this.loadItems();
+      this.getModels();
     });
+
   }
 
   addCategory() {
+
     this.categoryService.post(new NoteCategory()).subscribe((data) => {
-      this.loadItems();
+      this.getCategories();
     });
+
   }
 }

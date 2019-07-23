@@ -2,8 +2,8 @@
     
     <mat-expansion-panel-header>
         <mat-panel-title>
-            <h6>{{card.purchase.name}}</h6>
-            <div [style.backgroundColor]="card.shoppingCategory.color" style='width:20px; height:20px'></div>
+            <h6>{{card.purchase.name}}</h6>     
+            <div [style.backgroundColor]="card.shoppingCategory.color" style='width:20px; height:20px; border-radius: 10px;'></div>       
         </mat-panel-title>
         <mat-panel-description>
             {{panelOpenState ? 'Свернуть' : 'Развернуть'}}

@@ -11,11 +11,11 @@ import { NoteCategory } from '../models/noteCategory';
 })
 export class NoteItemComponent implements OnInit {
 
-  @Input() noteCard: NoteCard;
+  @Input() card: NoteCard;
 
   @Input() categories: NoteCategory[];
 
-  @Output() loadItems = new EventEmitter();
+  @Output() getModels = new EventEmitter();
 
   isEditNote: boolean = false;
 
@@ -30,33 +30,35 @@ export class NoteItemComponent implements OnInit {
     this.isEditNote = !this.isEditNote;
   }
 
-  editNote() {
+  edit() {
     this.switchingIsEditItem();
     
-    this.saveItemValue = this.getCopy(this.noteCard.note);
+    this.saveItemValue = this.getCopy(this.card.note);
   }
 
-  saveNote() {
+  save() {
 
     this.saveItemValue = null;
 
     this.switchingIsEditItem();
     
-    this.noteService.put(this.noteCard.note).subscribe((data) => {
-      this.loadItems.emit();
+    this.noteService.put(this.card.note).subscribe((data) => {
     });
   }
 
   cancel() {
-    this.noteCard.note = this.getCopy(this.saveItemValue);
+
+    this.card.note = this.getCopy(this.saveItemValue);
+    
     this.saveItemValue = null;
 
     this.switchingIsEditItem();
   }
 
-  deleteNote() {
-    this.noteService.delete(this.noteCard.note).subscribe((data) => {
-      this.loadItems.emit();
+  delete() {
+    
+    this.noteService.delete(this.card.note).subscribe((data) => {
+      this.getModels.emit();
     });
   }
 

@@ -15,30 +15,18 @@ export class ShoppingTypeItemComponent implements OnInit {
 
   saveItemValue: TypeOfPurchase;
 
-  isEditItem: boolean = false;
-
   constructor(private service: TypeOfPurchaseService) { }  
 
   ngOnInit() {
   }
-  
-  switchingIsEditItem() {
-    
-    this.isEditItem = !this.isEditItem;
-  }
 
   edit() {
-
-    this.switchingIsEditItem();
-
     this.saveItemValue = this.getCopy(this.type);
   }
 
   save() {
 
     this.saveItemValue = null;
-
-    this.switchingIsEditItem();
 
     this.service.put(this.type).subscribe((data) => {
       this.getTypeOfPurshases.emit();
@@ -50,8 +38,6 @@ export class ShoppingTypeItemComponent implements OnInit {
     this.type = this.getCopy(this.saveItemValue);
 
     this.saveItemValue = null;
-
-    this.switchingIsEditItem();
   }
 
   delete() {

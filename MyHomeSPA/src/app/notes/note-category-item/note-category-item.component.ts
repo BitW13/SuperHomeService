@@ -11,9 +11,7 @@ export class NoteCategoryItemComponent implements OnInit {
 
   @Input() category :NoteCategory;
 
-  @Output() loadItems = new EventEmitter();
-
-  isEditNoteCategory: boolean = false;
+  @Output() getCategories = new EventEmitter();
 
   saveItemValue: NoteCategory;
 
@@ -23,34 +21,27 @@ export class NoteCategoryItemComponent implements OnInit {
     this.saveItemValue = this.getCopy(this.category)
   }
 
-  switchingIsEditItem() {
-    this.isEditNoteCategory = !this.isEditNoteCategory;
-  }
-
   edit() {
-    this.switchingIsEditItem();
     this.saveItemValue = this.getCopy(this.category);
   }
 
   save() {
+
     this.saveItemValue = this.getCopy(this.category);
 
-    this.switchingIsEditItem();
-
     this.categoryService.put(this.category).subscribe((data) => {
-      this.loadItems.emit();
+      this.getCategories.emit();
     });
   }
 
   cancel() {
     this.category = this.getCopy(this.saveItemValue);
-    
-    this.switchingIsEditItem();
   }
 
   delete() {
+
     this.categoryService.delete(this.category).subscribe((data) => {
-      this.loadItems.emit();
+      this.getCategories.emit();
     });
   }
 

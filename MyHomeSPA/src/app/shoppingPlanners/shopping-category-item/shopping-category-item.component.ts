@@ -15,8 +15,6 @@ export class ShoppingCategoryItemComponent implements OnInit {
 
   @Output() getCategories = new EventEmitter();
 
-  isEditItem: boolean = false;
-
   saveItemValue: ShoppingCategory;
 
   constructor(private service: ShoppingCategoryService) { }
@@ -25,30 +23,28 @@ export class ShoppingCategoryItemComponent implements OnInit {
     this.saveItemValue = this.getCopy(this.category)
   }
 
-  switchingIsEditItem(){
-    this.isEditItem = !this.isEditItem;
-  }
-
-  edit(){
-    this.switchingIsEditItem();
+  edit() {
     this.saveItemValue = this.getCopy(this.category);
   }
 
   save(){
+
     this.saveItemValue = this.getCopy(this.category);
-    this.switchingIsEditItem();
+
     this.service.put(this.category).subscribe((data) => {
       this.getCategories.emit();
     });
   }
 
   cancel(){
+
     this.category = this.getCopy(this.saveItemValue);
+
     this.saveItemValue = null;
-    this.switchingIsEditItem();
   }
 
   delete(){
+    
     this.service.delete(this.category).subscribe((data) => {
       this.getCategories.emit();
     });

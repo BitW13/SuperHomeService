@@ -8,7 +8,7 @@ import { NoteCategory } from '../models/noteCategory';
 })
 export class NoteCategoryService {
 
-  private url = 'https://noteservicewebapi.azurewebsites.net/api/notecategory/';
+  private url = 'https://localhost:44369/api/notecategory/';
 
   constructor(private http: HttpClient) { }
 
