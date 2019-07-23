@@ -11,45 +11,37 @@ export class NoteCategoryItemComponent implements OnInit {
 
   @Input() category :NoteCategory;
 
-  @Output() loadItems = new EventEmitter();
+  @Output() getCategories = new EventEmitter();
 
-  isEditNoteCategory: boolean = false;
-
-  saveForNoteCategory: NoteCategory;
+  saveItemValue: NoteCategory;
 
   constructor(private categoryService: NoteCategoryService) { }
 
   ngOnInit() {
+    this.saveItemValue = this.getCopy(this.category)
   }
 
-  switchingIsEditItem() {
-    this.isEditNoteCategory = !this.isEditNoteCategory;
+  edit() {
+    this.saveItemValue = this.getCopy(this.category);
   }
 
-  editNoteCategory() {
-    this.switchingIsEditItem();
-    this.saveForNoteCategory = this.getCopy(this.category);
-  }
+  save() {
 
-  saveNoteCategory() {
-    this.saveForNoteCategory = null;
-
-    this.switchingIsEditItem();
+    this.saveItemValue = this.getCopy(this.category);
 
     this.categoryService.put(this.category).subscribe((data) => {
-      this.loadItems.emit();
+      this.getCategories.emit();
     });
   }
 
   cancel() {
-    this.category = this.getCopy(this.saveForNoteCategory);
-    this.saveForNoteCategory = null;
-    this.switchingIsEditItem();
+    this.category = this.getCopy(this.saveItemValue);
   }
 
-  deleteNoteCategory() {
+  delete() {
+
     this.categoryService.delete(this.category).subscribe((data) => {
-      this.loadItems.emit();
+      this.getCategories.emit();
     });
   }
 

@@ -22,7 +22,7 @@ export class Purchase {
 
         this.id = 0;
 
-        this.name='';
+        this.name='Покупка';
 
         this.description = '';
 

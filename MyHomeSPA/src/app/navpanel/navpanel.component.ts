@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./navpanel.component.scss']
 })
 export class NavpanelComponent implements OnInit {
-
+  
   constructor() { }
 
   ngOnInit() {

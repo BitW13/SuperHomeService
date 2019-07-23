@@ -11,43 +11,39 @@ export class ShoppingTypeItemComponent implements OnInit {
 
   @Input() type: TypeOfPurchase;
 
-  @Output() loadItems = new EventEmitter();
+  @Output() getTypeOfPurshases = new EventEmitter();
 
   saveItemValue: TypeOfPurchase;
 
-  isEditItem: boolean = false;
-
-  constructor(private service: TypeOfPurchaseService) { }
-
-  switchingIsEditItem(){
-    this.isEditItem = !this.isEditItem;
-  }
+  constructor(private service: TypeOfPurchaseService) { }  
 
   ngOnInit() {
   }
 
-  edit(){
-    this.switchingIsEditItem();
+  edit() {
     this.saveItemValue = this.getCopy(this.type);
   }
 
-  save(){
+  save() {
+
     this.saveItemValue = null;
-    this.switchingIsEditItem();
+
     this.service.put(this.type).subscribe((data) => {
-      this.loadItems.emit();
+      this.getTypeOfPurshases.emit();
     });
   }
 
-  cancel(){
+  cancel() {
+
     this.type = this.getCopy(this.saveItemValue);
+
     this.saveItemValue = null;
-    this.switchingIsEditItem();
   }
 
-  delete(){
+  delete() {
+
     this.service.delete(this.type).subscribe((data) => {
-      this.loadItems.emit();
+      this.getTypeOfPurshases.emit();
     });
   }
 

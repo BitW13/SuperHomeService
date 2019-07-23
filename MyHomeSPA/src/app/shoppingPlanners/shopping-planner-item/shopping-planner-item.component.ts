@@ -6,55 +6,52 @@ import { PurchaseService } from '../services/purchase.service';
 import { Purchase } from '../models/purchase';
 
 @Component({
-  selector: 'tr[app-shopping-planner-item]',
+  selector: 'app-shopping-planner-item',
   templateUrl: './shopping-planner-item.component.html',
   styleUrls: ['./shopping-planner-item.component.scss']
 })
 export class ShoppingPlannerItemComponent implements OnInit {
 
+  panelOpenState: boolean = false;
+
   @Input() card: ShoppingCard;
 
-  @Input() shoppingCategories: ShoppingCategory[];
+  @Input() categories: ShoppingCategory[];
 
   @Input() typeOfPurchases: TypeOfPurchase[];
 
-  @Output() loadItems = new EventEmitter();  
+  @Output() getModels = new EventEmitter();  
 
   saveItemValue: Purchase;
 
-  isEditItem: boolean = false;
-
-  constructor(private service: PurchaseService) { }
-
-  switchingIsEditItem(){
-    this.isEditItem = !this.isEditItem;
-  }
+  constructor(private service: PurchaseService) { }  
 
   ngOnInit() {
-  }
-
-  edit(){
-    this.switchingIsEditItem();
     this.saveItemValue = this.getCopy(this.card.purchase);
   }
 
-  save(){
-    this.saveItemValue = null;
-    this.switchingIsEditItem();
-    this.service.put(this.card.purchase).subscribe((data) => {
-      this.loadItems.emit();
-    });
+  edit() {
+    this.saveItemValue = this.getCopy(this.card.purchase);
   }
 
-  cancel(){
+  save() {
+
+    this.saveItemValue = null;
+
+    this.service.put(this.card.purchase).subscribe((data) => { });
+  }
+
+  cancel() {
+
     this.card.purchase = this.getCopy(this.saveItemValue);
+
     this.saveItemValue = null;
-    this.switchingIsEditItem();
   }
 
-  delete(){
+  delete() {
+
     this.service.delete(this.card.purchase).subscribe((data) => {
-      this.loadItems.emit();
+      this.getModels.emit();
     });
   }
 
@@ -75,7 +72,8 @@ export class ShoppingPlannerItemComponent implements OnInit {
       return copy;
   }
 
-  getTotalPrice(){
+  getTotalPrice() {
+
     this.card.purchase.totalPrice = this.card.purchase.priceOfOneUnit * this.card.purchase.amount;
-}
+  }
 }

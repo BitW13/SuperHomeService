@@ -1,18 +1,30 @@
-<div class="note-element">
-    <a class="btn-add-note" (click)='addNote()'><img src="https://cdn.icon-icons.com/icons2/902/PNG/512/plus_icon-icons.com_69322.png" alt="+"></a>
-    <div class='container-fluid'>
-        <div class='row contains-categories'>
-            <div class='col-3 border border-dark categories-bar contains-categories'>
-                <button type="button" class="btn btn-success btn-lg btn-block" (click)='addCategory()'>Новая категория</button>
-                <div class="col category-with-scroll">
-                    <div *ngFor='let category of categories'>
-                        <app-note-category-item [(category)]='category' (loadItems)='loadItems()'></app-note-category-item>
+<mat-drawer-container> 
+        
+        <mat-drawer #drawer class="sidenav col-3" mode="side">
+            <div>
+                <mat-card>
+                    <button color="primary" (click)='addCategory()' mat-button>Новая категория</button>
+                    <mat-slide-toggle>Когда-нибудь...</mat-slide-toggle>
+                </mat-card>
+                <mat-divider></mat-divider>
+            </div>
+            <div *ngFor='let category of categories'>
+                <app-note-category-item [(category)]='category' (getCategories)='getCategories()'></app-note-category-item>
+            </div>
+        </mat-drawer>
+        
+        <mat-drawer-content>
+            <div class='container-fluid'>
+                <mat-toolbar class="container-menu">
+                    <button class="content-button" mat-button (click)="drawer.toggle()">Фильтры</button>
+                    <button class="content-button" color="primary" mat-button color="primary" (click)='addNote()'>Добавить заметку</button>
+                </mat-toolbar>
+                <div class='row'>
+                    <div class='col-auto' *ngFor='let card of cards'>
+                        <app-note-item [(card)]='card' [(categories)]='categories' (getCategories)='getCategories()'></app-note-item>
                     </div>
                 </div>
             </div>
-            <div class='col-auto main' *ngFor='let noteCard of noteCards'>
-                <app-note-item [(noteCard)]='noteCard' [(categories)]='categories' (loadItems)='loadItems()'></app-note-item>
-            </div>
-        </div>
-    </div>
-</div>
+        </mat-drawer-content>
+        
+</mat-drawer-container>

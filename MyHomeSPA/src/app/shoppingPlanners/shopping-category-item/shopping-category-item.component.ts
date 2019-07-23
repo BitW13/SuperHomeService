@@ -9,45 +9,44 @@ import { ShoppingCategoryService } from '../services/shopping-category.service';
 })
 export class ShoppingCategoryItemComponent implements OnInit {
 
+  panelOpenState = false;
+
   @Input() category: ShoppingCategory;
 
-  @Output() loadItems = new EventEmitter();
-
-  isEditItem: boolean = false;
+  @Output() getCategories = new EventEmitter();
 
   saveItemValue: ShoppingCategory;
 
   constructor(private service: ShoppingCategoryService) { }
 
   ngOnInit() {
+    this.saveItemValue = this.getCopy(this.category)
   }
 
-  switchingIsEditItem(){
-    this.isEditItem = !this.isEditItem;
-  }
-
-  edit(){
-    this.switchingIsEditItem();
+  edit() {
     this.saveItemValue = this.getCopy(this.category);
   }
 
   save(){
-    this.saveItemValue = null;
-    this.switchingIsEditItem();
+
+    this.saveItemValue = this.getCopy(this.category);
+
     this.service.put(this.category).subscribe((data) => {
-      this.loadItems.emit();
+      this.getCategories.emit();
     });
   }
 
   cancel(){
+
     this.category = this.getCopy(this.saveItemValue);
+
     this.saveItemValue = null;
-    this.switchingIsEditItem();
   }
 
   delete(){
+    
     this.service.delete(this.category).subscribe((data) => {
-      this.loadItems.emit();
+      this.getCategories.emit();
     });
   }
 
