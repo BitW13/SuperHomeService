@@ -77,7 +77,7 @@ namespace NoteService.WebApi.Controllers
                 return BadRequest();
             }
 
-            await db.NoteCategories.UpdateAsync(NoteServiceDefaultValues.DefaultNoteCategories.VerificationAndCorrectioDataForCreating(category));
+            await db.NoteCategories.UpdateAsync(NoteServiceDefaultValues.DefaultNoteCategories.VerificationAndCorrectioDataForEdit(category));
 
             return Ok(category);
         }
