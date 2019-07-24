@@ -8,13 +8,9 @@ namespace NoteService.WebApi.AutoMapper
     {
         public AutoMapperProfile()
         {
-            CreateMap<Note, EditNote>()
-                .ReverseMap();
             CreateMap<Note, CreateNote>()
                 .ReverseMap();
             CreateMap<NoteCategory, CreateNoteCategory>()
-                .ReverseMap();
-            CreateMap<NoteCategory, EditNoteCategory>()
                 .ReverseMap();
         }
     }

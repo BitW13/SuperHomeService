@@ -23,13 +23,9 @@ namespace NoteService.WebApi.Controllers
         }
 
         [HttpGet]
-        public async Task<IEnumerable<EditNoteCategory>> Get()
+        public async Task<IEnumerable<NoteCategory>> Get()
         {
-            IEnumerable<NoteCategory> noteCategories = await db.NoteCategories.GetAllAsync();
-
-            IEnumerable<EditNoteCategory> models = mapper.Map<IEnumerable<EditNoteCategory>>(noteCategories);
-
-            return models;
+            return await db.NoteCategories.GetAllAsync();
         }
 
         [HttpGet("{id}")]
@@ -47,9 +43,7 @@ namespace NoteService.WebApi.Controllers
                 return NotFound();
             }
 
-            EditNoteCategory model = mapper.Map<EditNoteCategory>(category);
-
-            return Ok(model);
+            return Ok(category);
         }
 
 
@@ -71,21 +65,21 @@ namespace NoteService.WebApi.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put(int id, [FromBody]EditNoteCategory model)
+        public async Task<IActionResult> Put(int id, [FromBody]NoteCategory category)
         {
-            if (model == null)
+            if (category == null)
             {
                 return BadRequest();
             }
 
-            if (id != model.Id)
+            if (id != category.Id)
             {
                 return BadRequest();
             }
 
-            await db.NoteCategories.UpdateAsync(mapper.Map<NoteCategory>(model));
+            await db.NoteCategories.UpdateAsync(NoteServiceDefaultValues.DefaultNoteCategories.VerificationAndCorrectioDataForCreating(category));
 
-            return Ok(model);
+            return Ok(category);
         }
 
         [HttpDelete("{id}")]
@@ -114,9 +108,7 @@ namespace NoteService.WebApi.Controllers
             }
             await db.NoteCategories.DeleteAsync(noteCategory.Id);
 
-            EditNoteCategory model = mapper.Map<EditNoteCategory>(noteCategory);
-
-            return Ok(model);
+            return Ok();
         }
     }
 }
