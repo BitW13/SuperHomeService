@@ -29,7 +29,7 @@ namespace Common.Entity.NoteService
 
                 if(string.IsNullOrEmpty(item.Color)) { item.Color = NoteCategory.Color; }
 
-                if (string.IsNullOrEmpty(item.ImagePath)) { item.Color = NoteCategory.ImagePath; }
+                if (string.IsNullOrEmpty(item.ImagePath)) { item.ImagePath = NoteCategory.ImagePath; }
 
                 if (item.IsOn == false) { item.IsOn = NoteCategory.IsOn; }
 
@@ -69,7 +69,7 @@ namespace Common.Entity.NoteService
             {
                 if (item.Id != 0) { item.Id = Note.Id; }
 
-                if (item.LastChange == null) item.LastChange = Note.LastChange;
+                if (item.LastChange != DateTime.Now) item.LastChange = Note.LastChange;
 
                 if (item.NoteCategoryId < 0) item.NoteCategoryId = Note.NoteCategoryId;
 
@@ -79,6 +79,8 @@ namespace Common.Entity.NoteService
             public static Note VerificationAndCorrectioDataForEdit(Note item)
             {
                 if (item.LastChange == null) item.LastChange = Note.LastChange;
+
+                if (item.LastChange != DateTime.Now) item.LastChange = Note.LastChange;
 
                 if (item.NoteCategoryId < 0) item.NoteCategoryId = Note.NoteCategoryId;
 
