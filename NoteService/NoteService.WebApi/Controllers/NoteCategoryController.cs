@@ -56,20 +56,18 @@ namespace NoteService.WebApi.Controllers
         [HttpPost]
         public async Task<IActionResult> Post([FromBody]CreateNoteCategory model)
         {
+            NoteCategory noteCategory;
+
             if (model == null)
             {
-                return BadRequest();
+                noteCategory = await db.NoteCategories.CreateAsync(NoteServiceDefaultValues.DefaultNoteCategories.NoteCategory);
+
+                return Ok(noteCategory);
             }
 
-            if (!ModelState.IsValid) { return BadRequest(ModelState); }
+            noteCategory = await db.NoteCategories.CreateAsync(NoteServiceDefaultValues.DefaultNoteCategories.VerificationAndCorrectioDataForCreating(mapper.Map<NoteCategory>(model)));
 
-            model.IsOn = true;
-
-            NoteCategory noteCategory = await db.NoteCategories.CreateAsync(mapper.Map<NoteCategory>(model));
-
-            EditNoteCategory newModel = mapper.Map<EditNoteCategory>(noteCategory);
-
-            return Ok(newModel);
+            return Ok(noteCategory);
         }
 
         [HttpPut("{id}")]
@@ -84,8 +82,6 @@ namespace NoteService.WebApi.Controllers
             {
                 return BadRequest();
             }
-
-            if (!ModelState.IsValid) { return BadRequest(ModelState); }
 
             await db.NoteCategories.UpdateAsync(mapper.Map<NoteCategory>(model));
 
