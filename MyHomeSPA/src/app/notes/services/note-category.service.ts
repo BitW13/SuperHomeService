@@ -1,34 +1,34 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs/operators';
 import { NoteCategory } from '../models/noteCategory';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class NoteCategoryService {
 
-  private url = 'https://localhost:44369/api/notecategory/';
+  private url = 'https://noteservicewebapp.azurewebsites.net/api/notecategory/';
 
   constructor(private http: HttpClient) { }
 
-  getItems() {
-    return this.http.get<{data: NoteCategory[]}>(this.url)
-      .pipe(map(res => res));
+  getItems(): Observable<NoteCategory[]> {
+    return this.http.get<NoteCategory[]>(this.url);
   }
 
-  post(item: NoteCategory) {
-    return this.http.post<{data: NoteCategory}>(this.url, item)
-      .pipe(map(res => res));
+  getItem(item: NoteCategory): Observable<NoteCategory>  {
+    return this.http.get<NoteCategory>(this.url + item.id);
   }
 
-  put(item: NoteCategory) {
-    return this.http.put<{data: NoteCategory}>(this.url + item.id, item)
-      .pipe(map(res => res));
+  post(item: NoteCategory): Observable<NoteCategory> {
+    return this.http.post<NoteCategory>(this.url, item);
   }
 
-  delete(item: NoteCategory) {
-    return this.http.delete<{data: NoteCategory}>(this.url + item.id)
-      .pipe(map(res => res));
+  put(item: NoteCategory): Observable<NoteCategory> {
+    return this.http.put<NoteCategory>(this.url + item.id, item);
+  }
+
+  delete(item: NoteCategory): Observable<NoteCategory> {
+    return this.http.delete<NoteCategory>(this.url + item.id);
   }
 }

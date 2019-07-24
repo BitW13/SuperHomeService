@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Note } from '../models/note';
-import { map } from 'rxjs/operators';
 import { NoteCard } from '../models/noteCard';
 import { Observable } from 'rxjs';
 
@@ -10,36 +9,27 @@ import { Observable } from 'rxjs';
 })
 export class NoteService {
 
-  private url = "https://localhost:44369/api/note";
+  private url = "https://noteservicewebapp.azurewebsites.net/api/note/";
   
   constructor(private http: HttpClient) { }
 
-  getCards() : Observable<NoteCard[]> {
-    return this.http.get(this.url).pipe(map(data=>{
-      let cards = data["cards"];
-      return cards.map(function(card:NoteCard) {
-        return card;
-      });
-    }));
+  getCards(): Observable<NoteCard[]> {
+    return this.http.get<NoteCard[]>(this.url);
   }
 
-  getCard(item: NoteCard) {
-    return this.http.get<{data: NoteCard}>(this.url + item.note.id)
-      .pipe(map(res=> res));
+  getCard(item: NoteCard): Observable<NoteCard>  {
+    return this.http.get<NoteCard>(this.url + item.note.id);
   }
 
-  post(item: Note) {
-    return this.http.post<{data: Note}>(this.url, item)
-      .pipe(map(res=> res));
+  post(item: Note): Observable<NoteCard> {
+    return this.http.post<NoteCard>(this.url, item);
   }
 
-  put(item: Note) {
-    return this.http.put<{data: Note}>(this.url + item.id, item)
-      .pipe(map(res=> res));
+  put(item: Note): Observable<NoteCard> {
+    return this.http.put<NoteCard>(this.url + item.id, item);
   }
 
-  delete(item: Note) {
-    return this.http.delete<{data: Note}>(this.url + item.id)
-      .pipe(map(res=> res));
+  delete(item: Note): Observable<NoteCard> {
+    return this.http.delete<NoteCard>(this.url + item.id);
   }
 }

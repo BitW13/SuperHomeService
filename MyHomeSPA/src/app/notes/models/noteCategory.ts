@@ -4,18 +4,9 @@ export class NoteCategory {
 
     public name: string;
 
-    public color: any;
+    public color: string;
+
+    public imagePath: string;
 
     public isOn: boolean;
-
-    constructor() {
-
-        this.id = 0;
-
-        this.name = 'Категория';
-
-        this.color = '000';
-
-        this.isOn = true;
-    }
 }

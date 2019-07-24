@@ -7,7 +7,8 @@ import { NoteCategory } from '../models/noteCategory';
 @Component({
   selector: 'app-note-item',
   templateUrl: './note-item.component.html',
-  styleUrls: ['./note-item.component.scss']
+  styleUrls: ['./note-item.component.scss'],
+  providers: [NoteService]
 })
 export class NoteItemComponent implements OnInit {
 
@@ -15,7 +16,7 @@ export class NoteItemComponent implements OnInit {
 
   @Input() categories: NoteCategory[];
 
-  @Output() getModels = new EventEmitter();
+  @Output() deleteNote = new EventEmitter<NoteCard>();
 
   isEditNote: boolean = false;
 
@@ -31,6 +32,7 @@ export class NoteItemComponent implements OnInit {
   }
 
   edit() {
+
     this.switchingIsEditItem();
     
     this.saveItemValue = this.getCopy(this.card.note);
@@ -42,8 +44,7 @@ export class NoteItemComponent implements OnInit {
 
     this.switchingIsEditItem();
     
-    this.noteService.put(this.card.note).subscribe((data) => {
-    });
+    this.noteService.put(this.card.note).subscribe(data => this.card = data);
   }
 
   cancel() {
@@ -56,10 +57,7 @@ export class NoteItemComponent implements OnInit {
   }
 
   delete() {
-    
-    this.noteService.delete(this.card.note).subscribe((data) => {
-      this.getModels.emit();
-    });
+    this.deleteNote.emit(this.card);
   }
 
   getCopy(item: Note): Note {
