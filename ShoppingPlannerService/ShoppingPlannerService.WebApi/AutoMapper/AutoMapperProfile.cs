@@ -10,15 +10,9 @@ namespace ShoppingPlannerService.WebApi.AutoMapper
         {
             CreateMap<Purchase, CreatePurchase>()
                  .ReverseMap();
-            CreateMap<Purchase, EditPurchase>()
-                .ReverseMap();
             CreateMap<TypeOfPurchase, CreateTypeOfPurchase>()
                 .ReverseMap();
-            CreateMap<TypeOfPurchase, EditTypeOfPurchase>()
-                .ReverseMap();
             CreateMap<ShoppingCategory, CreateShoppingCategory>()
-                .ReverseMap();
-            CreateMap<ShoppingCategory, EditShoppingCategory>()
                 .ReverseMap();
         }
     }

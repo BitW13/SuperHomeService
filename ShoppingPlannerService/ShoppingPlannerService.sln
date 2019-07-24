@@ -3,15 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29009.5
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShoppingPlannerService.WebApi", "ShoppingPlannerService.WebApi\ShoppingPlannerService.WebApi.csproj", "{B3FDC7D8-ADAF-422B-BBD7-163A1C42FB41}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShoppingPlannerService.WebApi", "ShoppingPlannerService.WebApi\ShoppingPlannerService.WebApi.csproj", "{B3FDC7D8-ADAF-422B-BBD7-163A1C42FB41}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShoppingPlannerService.Dal", "ShoppingPlannerService.Dal\ShoppingPlannerService.Dal.csproj", "{B44E0A3F-437A-430B-85F4-4A2FD5733599}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShoppingPlannerService.Dal", "ShoppingPlannerService.Dal\ShoppingPlannerService.Dal.csproj", "{B44E0A3F-437A-430B-85F4-4A2FD5733599}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShoppingPlannerService.Bll", "ShoppingPlannerService.Bll\ShoppingPlannerService.Bll.csproj", "{073F4A8E-0E28-4707-803E-6ABB7884BDCA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShoppingPlannerService.Bll", "ShoppingPlannerService.Bll\ShoppingPlannerService.Bll.csproj", "{073F4A8E-0E28-4707-803E-6ABB7884BDCA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShoppingPlannerService.DI", "ShoppingPlannerService.DI\ShoppingPlannerService.DI.csproj", "{A3232745-7B6B-4880-8DEC-4DC194253ECC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShoppingPlannerService.DI", "ShoppingPlannerService.DI\ShoppingPlannerService.DI.csproj", "{A3232745-7B6B-4880-8DEC-4DC194253ECC}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common", "..\Common\Common.csproj", "{9E260396-71CA-46E4-833F-36F63B81D464}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShoppingPlannerService.PL", "ShoppingPlannerService.PL\ShoppingPlannerService.PL.csproj", "{8C80D5CE-2953-4035-9340-D835312DAD0D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{9E260396-71CA-46E4-833F-36F63B81D464}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9E260396-71CA-46E4-833F-36F63B81D464}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9E260396-71CA-46E4-833F-36F63B81D464}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8C80D5CE-2953-4035-9340-D835312DAD0D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C80D5CE-2953-4035-9340-D835312DAD0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8C80D5CE-2953-4035-9340-D835312DAD0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8C80D5CE-2953-4035-9340-D835312DAD0D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

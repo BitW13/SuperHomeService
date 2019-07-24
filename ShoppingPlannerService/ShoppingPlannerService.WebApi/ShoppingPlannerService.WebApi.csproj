@@ -21,8 +21,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Common\Common.csproj" />
-    <ProjectReference Include="..\ShoppingPlannerService.Bll\ShoppingPlannerService.Bll.csproj" />
     <ProjectReference Include="..\ShoppingPlannerService.DI\ShoppingPlannerService.DI.csproj" />
+    <ProjectReference Include="..\ShoppingPlannerService.PL\ShoppingPlannerService.PL.csproj" />
   </ItemGroup>
 
 </Project>
