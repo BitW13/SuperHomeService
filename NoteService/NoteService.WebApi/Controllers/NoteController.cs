@@ -75,7 +75,7 @@ namespace NoteService.WebApi.Controllers
                 return BadRequest();
             }
 
-            NoteCard card = await db.Cards.UpdateAsync(NoteServiceDefaultValues.DefaultNote.VerificationAndCorrectioDataForCreating(note));
+            NoteCard card = await db.Cards.UpdateAsync(NoteServiceDefaultValues.DefaultNote.VerificationAndCorrectioDataForEdit(note));
 
             return Ok(card);
         }
