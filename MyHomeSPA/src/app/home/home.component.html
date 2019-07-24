@@ -1,1 +1,8 @@
-<p>home works!</p>
+<mat-grid-list cols="5">
+  <mat-grid-tile class="newpage"
+    [colspan]="1" [rowspan]="1">Создать группу</mat-grid-tile>
+  <mat-grid-tile class="page" *ngFor='let page of pages'
+    [colspan]="1" [rowspan]="1"
+    [style.background]="'url(page.imagePath)'">
+  </mat-grid-tile>
+</mat-grid-list>

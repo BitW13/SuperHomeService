@@ -8,13 +8,14 @@ import { NoteCard } from '../models/noteCard';
 @Component({
   selector: 'app-note',
   templateUrl: './note.component.html',
-  styleUrls: ['./note.component.scss']
+  styleUrls: ['./note.component.scss'],
+  providers: [NoteService, NoteCategoryService]
 })
 export class NoteComponent implements OnInit {
 
-  cards: NoteCard[]=[];
+  cards: NoteCard[];
 
-  categories;
+  categories: NoteCategory[];
 
   constructor(private noteService: NoteService, private categoryService: NoteCategoryService) { }
 
@@ -23,37 +24,35 @@ export class NoteComponent implements OnInit {
   }
   
   loadItems() {
-    this.getModels();
+    this.getCards();
     this.getCategories();
   }
 
-  getCategories() {
-    
-    this.categoryService.getItems().subscribe((data) => {
-      this.categories = data;
-    });
+  getCategories() {    
+    this.categoryService.getItems().subscribe(data => this.categories = data);
   }
 
-  getModels() {
-    
-    this.noteService.getCards().subscribe((data) => {
-      this.cards = data;
-    });
+  getCards() {    
+    this.noteService.getCards().subscribe(data => this.cards = data);
   }
 
   addNote() {
-
-    this.noteService.post(new Note()).subscribe((data) => {
-      this.getModels();
-    });
-
+    this.noteService.post(new Note()).subscribe(data => this.cards.unshift(data));
   }
 
   addCategory() {
+    this.categoryService.post(new NoteCategory()).subscribe((data) => this.categories.push(data));
+  }
 
-    this.categoryService.post(new NoteCategory()).subscribe((data) => {
-      this.getCategories();
+  deleteNote(item: NoteCard) {
+    this.noteService.delete(item.note).subscribe(data => {
+      this.getCards();
     });
+  }
 
+  deleteCategory(item: NoteCategory) {
+    this.categoryService.delete(item).subscribe(data => {
+      this.loadItems();
+    });
   }
 }

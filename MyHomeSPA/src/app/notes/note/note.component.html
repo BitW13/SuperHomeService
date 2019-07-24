@@ -9,7 +9,7 @@
                 <mat-divider></mat-divider>
             </div>
             <div *ngFor='let category of categories'>
-                <app-note-category-item [(category)]='category' (getCategories)='getCategories()'></app-note-category-item>
+                <app-note-category-item [(category)]='category' (loadItems)='loadItems()' (deleteCategory)='deleteCategory($event)'></app-note-category-item>
             </div>
         </mat-drawer>
         
@@ -21,10 +21,9 @@
                 </mat-toolbar>
                 <div class='row'>
                     <div class='col-auto' *ngFor='let card of cards'>
-                        <app-note-item [(card)]='card' [(categories)]='categories' (getCategories)='getCategories()'></app-note-item>
+                        <app-note-item [(card)]='card' [(categories)]='categories' (deleteNote)='deleteNote($event)'></app-note-item>
                     </div>
                 </div>
             </div>
         </mat-drawer-content>
-        
 </mat-drawer-container>

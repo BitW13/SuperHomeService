@@ -36,6 +36,7 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatExpansionModule} from '@angular/material/expansion';
+import { PageComponent } from './page/page.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import {MatExpansionModule} from '@angular/material/expansion';
     ShoppingPlannerComponent,
     ShoppingPlannerItemComponent,
     ShoppingCategoryItemComponent,
-    ShoppingTypeItemComponent
+    ShoppingTypeItemComponent,
+    PageComponent
   ],
   imports: [
     BrowserModule,
