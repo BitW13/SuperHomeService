@@ -13,7 +13,7 @@
                 IsOn = true
             };
 
-            public static ShoppingCategory VerificationAndCorrectioDataForCreating(ShoppingCategory item)
+            public static ShoppingCategory VerificationAndCorrectionDataForCreating(ShoppingCategory item)
             {
                 if (item.Id != 0) { item.Id = ShoppingCategory.Id; }
 
@@ -21,20 +21,116 @@
 
                 if (string.IsNullOrEmpty(item.Color)) { item.Color = ShoppingCategory.Color; }
 
-                if (string.IsNullOrEmpty(item.ImagePath)) { item.Color = ShoppingCategory.ImagePath; }
+                if (string.IsNullOrEmpty(item.ImagePath)) { item.ImagePath = ShoppingCategory.ImagePath; }
 
                 if (item.IsOn == false) { item.IsOn = ShoppingCategory.IsOn; }
 
                 return item;
             }
 
-            public static ShoppingCategory VerificationAndCorrectioDataForEdit(ShoppingCategory item)
+            public static ShoppingCategory VerificationAndCorrectionDataForEdit(ShoppingCategory item)
             {
                 if (string.IsNullOrEmpty(item.Name)) { item.Name = ShoppingCategory.Name; }
 
                 if (string.IsNullOrEmpty(item.Color)) { item.Color = ShoppingCategory.Color; }
 
-                if (string.IsNullOrEmpty(item.ImagePath)) { item.Color = ShoppingCategory.ImagePath; }
+                if (string.IsNullOrEmpty(item.ImagePath)) { item.ImagePath = ShoppingCategory.ImagePath; }
+
+                return item;
+            }
+        }
+
+        public static class DefaultTypeOfPurchase
+        {
+            public static TypeOfPurchase TypeOfPurchase
+            {
+                get
+                {
+                    return new TypeOfPurchase
+                    {
+                        Id = 0,
+                        Name = "ед"
+                    };
+                }
+            }
+
+            public static TypeOfPurchase VerificationAndCorrectionDataForCreating(TypeOfPurchase item)
+            {
+                if (item.Id != 0) { item.Id = TypeOfPurchase.Id; }
+
+                if (string.IsNullOrEmpty(item.Name)) { item.Name = TypeOfPurchase.Name; }
+
+                return item;
+            }
+
+            public static ShoppingCategory VerificationAndCorrectionDataForEdit(ShoppingCategory item)
+            {
+                if (string.IsNullOrEmpty(item.Name)) { item.Name = TypeOfPurchase.Name; }
+
+                return item;
+            }
+        }
+
+        public static class DefaultPurchase
+        {
+            public static Purchase Purchase
+            {
+                get
+                {
+                    return new Purchase
+                    {
+                        Id = 0,
+                        Name = "",
+                        Description = "",
+                        ShoppingCategoryId = 0,
+                        TypeOfPurchaseId = 0,
+                        PlannerDateId = 0,
+                        PriceOfOneUnit = 1,
+                        Amount = 1,
+                        TotalPrice = 1,
+                        IsDone = false
+                    };
+                }
+            }
+
+            public static Purchase VerificationAndCorrectionDataForCreating(Purchase item)
+            {
+                if (item.Id != 0) { item.Id = Purchase.Id; }
+
+                if (string.IsNullOrEmpty(item.Name)) { item.Name = Purchase.Name; }
+
+                if (string.IsNullOrEmpty(item.Description)) { item.Description = Purchase.Description; }
+
+                if (item.ShoppingCategoryId < 0) { item.ShoppingCategoryId = Purchase.ShoppingCategoryId; }
+
+                if (item.TypeOfPurchaseId < 0) { item.TypeOfPurchaseId = Purchase.TypeOfPurchaseId; }
+
+                if (item.PlannerDateId < 0) { item.PlannerDateId = Purchase.PlannerDateId; }
+
+                if (item.PriceOfOneUnit < 0) { item.PriceOfOneUnit = Purchase.PriceOfOneUnit; }
+
+                if (item.Amount < 1) { item.Amount = Purchase.Amount; }
+
+                if (item.TotalPrice < 0) { item.TotalPrice = Purchase.TotalPrice; }
+
+                if (item.IsDone != false) { item.IsDone = Purchase.IsDone; }
+
+                return item;
+            }
+
+            public static Purchase VerificationAndCorrectionDataForEdit(Purchase item)
+            {
+                if (item.Amount < 1) { item.Amount = Purchase.Amount; }
+
+                if (item.PriceOfOneUnit < 0) { item.PriceOfOneUnit = Purchase.PriceOfOneUnit; }
+
+                if (item.TotalPrice != item.Amount * item.PriceOfOneUnit) { item.TotalPrice = item.Amount * item.PriceOfOneUnit; }
+
+                if (item.ShoppingCategoryId < 0) { item.ShoppingCategoryId = Purchase.ShoppingCategoryId; }
+
+                if (item.TypeOfPurchaseId < 0) { item.TypeOfPurchaseId = Purchase.TypeOfPurchaseId; }
+
+                if (item.PlannerDateId < 0) { item.PlannerDateId = Purchase.PlannerDateId; }
 
                 return item;
             }

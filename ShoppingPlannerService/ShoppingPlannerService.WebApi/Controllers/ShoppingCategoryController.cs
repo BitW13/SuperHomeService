@@ -1,13 +1,11 @@
-﻿using System;
+﻿using AutoMapper;
+using Common.Entity.ShoppingPlannerService;
+using Microsoft.AspNetCore.Mvc;
+using ShoppingPlannerService.PL;
+using ShoppingPlannerService.WebApi.Models;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using AutoMapper;
-using Common.Entity.ShoppingPlannerService;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using ShoppingPlannerService.Bll.BusinessLogic.Interfaces;
-using ShoppingPlannerService.WebApi.Models;
 
 namespace ShoppingPlannerService.WebApi.Controllers
 {
@@ -15,23 +13,19 @@ namespace ShoppingPlannerService.WebApi.Controllers
     [ApiController]
     public class ShoppingCategoryController : ControllerBase
     {
-        private readonly IBusinessLogic db;
+        private readonly IPresenterLayer db;
         private readonly IMapper mapper;
 
-        public ShoppingCategoryController(IMapper mapper, IBusinessLogic db)
-        {            
+        public ShoppingCategoryController(IMapper mapper, IPresenterLayer db)
+        {
             this.db = db;
             this.mapper = mapper;
         }
 
         [HttpGet]
-        public async Task<IEnumerable<EditShoppingCategory>> Get()
+        public async Task<IEnumerable<ShoppingCategory>> Get()
         {
-            IEnumerable<ShoppingCategory> shoppingCategories = await db.ShoppingCategories.GetAllAsync();
-
-            IEnumerable<EditShoppingCategory> models = mapper.Map<IEnumerable<EditShoppingCategory>>(shoppingCategories);
-
-            return models;
+            return await db.ShoppingCategories.GetAllAsync();
         }
 
         [HttpGet("{id}")]
@@ -42,40 +36,36 @@ namespace ShoppingPlannerService.WebApi.Controllers
                 return BadRequest();
             }
 
-            ShoppingCategory shoppingCategory = await db.ShoppingCategories.GetItemByIdAsync(id);
+            ShoppingCategory category = await db.ShoppingCategories.GetItemByIdAsync(id);
 
-            if (shoppingCategory == null)
+            if (category == null)
             {
                 return NotFound();
             }
 
-            EditShoppingCategory model = mapper.Map<EditShoppingCategory>(shoppingCategory);
-
-            return Ok(model);
+            return Ok(category);
         }
 
 
         [HttpPost]
         public async Task<IActionResult> Post([FromBody]CreateShoppingCategory model)
         {
+            ShoppingCategory category;
+
             if (model == null)
             {
-                return BadRequest();
+                category = await db.ShoppingCategories.CreateAsync(ShoppingPlannerDefaultValues.DefaultShoppingCategory.ShoppingCategory);
+
+                return Ok(category);
             }
 
-            if (!ModelState.IsValid) { return BadRequest(ModelState); }
+            category = await db.ShoppingCategories.CreateAsync(ShoppingPlannerDefaultValues.DefaultShoppingCategory.VerificationAndCorrectionDataForCreating(mapper.Map<ShoppingCategory>(model)));
 
-            model.IsOn = true;
-
-            ShoppingCategory shoppingCategory = await db.ShoppingCategories.CreateAsync(mapper.Map<ShoppingCategory>(model));
-
-            EditShoppingCategory newModel = mapper.Map<EditShoppingCategory>(shoppingCategory);
-
-            return Ok(newModel);
+            return Ok(category);
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put(int id, [FromBody]EditShoppingCategory model)
+        public async Task<IActionResult> Put(int id, [FromBody]ShoppingCategory model)
         {
             if (model == null)
             {
@@ -87,9 +77,7 @@ namespace ShoppingPlannerService.WebApi.Controllers
                 return BadRequest();
             }
 
-            if (!ModelState.IsValid) { return BadRequest(ModelState); }
-
-            await db.ShoppingCategories.UpdateAsync(mapper.Map<ShoppingCategory>(model));
+            await db.ShoppingCategories.UpdateAsync(ShoppingPlannerDefaultValues.DefaultShoppingCategory.VerificationAndCorrectionDataForEdit(model));
 
             return Ok(model);
         }
@@ -102,9 +90,9 @@ namespace ShoppingPlannerService.WebApi.Controllers
                 return BadRequest();
             }
 
-            ShoppingCategory shoppingCategory = await db.ShoppingCategories.GetItemByIdAsync(id);
+            ShoppingCategory category = await db.ShoppingCategories.GetItemByIdAsync(id);
 
-            if (shoppingCategory == null)
+            if (category == null)
             {
                 return NotFound();
             }
@@ -115,14 +103,13 @@ namespace ShoppingPlannerService.WebApi.Controllers
             {
                 foreach (var purchase in purchases)
                 {
-                    await db.Purchases.DeleteAsync(purchase.Id);
+                    purchase.ShoppingCategoryId = ShoppingPlannerDefaultValues.DefaultPurchase.Purchase.ShoppingCategoryId;
+                    await db.Purchases.UpdateAsync(purchase);
                 }
             }
-            await db.ShoppingCategories.DeleteAsync(shoppingCategory.Id);
+            await db.ShoppingCategories.DeleteAsync(category.Id);
 
-            EditShoppingCategory model = mapper.Map<EditShoppingCategory>(shoppingCategory);
-
-            return Ok(model);
+            return Ok();
         }
     }
 }

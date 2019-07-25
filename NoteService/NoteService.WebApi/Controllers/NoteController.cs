@@ -63,19 +63,19 @@ namespace NoteService.WebApi.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put(int id, [FromBody]Note note)
+        public async Task<IActionResult> Put(int id, [FromBody]Note model)
         {
-            if (note == null)
+            if (model == null)
             {
                 return BadRequest();
             }
 
-            if (id != note.Id)
+            if (id != model.Id)
             {
                 return BadRequest();
             }
 
-            NoteCard card = await db.Cards.UpdateAsync(NoteServiceDefaultValues.DefaultNote.VerificationAndCorrectioDataForEdit(note));
+            NoteCard card = await db.Cards.UpdateAsync(NoteServiceDefaultValues.DefaultNote.VerificationAndCorrectioDataForEdit(model));
 
             return Ok(card);
         }
