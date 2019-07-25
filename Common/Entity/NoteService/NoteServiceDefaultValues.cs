@@ -42,7 +42,7 @@ namespace Common.Entity.NoteService
 
                 if (string.IsNullOrEmpty(item.Color)) { item.Color = NoteCategory.Color; }
 
-                if (string.IsNullOrEmpty(item.ImagePath)) { item.Color = NoteCategory.ImagePath; }
+                if (string.IsNullOrEmpty(item.ImagePath)) { item.ImagePath = NoteCategory.ImagePath; }
 
                 return item;
             }

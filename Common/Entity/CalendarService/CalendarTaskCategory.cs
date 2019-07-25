@@ -1,10 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace ShoppingPlannerService.WebApi.Models
+namespace Common.Entity.CalendarService
 {
-    public class EditShoppingCategory
+    public class CalendarTaskCategory
     {
-        [Required]
+        [Key]
         public int Id { get; set; }
 
         [Required]

@@ -1,10 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace ShoppingPlannerService.WebApi.Models
+namespace Common.Entity.TaskPlannerService
 {
-    public class EditTypeOfPurchase
+    public class Severity
     {
-        [Required]
+        [Key]
         public int Id { get; set; }
 
         [Required]

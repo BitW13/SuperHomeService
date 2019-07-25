@@ -103,7 +103,8 @@ namespace NoteService.WebApi.Controllers
             {
                 foreach(var note in notes)
                 {
-                    await db.Notes.DeleteAsync(note.Id);
+                    note.NoteCategoryId = NoteServiceDefaultValues.DefaultNote.Note.NoteCategoryId;
+                    await db.Notes.UpdateAsync(note);
                 }
             }
             await db.NoteCategories.DeleteAsync(noteCategory.Id);

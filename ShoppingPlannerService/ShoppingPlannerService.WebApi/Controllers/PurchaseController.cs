@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using Common.Entity.ShoppingPlannerService;
 using Microsoft.AspNetCore.Mvc;
-using ShoppingPlannerService.Bll.BusinessLogic.Interfaces;
+using ShoppingPlannerService.PL;
 using ShoppingPlannerService.WebApi.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -12,11 +12,11 @@ namespace ShoppingPlannerService.WebApi.Controllers
     [ApiController]
     public class PurchaseController : ControllerBase
     {
-        private readonly IBusinessLogic db;
+        private readonly IPresenterLayer db;
 
         private readonly IMapper mapper;
 
-        public PurchaseController(IBusinessLogic db, IMapper mapper)
+        public PurchaseController(IPresenterLayer db, IMapper mapper)
         {
             this.db = db;
 
@@ -26,20 +26,7 @@ namespace ShoppingPlannerService.WebApi.Controllers
         [HttpGet]
         public async Task<IEnumerable<ShoppingCard>> Get()
         {
-            IEnumerable<Purchase> purchases = await db.Purchases.GetAllAsync();
-
-            List<ShoppingCard> shoppingCards = new List<ShoppingCard>();
-
-            foreach(var purchase in purchases)
-            {
-                TypeOfPurchase typeOfPurchase = await db.TypeOfPurchases.GetItemByIdAsync(purchase.TypeOfPurchaseId);
-
-                ShoppingCategory shoppingCategory = await db.ShoppingCategories.GetItemByIdAsync(purchase.ShoppingCategoryId);
-
-                shoppingCards.Add(new ShoppingCard { Purchase = purchase, TypeOfPurchase = typeOfPurchase, ShoppingCategory = shoppingCategory });
-            }
-
-            return shoppingCards;
+            return await db.Cards.GetAllAsync();
         }
 
         [HttpGet("{id}")]
@@ -50,60 +37,49 @@ namespace ShoppingPlannerService.WebApi.Controllers
                 return BadRequest();
             }
 
-            Purchase purchase = await db.Purchases.GetItemByIdAsync(id);
+            ShoppingCard card = await db.Cards.GetItemByIdAsync(id);
 
-            if (purchase == null)
+            if (card == null)
             {
                 return NotFound();
             }
 
-            TypeOfPurchase typeOfPurchase = await db.TypeOfPurchases.GetItemByIdAsync(purchase.TypeOfPurchaseId);
-
-            ShoppingCategory shoppingCategory = await db.ShoppingCategories.GetItemByIdAsync(purchase.ShoppingCategoryId);
-
-            ShoppingCard shoppingCard = new ShoppingCard
-            {
-                Purchase = purchase,
-                TypeOfPurchase = typeOfPurchase,
-                ShoppingCategory = shoppingCategory
-            };
-
-            return Ok(shoppingCard);
+            return Ok(card);
         }
 
         [HttpPost]
         public async Task<IActionResult> Post([FromBody]CreatePurchase model)
         {
+            ShoppingCard card;
+
             if (model == null)
             {
-                return BadRequest();
+                card = await db.Cards.CreateAsync(ShoppingPlannerDefaultValues.DefaultPurchase.Purchase);
+
+                return Ok(card);
             }
 
-            if (!ModelState.IsValid) { return BadRequest(ModelState); }
+            card = await db.Cards.CreateAsync(ShoppingPlannerDefaultValues.DefaultPurchase.VerificationAndCorrectionDataForCreating(mapper.Map<Purchase>(model)));
 
-            Purchase purchase = await db.Purchases.CreateAsync(mapper.Map<Purchase>(model));
-
-            EditPurchase newModel = mapper.Map<EditPurchase>(purchase);
-
-            return Ok(newModel);
+            return Ok(card);
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put(int id, [FromBody]EditPurchase model)
+        public async Task<IActionResult> Put(int id, [FromBody]Purchase model)
         {
             if (model == null)
             {
                 return BadRequest();
             }
+
             if (id != model.Id)
             {
                 return BadRequest();
             }
-            if (!ModelState.IsValid) { return BadRequest(ModelState); }
 
-            await db.Purchases.UpdateAsync(mapper.Map<Purchase>(model));
+            ShoppingCard card = await db.Cards.UpdateAsync(ShoppingPlannerDefaultValues.DefaultPurchase.VerificationAndCorrectionDataForEdit(model));
 
-            return Ok(model);
+            return Ok(card);
         }
 
         [HttpDelete("{id}")]
@@ -114,18 +90,14 @@ namespace ShoppingPlannerService.WebApi.Controllers
                 return BadRequest();
             }
 
-            Purchase purchase = await db.Purchases.GetItemByIdAsync(id);
+            Purchase purchase = await db.Purchases.DeleteAsync(id);
 
             if (purchase == null)
             {
                 return NotFound();
             }
 
-            await db.Purchases.DeleteAsync(purchase.Id);
-
-            EditPurchase model = mapper.Map<EditPurchase>(purchase);
-
-            return Ok(model);
+            return Ok();
         }
     }
 }

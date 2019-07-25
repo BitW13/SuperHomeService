@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using Common.Entity.ShoppingPlannerService;
 using Microsoft.AspNetCore.Mvc;
-using ShoppingPlannerService.Bll.BusinessLogic.Interfaces;
+using ShoppingPlannerService.PL;
 using ShoppingPlannerService.WebApi.Models;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,23 +13,19 @@ namespace ShoppingPlannerService.WebApi.Controllers
     [ApiController]
     public class TypeOfPurchaseController : ControllerBase
     {
-        private readonly IBusinessLogic db;
+        private readonly IPresenterLayer db;
         private readonly IMapper mapper;
 
-        public TypeOfPurchaseController(IMapper mapper, IBusinessLogic db)
+        public TypeOfPurchaseController(IMapper mapper, IPresenterLayer db)
         {
             this.db = db;
             this.mapper = mapper;
         }
 
         [HttpGet]
-        public async Task<IEnumerable<EditTypeOfPurchase>> Get()
+        public async Task<IEnumerable<TypeOfPurchase>> Get()
         {
-            IEnumerable<TypeOfPurchase> typeOfPurchases = await db.TypeOfPurchases.GetAllAsync();
-
-            IEnumerable<EditTypeOfPurchase> models = mapper.Map<IEnumerable<EditTypeOfPurchase>>(typeOfPurchases);
-
-            return models;
+            return await db.TypeOfPurchases.GetAllAsync();
         }
 
         [HttpGet("{id}")]
@@ -40,38 +36,36 @@ namespace ShoppingPlannerService.WebApi.Controllers
                 return BadRequest();
             }
 
-            TypeOfPurchase typeOfPurchase = await db.TypeOfPurchases.GetItemByIdAsync(id);
+            TypeOfPurchase type = await db.TypeOfPurchases.GetItemByIdAsync(id);
 
-            if (typeOfPurchase == null)
+            if (type == null)
             {
                 return NotFound();
             }
 
-            EditTypeOfPurchase model = mapper.Map<EditTypeOfPurchase>(typeOfPurchase);
-
-            return Ok(model);
+            return Ok(type);
         }
 
 
         [HttpPost]
         public async Task<IActionResult> Post([FromBody]CreateTypeOfPurchase model)
         {
+            TypeOfPurchase type;
+
             if (model == null)
             {
-                return BadRequest();
+                type = await db.TypeOfPurchases.CreateAsync(ShoppingPlannerDefaultValues.DefaultTypeOfPurchase.TypeOfPurchase);
+
+                return Ok(type);
             }
 
-            if (!ModelState.IsValid) { return BadRequest(ModelState); }
+            type = await db.TypeOfPurchases.CreateAsync(ShoppingPlannerDefaultValues.DefaultTypeOfPurchase.VerificationAndCorrectionDataForCreating(mapper.Map<TypeOfPurchase>(model)));
 
-            TypeOfPurchase typeOfPurchase = await db.TypeOfPurchases.CreateAsync(mapper.Map<TypeOfPurchase>(model));
-
-            EditTypeOfPurchase newModel = mapper.Map<EditTypeOfPurchase>(typeOfPurchase);
-
-            return Ok(newModel);
+            return Ok(type);
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put(int id, [FromBody]EditTypeOfPurchase model)
+        public async Task<IActionResult> Put(int id, [FromBody]TypeOfPurchase model)
         {
             if (model == null)
             {
@@ -83,9 +77,7 @@ namespace ShoppingPlannerService.WebApi.Controllers
                 return BadRequest();
             }
 
-            if (!ModelState.IsValid) { return BadRequest(ModelState); }
-
-            await db.TypeOfPurchases.UpdateAsync(mapper.Map<TypeOfPurchase>(model));
+            await db.TypeOfPurchases.UpdateAsync(ShoppingPlannerDefaultValues.DefaultTypeOfPurchase.VerificationAndCorrectionDataForEdit(model));
 
             return Ok(model);
         }
@@ -98,9 +90,9 @@ namespace ShoppingPlannerService.WebApi.Controllers
                 return BadRequest();
             }
 
-            TypeOfPurchase typeOfPurchase = await db.TypeOfPurchases.GetItemByIdAsync(id);
+            TypeOfPurchase type = await db.TypeOfPurchases.GetItemByIdAsync(id);
 
-            if (typeOfPurchase == null)
+            if (type == null)
             {
                 return NotFound();
             }
@@ -111,15 +103,13 @@ namespace ShoppingPlannerService.WebApi.Controllers
             {
                 foreach (var purchase in purchases)
                 {
-                    purchase.TypeOfPurchaseId = 0;
+                    purchase.TypeOfPurchaseId = ShoppingPlannerDefaultValues.DefaultPurchase.Purchase.TypeOfPurchaseId;
                     await db.Purchases.UpdateAsync(purchase);
                 }
             }
-            await db.TypeOfPurchases.DeleteAsync(typeOfPurchase.Id);
+            await db.TypeOfPurchases.DeleteAsync(type.Id);
 
-            EditTypeOfPurchase model = mapper.Map<EditTypeOfPurchase>(typeOfPurchase);
-
-            return Ok(model);
+            return Ok();
         }
     }
 }

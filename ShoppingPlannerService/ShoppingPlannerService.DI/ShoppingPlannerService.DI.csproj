@@ -12,6 +12,7 @@
   <ItemGroup>
     <ProjectReference Include="..\ShoppingPlannerService.Bll\ShoppingPlannerService.Bll.csproj" />
     <ProjectReference Include="..\ShoppingPlannerService.Dal\ShoppingPlannerService.Dal.csproj" />
+    <ProjectReference Include="..\ShoppingPlannerService.PL\ShoppingPlannerService.PL.csproj" />
   </ItemGroup>
 
 </Project>

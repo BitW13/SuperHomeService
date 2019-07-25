@@ -1,6 +1,4 @@
-﻿using Common.Entity.ShoppingPlannerService;
-
-namespace ShoppingPlannerService.WebApi.Models
+﻿namespace Common.Entity.ShoppingPlannerService
 {
     public class ShoppingCard
     {
