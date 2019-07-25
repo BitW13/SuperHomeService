@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using TaskPlannerService.Bll.BusinessLogic.Interfaces;
+using TaskPlannerService.PL;
 using TaskPlannerService.WebApi.Models;
 
 namespace TaskPlannerService.WebApi.Controllers
@@ -14,22 +14,18 @@ namespace TaskPlannerService.WebApi.Controllers
     public class TaskCategoryController : ControllerBase
     {
         private readonly IMapper mapper;
-        private readonly IBusinessLogic db;
+        private readonly IPresenterLayer db;
 
-        public TaskCategoryController(IMapper mapper, IBusinessLogic db)
+        public TaskCategoryController(IMapper mapper, IPresenterLayer db)
         {
             this.mapper = mapper;
             this.db = db;
         }
 
         [HttpGet]
-        public async Task<IEnumerable<EditTaskCategory>> Get()
+        public async Task<IEnumerable<TaskCategory>> Get()
         {
-            IEnumerable<TaskCategory> taskCategories = await db.TaskCategories.GetAllAsync();
-
-            IEnumerable<EditTaskCategory> models = mapper.Map<IEnumerable<EditTaskCategory>>(taskCategories);
-
-            return models;
+            return await db.TaskCategories.GetAllAsync();
         }
 
         [HttpGet("{id}")]
@@ -47,33 +43,29 @@ namespace TaskPlannerService.WebApi.Controllers
                 return NotFound();
             }
 
-            EditTaskCategory model = mapper.Map<EditTaskCategory>(category);
-
-            return Ok(model);
+            return Ok(category);
         }
 
 
         [HttpPost]
         public async Task<IActionResult> Post([FromBody]CreateTaskCategory model)
         {
+            TaskCategory category;
+
             if (model == null)
             {
-                return BadRequest();
+                category = await db.TaskCategories.CreateAsync(TaskPlannerServiceDefaultValues.DefaultTaskCategories.TaskCategory);
+
+                return Ok(category);
             }
 
-            if (!ModelState.IsValid) { return BadRequest(ModelState); }
+            category = await db.TaskCategories.CreateAsync(TaskPlannerServiceDefaultValues.DefaultTaskCategories.VerificationAndCorrectionDataForCreating(mapper.Map<TaskCategory>(model)));
 
-            model.IsOn = true;
-
-            TaskCategory taskCategory = await db.TaskCategories.CreateAsync(mapper.Map<TaskCategory>(model));
-
-            EditTaskCategory newModel = mapper.Map<EditTaskCategory>(taskCategory);
-
-            return Ok(newModel);
+            return Ok(category);
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put(int id, [FromBody]EditTaskCategory model)
+        public async Task<IActionResult> Put(int id, [FromBody]TaskCategory model)
         {
             if (model == null)
             {
@@ -85,9 +77,7 @@ namespace TaskPlannerService.WebApi.Controllers
                 return BadRequest();
             }
 
-            if (!ModelState.IsValid) { return BadRequest(ModelState); }
-
-            await db.TaskCategories.UpdateAsync(mapper.Map<TaskCategory>(model));
+            await db.TaskCategories.UpdateAsync(TaskPlannerServiceDefaultValues.DefaultTaskCategories.VerificationAndCorrectionDataForEdit(model));
 
             return Ok(model);
         }
@@ -100,26 +90,26 @@ namespace TaskPlannerService.WebApi.Controllers
                 return BadRequest();
             }
 
-            TaskCategory taskCategory = await db.TaskCategories.GetItemByIdAsync(id);
+            TaskCategory category = await db.TaskCategories.GetItemByIdAsync(id);
 
-            if (taskCategory == null)
+            if (category == null)
             {
                 return NotFound();
             }
 
             IEnumerable<TaskEntity> tasks = await db.Tasks.GetByTaskCategoryIdAsync(id);
+
             if ((tasks.ToList()).Count != 0)
             {
                 foreach (var task in tasks)
                 {
-                    await db.Tasks.DeleteAsync(task.Id);
+                    task.TaskCategoryId = TaskPlannerServiceDefaultValues.DefaultTask.Task.TaskCategoryId;
+                    await db.Tasks.UpdateAsync(task);
                 }
             }
-            await db.TaskCategories.DeleteAsync(taskCategory.Id);
+            await db.TaskCategories.DeleteAsync(category.Id);
 
-            EditTaskCategory model = mapper.Map<EditTaskCategory>(taskCategory);
-
-            return Ok(model);
+            return Ok();
         }
     }
 }

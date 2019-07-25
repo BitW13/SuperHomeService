@@ -59,7 +59,7 @@ namespace NoteService.WebApi.Controllers
                 return Ok(noteCategory);
             }
 
-            noteCategory = await db.NoteCategories.CreateAsync(NoteServiceDefaultValues.DefaultNoteCategories.VerificationAndCorrectioDataForCreating(mapper.Map<NoteCategory>(model)));
+            noteCategory = await db.NoteCategories.CreateAsync(NoteServiceDefaultValues.DefaultNoteCategories.VerificationAndCorrectionDataForCreating(mapper.Map<NoteCategory>(model)));
 
             return Ok(noteCategory);
         }
@@ -77,7 +77,7 @@ namespace NoteService.WebApi.Controllers
                 return BadRequest();
             }
 
-            await db.NoteCategories.UpdateAsync(NoteServiceDefaultValues.DefaultNoteCategories.VerificationAndCorrectioDataForEdit(category));
+            await db.NoteCategories.UpdateAsync(NoteServiceDefaultValues.DefaultNoteCategories.VerificationAndCorrectionDataForEdit(category));
 
             return Ok(category);
         }

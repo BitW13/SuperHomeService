@@ -10,6 +10,10 @@ using TaskPlannerService.Dal.DataAccess.Implementations;
 using TaskPlannerService.Dal.DataAccess.Interfaces;
 using TaskPlannerService.Dal.Repositories.Implementations;
 using TaskPlannerService.Dal.Repositories.Interfaces;
+using TaskPlannerService.PL;
+using TaskPlannerService.PL.TaskCards;
+using TaskPlannerService.PL.TaskCategories;
+using TaskPlannerService.PL.Tasks;
 
 namespace TaskPlannerService.DI
 {
@@ -29,6 +33,11 @@ namespace TaskPlannerService.DI
             services.AddTransient<IBusinessLogic, BusinessLogic>();
             services.AddTransient<ITaskService, TaskService>();
             services.AddTransient<ITaskCategoryService, TaskCategoryService>();
+
+            services.AddTransient<IPresenterLayer, PresenterLayer>();
+            services.AddTransient<ITaskCardPresenter, TaskCardPresenter>();
+            services.AddTransient<ITaskPresenter, TaskPresenter>();
+            services.AddTransient<ITaskCategoryPresenter, TaskCategoryPresenter>();
         }
     }
 }

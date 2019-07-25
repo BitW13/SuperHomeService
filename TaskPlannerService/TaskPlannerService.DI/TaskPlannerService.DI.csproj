@@ -12,6 +12,7 @@
   <ItemGroup>
     <ProjectReference Include="..\TaskPlannerService.Bll\TaskPlannerService.Bll.csproj" />
     <ProjectReference Include="..\TaskPlannerService.Dal\TaskPlannerService.Dal.csproj" />
+    <ProjectReference Include="..\TaskPlannerService.PL\TaskPlannerService.PL.csproj" />
   </ItemGroup>
 
 </Project>

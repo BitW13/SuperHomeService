@@ -18,16 +18,16 @@ namespace Common.Entity.NoteService
                         ImagePath = "https://st3.depositphotos.com/2903611/13027/i/950/depositphotos_130272574-stock-photo-phone-on-notepad-pen-coffee.jpg",
                         IsOn = true
                     };
-                }                
+                }
             }
 
-            public static NoteCategory VerificationAndCorrectioDataForCreating(NoteCategory item)
+            public static NoteCategory VerificationAndCorrectionDataForCreating(NoteCategory item)
             {
-                if(item.Id != 0) { item.Id = NoteCategory.Id; }
+                if (item.Id != 0) { item.Id = NoteCategory.Id; }
 
-                if(string.IsNullOrEmpty(item.Name)) { item.Name = NoteCategory.Name; }
+                if (string.IsNullOrEmpty(item.Name)) { item.Name = NoteCategory.Name; }
 
-                if(string.IsNullOrEmpty(item.Color)) { item.Color = NoteCategory.Color; }
+                if (string.IsNullOrEmpty(item.Color)) { item.Color = NoteCategory.Color; }
 
                 if (string.IsNullOrEmpty(item.ImagePath)) { item.ImagePath = NoteCategory.ImagePath; }
 
@@ -36,7 +36,7 @@ namespace Common.Entity.NoteService
                 return item;
             }
 
-            public static NoteCategory VerificationAndCorrectioDataForEdit(NoteCategory item)
+            public static NoteCategory VerificationAndCorrectionDataForEdit(NoteCategory item)
             {
                 if (string.IsNullOrEmpty(item.Name)) { item.Name = NoteCategory.Name; }
 
@@ -65,24 +65,24 @@ namespace Common.Entity.NoteService
                 }
             }
 
-            public static Note VerificationAndCorrectioDataForCreating(Note item)
+            public static Note VerificationAndCorrectionDataForCreating(Note item)
             {
                 if (item.Id != 0) { item.Id = Note.Id; }
 
-                if (item.LastChange != DateTime.Now) item.LastChange = Note.LastChange;
+                if (item.LastChange != DateTime.Now) { item.LastChange = Note.LastChange; }
 
-                if (item.NoteCategoryId < 0) item.NoteCategoryId = Note.NoteCategoryId;
+                if (item.NoteCategoryId < 0) { item.NoteCategoryId = Note.NoteCategoryId; }
 
                 return item;
             }
 
-            public static Note VerificationAndCorrectioDataForEdit(Note item)
+            public static Note VerificationAndCorrectionDataForEdit(Note item)
             {
-                if (item.LastChange == null) item.LastChange = Note.LastChange;
+                if (item.LastChange == null) { item.LastChange = Note.LastChange; }
 
-                if (item.LastChange != DateTime.Now) item.LastChange = Note.LastChange;
+                if (item.LastChange != DateTime.Now) { item.LastChange = Note.LastChange; }
 
-                if (item.NoteCategoryId < 0) item.NoteCategoryId = Note.NoteCategoryId;
+                if (item.NoteCategoryId < 0) { item.NoteCategoryId = Note.NoteCategoryId; }
 
                 return item;
             }
