@@ -2,15 +2,14 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using TaskPlannerService.Bll.Services.Interfaces;
-using TaskPlannerService.Dal.Repositories.Interfaces;
 
-namespace TaskPlannerService.Bll.Services.Implementations
+namespace TaskPlannerService.PL.TaskCategories
 {
-    public class TaskCategoryService : ITaskCategoryService
+    public class TaskCategoryPresenter : ITaskCategoryPresenter
     {
-        private readonly ITaskCategoryRepository db;
+        private readonly ITaskCategoryService db;
 
-        public TaskCategoryService(ITaskCategoryRepository db)
+        public TaskCategoryPresenter(ITaskCategoryService db)
         {
             this.db = db;
         }
@@ -32,14 +31,7 @@ namespace TaskPlannerService.Bll.Services.Implementations
 
         public async Task<TaskCategory> GetItemByIdAsync(int id)
         {
-            TaskCategory taskCategory = await db.GetItemByIdAsync(id);
-
-            if (taskCategory == null)
-            {
-                return TaskPlannerServiceDefaultValues.DefaultTaskCategories.TaskCategory;
-            }
-
-            return taskCategory;
+            return await db.GetItemByIdAsync(id);
         }
 
         public async Task UpdateAsync(TaskCategory item)

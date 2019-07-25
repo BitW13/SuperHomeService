@@ -57,7 +57,7 @@ namespace NoteService.WebApi.Controllers
                 return Ok(card);
             }
 
-            card = await db.Cards.CreateAsync(NoteServiceDefaultValues.DefaultNote.VerificationAndCorrectioDataForCreating(mapper.Map<Note>(model)));
+            card = await db.Cards.CreateAsync(NoteServiceDefaultValues.DefaultNote.VerificationAndCorrectionDataForCreating(mapper.Map<Note>(model)));
 
             return Ok(card);
         }
@@ -75,7 +75,7 @@ namespace NoteService.WebApi.Controllers
                 return BadRequest();
             }
 
-            NoteCard card = await db.Cards.UpdateAsync(NoteServiceDefaultValues.DefaultNote.VerificationAndCorrectioDataForEdit(model));
+            NoteCard card = await db.Cards.UpdateAsync(NoteServiceDefaultValues.DefaultNote.VerificationAndCorrectionDataForEdit(model));
 
             return Ok(card);
         }

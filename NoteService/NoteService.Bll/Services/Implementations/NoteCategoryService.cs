@@ -1,5 +1,4 @@
 ﻿using Common.Entity.NoteService;
-using Common.Helpers;
 using NoteService.Bll.Services.Interfaces;
 using NotesService.Dal.Repositories.Interfaces;
 using System.Collections.Generic;
@@ -37,7 +36,7 @@ namespace NoteService.Bll.Services.Implementations
 
             if (noteCategory == null)
             {
-                return Constants.DefaultNoteCategories.NoteCategory;
+                return NoteServiceDefaultValues.DefaultNoteCategories.NoteCategory;
             }
 
             return noteCategory;

@@ -63,7 +63,7 @@
                 return item;
             }
 
-            public static ShoppingCategory VerificationAndCorrectionDataForEdit(ShoppingCategory item)
+            public static TypeOfPurchase VerificationAndCorrectionDataForEdit(TypeOfPurchase item)
             {
                 if (string.IsNullOrEmpty(item.Name)) { item.Name = TypeOfPurchase.Name; }
 

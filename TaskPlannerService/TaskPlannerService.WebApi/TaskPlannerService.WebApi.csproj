@@ -16,6 +16,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Common\Common.csproj" />
     <ProjectReference Include="..\TaskPlannerService.DI\TaskPlannerService.DI.csproj" />
+    <ProjectReference Include="..\TaskPlannerService.PL\TaskPlannerService.PL.csproj" />
   </ItemGroup>
 
 </Project>

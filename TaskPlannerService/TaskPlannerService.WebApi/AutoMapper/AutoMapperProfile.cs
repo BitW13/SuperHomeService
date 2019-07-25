@@ -10,12 +10,8 @@ namespace TaskPlannerService.WebApi.AutoMapper
         {
             CreateMap<TaskEntity, CreateTask>()
                 .ReverseMap();
-            CreateMap<TaskEntity, EditTask>()
-                .ReverseMap();
 
             CreateMap<TaskCategory, CreateTaskCategory>()
-                .ReverseMap();
-            CreateMap<TaskCategory, EditTaskCategory>()
                 .ReverseMap();
         }
     }

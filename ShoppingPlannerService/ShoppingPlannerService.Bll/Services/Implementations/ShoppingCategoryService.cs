@@ -1,5 +1,4 @@
 ﻿using Common.Entity.ShoppingPlannerService;
-using Common.Helpers;
 using ShoppingPlannerService.Bll.Services.Interfaces;
 using ShoppingPlannerService.Dal.Repositories.Interfaces;
 using System.Collections.Generic;
@@ -36,7 +35,7 @@ namespace ShoppingPlannerService.Bll.Services.Implementations
 
             if (shoppingCategory == null)
             {
-                return Constants.DefaultShoppingCategory.ShoppingCategory;
+                return ShoppingPlannerDefaultValues.DefaultShoppingCategory.ShoppingCategory;
             }
 
             return shoppingCategory;
