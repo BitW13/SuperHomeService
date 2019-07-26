@@ -3,6 +3,7 @@ import { TaskService } from '../services/task.service';
 import { TaskCategoryService } from '../services/task-category.service';
 import { Task } from '../models/task';
 import { TaskCategory } from '../models/taskCategory';
+import { TaskCard } from '../models/taskCard';
 
 @Component({
   selector: 'app-task',
@@ -11,9 +12,9 @@ import { TaskCategory } from '../models/taskCategory';
 })
 export class TaskComponent implements OnInit {
 
-  cards;
+  cards: TaskCard[];
 
-  categories;
+  categories: TaskCategory[];
 
   constructor(private taskService: TaskService, private categoryService: TaskCategoryService) { }
 
@@ -22,36 +23,36 @@ export class TaskComponent implements OnInit {
   }
 
   loadItems() {
-    this.getModels();
+    this.getCards();
     this.getCategories();
   }
 
   getCategories() {
 
-    this.categoryService.getItems().subscribe((data) => {
-      this.categories = data;
-    })
+    this.categoryService.getItems().subscribe(data => this.categories = data);
   }
 
-  getModels() {
-
-    this.taskService.getCards().subscribe((data) => {
-      this.cards = data;
-    });
+  getCards() {
+    this.taskService.getCards().subscribe(data => this.cards = data);
   }
 
   addTask() {
-
-    this.taskService.post(new Task()).subscribe((data) => {
-      this.loadItems();
-    });
+    this.taskService.post(new Task()).subscribe(data => this.cards.unshift(data));
   }
 
   addCategory() {
-    
-    this.categoryService.post(new TaskCategory()).subscribe((data) => {
-      this.loadItems();
+    this.categoryService.post(new TaskCategory()).subscribe((data) => this.categories.push(data));
+  }
+
+  deleteNote(item: TaskCard) {
+    this.taskService.delete(item.task).subscribe(data => {
+      this.getCards();
     });
   }
 
+  deleteCategory(item: TaskCategory) {
+    this.categoryService.delete(item).subscribe(data => {
+      this.loadItems();
+    });
+  }
 }
