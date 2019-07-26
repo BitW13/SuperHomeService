@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
 })
 export class TaskService {
 
-  private url ="https://localhost:44369/api/task/";
+  private url ="https://taskplannerservicewebapi.azurewebsites.net/api/task/";
 
   constructor(private http:HttpClient) { }
 
