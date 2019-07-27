@@ -21,6 +21,18 @@ namespace ShoppingPlannerService.PL.ShoppingCards
             return await GetItemByIdAsync(purchase.Id);
         }
 
+        public async Task DeleteAsync(int id)
+        {
+            Purchase task = await db.Purchases.GetItemByIdAsync(id);
+
+            if (task == null)
+            {
+                return;
+            }
+
+            await db.Purchases.DeleteAsync(id);
+        }
+
         public async Task<IEnumerable<ShoppingCard>> GetAllAsync()
         {
             IEnumerable<Purchase> purchases = await db.Purchases.GetAllAsync();

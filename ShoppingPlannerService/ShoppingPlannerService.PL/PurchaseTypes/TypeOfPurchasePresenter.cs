@@ -19,9 +19,9 @@ namespace ShoppingPlannerService.PL.PurchaseTypes
             return await db.CreateAsync(item);
         }
 
-        public async Task<TypeOfPurchase> DeleteAsync(int id)
+        public async Task DeleteAsync(int id)
         {
-            return await db.DeleteAsync(id);
+            await db.DeleteAsync(id);
         }
 
         public async Task<IEnumerable<TypeOfPurchase>> GetAllAsync()
@@ -34,9 +34,11 @@ namespace ShoppingPlannerService.PL.PurchaseTypes
             return await db.GetItemByIdAsync(id);
         }
 
-        public async Task UpdateAsync(TypeOfPurchase item)
+        public async Task<TypeOfPurchase> UpdateAsync(TypeOfPurchase item)
         {
             await db.UpdateAsync(item);
+
+            return item;
         }
     }
 }

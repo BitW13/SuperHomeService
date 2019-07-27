@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace NoteService.PL.Notes
 {
-    public interface INotePresenter : IPresenter<Note>
+    public interface INotePresenter : IPresenter<Note, Note>
     {
         Task<IEnumerable<Note>> GetByNoteCategoryIdAsync(int noteCategoryId);
     }

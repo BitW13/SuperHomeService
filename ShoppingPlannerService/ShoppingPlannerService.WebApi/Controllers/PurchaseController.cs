@@ -90,12 +90,7 @@ namespace ShoppingPlannerService.WebApi.Controllers
                 return BadRequest();
             }
 
-            Purchase purchase = await db.Purchases.DeleteAsync(id);
-
-            if (purchase == null)
-            {
-                return NotFound();
-            }
+            await db.Purchases.DeleteAsync(id);
 
             return Ok();
         }

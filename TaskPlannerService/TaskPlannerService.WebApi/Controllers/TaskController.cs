@@ -88,12 +88,7 @@ namespace TaskPlannerService.WebApi.Controllers
                 return BadRequest();
             }
 
-            TaskEntity task = await db.Tasks.DeleteAsync(id);
-
-            if (task == null)
-            {
-                return NotFound();
-            }
+            await db.Tasks.DeleteAsync(id);
 
             return Ok();
         }

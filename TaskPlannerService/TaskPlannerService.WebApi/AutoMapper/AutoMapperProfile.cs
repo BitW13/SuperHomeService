@@ -13,6 +13,9 @@ namespace TaskPlannerService.WebApi.AutoMapper
 
             CreateMap<TaskCategory, CreateTaskCategory>()
                 .ReverseMap();
+
+            CreateMap<Severity, CreateSeverity>()
+                .ReverseMap();
         }
     }
 }

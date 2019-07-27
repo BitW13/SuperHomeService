@@ -1,4 +1,5 @@
-﻿using TaskPlannerService.PL.TaskCards;
+﻿using TaskPlannerService.PL.Severities;
+using TaskPlannerService.PL.TaskCards;
 using TaskPlannerService.PL.TaskCategories;
 using TaskPlannerService.PL.Tasks;
 
@@ -11,5 +12,7 @@ namespace TaskPlannerService.PL
         ITaskPresenter Tasks { get; set; }
 
         ITaskCategoryPresenter TaskCategories { get; set; }
+
+        ISeverityPresenter Severities { get; set; }
     }
 }

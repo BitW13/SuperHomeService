@@ -1,20 +1,21 @@
 ﻿using Common.Entity.TaskPlannerService;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using TaskPlannerService.Bll.Services.Interfaces;
 
-namespace TaskPlannerService.PL.TaskCategories
+namespace TaskPlannerService.PL.Severities
 {
-    public class TaskCategoryPresenter : ITaskCategoryPresenter
+    public class SeverityPresenter : ISeverityPresenter
     {
-        private readonly ITaskCategoryService db;
+        private readonly ISeverityService db;
 
-        public TaskCategoryPresenter(ITaskCategoryService db)
+        public SeverityPresenter(ISeverityService db)
         {
             this.db = db;
         }
 
-        public async Task<TaskCategory> CreateAsync(TaskCategory item)
+        public async Task<Severity> CreateAsync(Severity item)
         {
             return await db.CreateAsync(item);
         }
@@ -24,17 +25,17 @@ namespace TaskPlannerService.PL.TaskCategories
             await db.DeleteAsync(id);
         }
 
-        public async Task<IEnumerable<TaskCategory>> GetAllAsync()
+        public async Task<IEnumerable<Severity>> GetAllAsync()
         {
             return await db.GetAllAsync();
         }
 
-        public async Task<TaskCategory> GetItemByIdAsync(int id)
+        public async Task<Severity> GetItemByIdAsync(int id)
         {
             return await db.GetItemByIdAsync(id);
         }
 
-        public async Task<TaskCategory> UpdateAsync(TaskCategory item)
+        public async Task<Severity> UpdateAsync(Severity item)
         {
             await db.UpdateAsync(item);
 

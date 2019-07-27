@@ -19,23 +19,26 @@ namespace TaskPlannerService.PL.Tasks
             return await db.CreateAsync(item);
         }
 
-        public async Task<TaskEntity> DeleteAsync(int id)
+        public async Task DeleteAsync(int id)
         {
             TaskEntity task = await db.GetItemByIdAsync(id);
 
             if (task == null)
             {
-                return null;
+                return;
             }
 
             await db.DeleteAsync(task.Id);
-
-            return task;
         }
 
         public async Task<IEnumerable<TaskEntity>> GetAllAsync()
         {
             return await db.GetAllAsync();
+        }
+
+        public async Task<IEnumerable<TaskEntity>> GetBySeverityIdAsync(int severityId)
+        {
+            return await db.GetBySeverityIdAsync(severityId);
         }
 
         public async Task<IEnumerable<TaskEntity>> GetByTaskCategoryIdAsync(int taskCategoryId)
@@ -48,9 +51,11 @@ namespace TaskPlannerService.PL.Tasks
             return await db.GetItemByIdAsync(id);
         }
 
-        public async Task UpdateAsync(TaskEntity item)
+        public async Task<TaskEntity> UpdateAsync(TaskEntity item)
         {
             await db.UpdateAsync(item);
+
+            return item;
         }
     }
 }

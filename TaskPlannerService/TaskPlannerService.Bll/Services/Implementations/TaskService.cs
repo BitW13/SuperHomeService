@@ -30,6 +30,11 @@ namespace TaskPlannerService.Bll.Services.Implementations
             return await db.GetAllAsync();
         }
 
+        public async Task<IEnumerable<TaskEntity>> GetBySeverityIdAsync(int severityId)
+        {
+            return await db.GetBySeverityIdAsync(severityId);
+        }
+
         public async Task<IEnumerable<TaskEntity>> GetByTaskCategoryIdAsync(int taskCategoryId)
         {
             return await db.GetByTaskCategoryIdAsync(taskCategoryId);

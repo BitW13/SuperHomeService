@@ -11,6 +11,7 @@ using TaskPlannerService.Dal.DataAccess.Interfaces;
 using TaskPlannerService.Dal.Repositories.Implementations;
 using TaskPlannerService.Dal.Repositories.Interfaces;
 using TaskPlannerService.PL;
+using TaskPlannerService.PL.Severities;
 using TaskPlannerService.PL.TaskCards;
 using TaskPlannerService.PL.TaskCategories;
 using TaskPlannerService.PL.Tasks;
@@ -24,6 +25,7 @@ namespace TaskPlannerService.DI
             services.AddTransient<IDataAccess, DataAccess>();
             services.AddTransient<ITaskRepository, TaskRepository>();
             services.AddTransient<ITaskCategoryRepository, TaskCategoryRepository>();
+            services.AddTransient<ISeverityRepository, SeverityRepository>();
 
             string connectionString = configuration.GetConnectionString("DefaultConnection");
 
@@ -33,11 +35,13 @@ namespace TaskPlannerService.DI
             services.AddTransient<IBusinessLogic, BusinessLogic>();
             services.AddTransient<ITaskService, TaskService>();
             services.AddTransient<ITaskCategoryService, TaskCategoryService>();
+            services.AddTransient<ISeverityService, SeverityService>();
 
             services.AddTransient<IPresenterLayer, PresenterLayer>();
             services.AddTransient<ITaskCardPresenter, TaskCardPresenter>();
             services.AddTransient<ITaskPresenter, TaskPresenter>();
             services.AddTransient<ITaskCategoryPresenter, TaskCategoryPresenter>();
+            services.AddTransient<ISeverityPresenter, SeverityPresenter>();
         }
     }
 }

@@ -8,5 +8,7 @@ namespace TaskPlannerService.Dal.Repositories.Interfaces
     public interface ITaskRepository : IRepository<TaskEntity>
     {
         Task<IEnumerable<TaskEntity>> GetByTaskCategoryIdAsync(int taskCategoryId);
+
+        Task<IEnumerable<TaskEntity>> GetBySeverityIdAsync(int severityId);
     }
 }

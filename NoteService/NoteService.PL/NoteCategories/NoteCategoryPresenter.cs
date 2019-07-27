@@ -20,9 +20,9 @@ namespace NoteService.PL.NoteCategories
             return await db.CreateAsync(item);
         }
 
-        public async Task<NoteCategory> DeleteAsync(int id)
+        public async Task DeleteAsync(int id)
         {
-            return await db.DeleteAsync(id);
+            await db.DeleteAsync(id);
         }
 
         public async Task<IEnumerable<NoteCategory>> GetAllAsync()
@@ -35,9 +35,11 @@ namespace NoteService.PL.NoteCategories
             return await db.GetItemByIdAsync(id);
         }
 
-        public async Task UpdateAsync(NoteCategory item)
+        public async Task<NoteCategory> UpdateAsync(NoteCategory item)
         {
             await db.UpdateAsync(item);
+
+            return item;
         }
     }
 }

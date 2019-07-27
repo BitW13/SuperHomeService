@@ -1,17 +1,9 @@
 ﻿using Common.Entity.NoteService;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+using Common.Patterns.Repository;
 
 namespace NoteService.PL.NoteCards
 {
-    public interface INoteCardPresenter
+    public interface INoteCardPresenter : IPresenter<Note, NoteCard>
     {
-        Task<IEnumerable<NoteCard>> GetAllAsync();
-
-        Task<NoteCard> GetItemByIdAsync(int id);
-
-        Task<NoteCard> CreateAsync(Note item);
-
-        Task<NoteCard> UpdateAsync(Note item);
     }
 }
