@@ -11,6 +11,7 @@ using TaskPlannerService.Dal.DataAccess.Interfaces;
 using TaskPlannerService.Dal.Repositories.Implementations;
 using TaskPlannerService.Dal.Repositories.Interfaces;
 using TaskPlannerService.PL;
+using TaskPlannerService.PL.Severities;
 using TaskPlannerService.PL.TaskCards;
 using TaskPlannerService.PL.TaskCategories;
 using TaskPlannerService.PL.Tasks;
@@ -40,6 +41,7 @@ namespace TaskPlannerService.DI
             services.AddTransient<ITaskCardPresenter, TaskCardPresenter>();
             services.AddTransient<ITaskPresenter, TaskPresenter>();
             services.AddTransient<ITaskCategoryPresenter, TaskCategoryPresenter>();
+            services.AddTransient<ISeverityPresenter, SeverityPresenter>();
         }
     }
 }
