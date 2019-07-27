@@ -55,7 +55,7 @@
                     return new TaskEntity
                     {
                         Id = 0,
-                        Name = "",
+                        Name = "Задача",
                         Description = "",
                         TaskCategoryId = 0,
                         PlannerDateId = 0,

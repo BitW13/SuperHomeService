@@ -10,7 +10,7 @@
                 <mat-divider></mat-divider>
             </div>
             <div *ngFor='let category of categories'>
-                
+                <app-task-category-item [(category)]='category' (getCategories)='getCategories()'></app-task-category-item>
             </div>
 
         </mat-drawer>
@@ -25,7 +25,9 @@
                     Итого: Когда-нибудь...
                 </div>
                 <div *ngFor='let card of cards'>
-                    
+                    <app-task-item
+                    [(card)]='card' [(categories)]='categories'
+                    (getModels)='getModels()'></app-task-item>
                 </div>                
             </mat-accordion>
 

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { TaskCategory } from '../models/taskCategory';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -12,23 +13,23 @@ export class TaskCategoryService {
 
   constructor(private http: HttpClient) { }
 
-  getItems() {
-    return this.http.get<{data: TaskCategory[]}>(this.url)
-      .pipe(map(res => res));
+  getItems(): Observable<TaskCategory[]> {
+    return this.http.get<TaskCategory[]>(this.url);
   }
 
-  post(item: TaskCategory) {
-    return this.http.post<{data: TaskCategory}>(this.url, item)
-      .pipe(map(res => res));
+  getItem(item: TaskCategory): Observable<TaskCategory>  {
+    return this.http.get<TaskCategory>(this.url + item.id);
   }
 
-  put(item: TaskCategory) {
-    return this.http.put<{data: TaskCategory}>(this.url + item.id, item)
-      .pipe(map(res => res));
+  post(item: TaskCategory): Observable<TaskCategory> {
+    return this.http.post<TaskCategory>(this.url, item);
   }
 
-  delete(item: TaskCategory) {
-    return this.http.delete<{data: TaskCategory}>(this.url + item.id)
-      .pipe(map(res => res));
+  put(item: TaskCategory): Observable<TaskCategory> {
+    return this.http.put<TaskCategory>(this.url + item.id, item);
+  }
+
+  delete(item: TaskCategory): Observable<TaskCategory> {
+    return this.http.delete<TaskCategory>(this.url + item.id);
   }
 }

@@ -9,45 +9,41 @@ import { TaskCategoryService } from '../services/task-category.service';
 })
 export class TaskCategoryItemComponent implements OnInit {
 
+  panelOpenState = false;
+
   @Input() category: TaskCategory;
 
-  @Output() loadItems = new EventEmitter();
-
-  isEditItem: boolean = false;
+  @Output() getCategories = new EventEmitter();
 
   saveItemValue: TaskCategory;
 
   constructor(private categoryService: TaskCategoryService) { }
 
   ngOnInit() {
-  }
-
-  switchingIsEditItem() {
-    this.isEditItem = !this.isEditItem;
+    this.saveItemValue = this.getCopy(this.category)
   }
 
   edit() {
-    this.switchingIsEditItem();
-    this.saveItemValue = this.getCopy(this.category);
+    this.saveItemValue = this.getCopy(this.category)
   }
 
   save() {
-    this.saveItemValue = null;
-    this.switchingIsEditItem();
+    this.saveItemValue = this.getCopy(this.category)
+
     this.categoryService.put(this.category).subscribe((data) => {
-      this.loadItems.emit();
+      this.getCategories.emit();
     });
   }
 
   cancel() {
     this.category = this.getCopy(this.saveItemValue);
+
     this.saveItemValue = null;
-    this.switchingIsEditItem();
   }
 
   delete() {
     this.categoryService.delete(this.category).subscribe((data) => {
-      this.loadItems.emit();
+      this.getCategories.emit();
     });
   }
 

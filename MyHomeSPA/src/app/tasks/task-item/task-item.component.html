@@ -1,53 +1,45 @@
-<td *ngIf='!isEditItem'>
-    <label class="label-cbx">
-        <input type="checkbox" class="invisible">
-        <div class="checkbox">
-            <svg width="30px" height="30px" viewBox="0 0 24 24">
-            <path d="M3,1 L17,1 L17,1 C18.1045695,1 19,1.8954305 19,3 L19,17 L19,17 C19,18.1045695 18.1045695,19 17,19 L3,19 L3,19 C1.8954305,19 1,18.1045695 1,17 L1,3 L1,3 C1,1.8954305 1.8954305,1 3,1 Z"></path>
-            <polyline points="4 11 8 15 16 6"></polyline>
-            </svg>
-        </div>            
-    </label>
-</td>
-<td *ngIf='isEditItem'>
-    <div class="btn-group" role="group" aria-label="Basic example">
-        <button (click)='delete()' type="button" class="btn btn-secondary">Удалить</button>
-        <button (click)='save()' type="button" class="btn btn-secondary">Сохранить</button>
-        <button (click)='cancel()' type="button" class="btn btn-secondary">Отменить</button>
-    </div>
-</td>
+<mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+    
+    <mat-expansion-panel-header>
+        <mat-panel-title>
+            <h6>{{card.task.name}}</h6>     
+            <div [style.backgroundColor]="card.taskCategory.color" style='width:20px; height:20px; border-radius: 10px;'></div>       
+        </mat-panel-title>
+        <mat-panel-description>
+            {{panelOpenState ? 'Свернуть' : 'Развернуть'}}
+        </mat-panel-description>
+    </mat-expansion-panel-header>
 
-<td *ngIf='!isEditItem' (click)='edit()'>
-    <p>{{taskCard.task.name}}</p>    
-</td>
-<td *ngIf='isEditItem'>
-    <input type="text" [(ngModel)]='taskCard.task.name'>
-</td>
+    <form class="form">
+        <mat-form-field class="full-width">
+            <input matInput placeholder="Название" [(ngModel)]='card.task.name' [ngModelOptions]="{standalone: true}">
+        </mat-form-field>        
+        <mat-form-field class="full-width">
+            <textarea matInput placeholder="Описание" rows='3' [(ngModel)]='card.task.description' [ngModelOptions]="{standalone: true}"></textarea>
+        </mat-form-field>
+    </form>
+    
+    <p>
+        <mat-form-field>
+            <mat-label>Категория покупки</mat-label>
+            <mat-select 
+                [(ngModel)]='card.task.taskCategoryId' 
+                [ngModelOptions]="{standalone: true}"
+                [(value)]='card.task.taskCategoryId'>
+                <mat-option [value]="0">
+                    Без категории
+                </mat-option>
+                <mat-option *ngFor="let category of categories" [value]='category.id'>
+                    {{category.name}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>          
+    </p> 
 
-<td *ngIf='!isEditItem' (click)='edit()'>
-    {{taskCard.taskCategory.name}}
-</td>
-<td *ngIf='isEditItem'>
-    <select [(ngModel)]='taskCard.task.taskCategoryId' [ngModelOptions]="{standalone: true}" [(value)]='taskCard.task.taskCategoryId'>
-        <option value="0">
-            Без категории
-        </option>
-        <option *ngFor='let category of categories' value="{{category.id}}">
-            {{category.name}}
-        </option>
-    </select>
-</td>
+    <mat-action-row>
+        <button mat-button color="primary" (click)='save()'>Сохранить</button>
+        <button mat-button color="accent" (click)='cancel()'>Отменить</button>
+        <button mat-button color="warn" (click)='delete()'>Удалить</button>
+    </mat-action-row>
 
-<td *ngIf='!isEditItem' (click)='edit()'>
-    <p>{{taskCard.task.description}}</p>
-</td>
-<td *ngIf='isEditItem'>
-    <textarea type="text" [(ngModel)]='taskCard.task.description' rows="3"></textarea>
-</td>
-
-<td *ngIf='!isEditItem' (click)='edit()'>
-    date
-</td>
-<td *ngIf='isEditItem'>
-    <input type="date">
-</td>
+</mat-expansion-panel>

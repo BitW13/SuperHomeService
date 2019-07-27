@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { TaskCard } from '../models/taskCard';
 import { Task } from '../models/task';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -13,28 +14,23 @@ export class TaskService {
 
   constructor(private http:HttpClient) { }
 
-  getCards() {
-    return this.http.get<{data: TaskCard[]}>(this.url)
-      .pipe(map(res=> res));
+  getCards(): Observable<TaskCard[]> {
+    return this.http.get<TaskCard[]>(this.url);
   }
 
-  getCard() {
-    return this.http.get<{data: TaskCard}>(this.url)
-      .pipe(map(res=> res));
+  getCard(item: TaskCard): Observable<TaskCard>  {
+    return this.http.get<TaskCard>(this.url + item.task.id);
   }
 
-  post(item: Task) {
-    return this.http.post<{data: Task}>(this.url, item)
-      .pipe(map(res=> res));
+  post(item: Task): Observable<TaskCard> {
+    return this.http.post<TaskCard>(this.url, item);
   }
 
-  put(item: Task) {
-    return this.http.put<{data: Task}>(this.url + item.id, item)
-      .pipe(map(res=> res));
+  put(item: Task): Observable<TaskCard> {
+    return this.http.put<TaskCard>(this.url + item.id, item);
   }
 
-  delete(item: Task) {
-    return this.http.delete<{data: Task}>(this.url + item.id)
-      .pipe(map(res=> res));
+  delete(item: Task): Observable<TaskCard> {
+    return this.http.delete<TaskCard>(this.url + item.id);
   }
 }

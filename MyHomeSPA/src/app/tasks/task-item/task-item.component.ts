@@ -5,53 +5,46 @@ import { TaskCategory } from '../models/taskCategory';
 import { Task } from '../models/task';
 
 @Component({
-  selector: 'tr[app-task-item]',
+  selector: 'app-task-item',
   templateUrl: './task-item.component.html',
   styleUrls: ['./task-item.component.scss']
 })
 export class TaskItemComponent implements OnInit {
+  
+  panelOpenState: boolean = false;
 
-  @Input() taskCard: TaskCard;
+  @Input() card: TaskCard;
 
   @Input() categories: TaskCategory[];
 
-  @Output() loadItems = new EventEmitter();
+  @Output() getModels = new EventEmitter();  
 
   saveItemValue: Task;
 
-  isEditItem: boolean = false;
-
   constructor(private taskService: TaskService) { }
 
-  switchingIsEditItem() {
-    this.isEditItem = !this.isEditItem;
-  }
-
   ngOnInit() {
+    this.saveItemValue = this.getCopy(this.card.task);
   }
 
   edit() {
-    this.switchingIsEditItem();
-    this.saveItemValue = this.getCopy(this.taskCard.task);
+    this.saveItemValue = this.getCopy(this.card.task);
   }
 
   save() {    
     this.saveItemValue = null;
-    this.switchingIsEditItem();
-    this.taskService.put(this.taskCard.task).subscribe((data) => {
-      this.loadItems.emit();
-    });
+    this.taskService.put(this.card.task).subscribe((data) => { });
   }
 
   cancel() {
-    this.taskCard.task = this.getCopy(this.saveItemValue);
+    this.card.task = this.getCopy(this.saveItemValue);
+    
     this.saveItemValue = null;
-    this.switchingIsEditItem();
   }
 
   delete() {
-    this.taskService.delete(this.taskCard.task).subscribe((data) => {
-      this.loadItems.emit();
+    this.taskService.delete(this.card.task).subscribe((data) => {
+      this.getModels.emit();
     });
   }
 
