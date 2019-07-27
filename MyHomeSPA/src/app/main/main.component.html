@@ -1,0 +1,28 @@
+<div class='mainPage'>
+    <div class='field'>    
+      <div class="auth-container">  
+  
+        <mat-form-field>
+          <mat-label>Enter your email</mat-label>
+          <input [(ngModel)]="email" matInput placeholder="Enter your email" [type]="'email'">
+          <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+          <mat-hint>Enter your email</mat-hint>
+        </mat-form-field>
+  
+        <mat-form-field>
+          <mat-label>Enter your password</mat-label>
+          <input [(ngModel)]="password" matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'">
+          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+          <mat-hint>Enter your password</mat-hint>
+        </mat-form-field>
+  
+        <p>
+          <button mat-button (click)='register()'>Регистарция</button>
+          <button mat-button (click)='login()'>Вход</button>
+        </p>
+        
+      </div>
+    </div>
+  </div>

@@ -22,6 +22,7 @@ import { ShoppingTypeItemComponent } from './shoppingPlanners/shopping-type-item
 import { PurchaseService } from './shoppingPlanners/services/purchase.service';
 import { ShoppingCategoryService } from './shoppingPlanners/services/shopping-category.service';
 import { TypeOfPurchaseService } from './shoppingPlanners/services/type-of-purchase.service';
+//Туть
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatButtonModule} from '@angular/material/button';
 import {MatMenuModule} from '@angular/material/menu';
@@ -35,8 +36,13 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatSelectModule} from '@angular/material/select';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
-import {MatExpansionModule} from '@angular/material/expansion';
+import {MatExpansionModule} from '@angular/material/expansion'; 
+//До туть
+import { BoardComponent } from './board/board.component';
+import { JwtModule } from '@auth0/angular-jwt';
+import { JwtService } from './main/auth/jwt.service';
 import { PageComponent } from './page/page.component';
+import { MainComponent } from './main/main.component';
 
 @NgModule({
   declarations: [
@@ -53,13 +59,16 @@ import { PageComponent } from './page/page.component';
     ShoppingPlannerItemComponent,
     ShoppingCategoryItemComponent,
     ShoppingTypeItemComponent,
-    PageComponent
+    BoardComponent,
+    PageComponent,
+    MainComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    //Туть
     BrowserAnimationsModule, 
     MatButtonModule,
     MatMenuModule,
@@ -73,14 +82,25 @@ import { PageComponent } from './page/page.component';
     MatSelectModule,
     MatCheckboxModule,
     MatSlideToggleModule,
-    MatExpansionModule
+    MatExpansionModule,
+    //До туть
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: function  tokenGetter() { //Эта функция используется для настройки способа JwtModuleполучения токена доступа JWT из локального хранилища.
+             return     localStorage.getItem('access_token');}
+        //whitelistedDomains: ['localhost:3000'] В этом массиве мы можем добавить любые домены, которым разрешено получать JWT, такие как публичные API.
+        //blacklistedRoutes: ['http://localhost:3000/auth/login'] В этом массиве мы можем добавить маршруты, которым не разрешено получать токен JWT.
+      }
+    })
   ],
   providers: [
+    JwtService,
     NoteService, 
     NoteCategoryService, 
     PurchaseService, 
     ShoppingCategoryService, 
-    TypeOfPurchaseService],
+    TypeOfPurchaseService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

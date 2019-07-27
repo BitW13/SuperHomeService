@@ -1,8 +1,42 @@
-<mat-grid-list cols="5">
-  <mat-grid-tile class="newpage"
-    [colspan]="1" [rowspan]="1">Создать группу</mat-grid-tile>
-  <mat-grid-tile class="page" *ngFor='let page of pages'
-    [colspan]="1" [rowspan]="1"
-    [style.background]="'url(page.imagePath)'">
-  </mat-grid-tile>
-</mat-grid-list>
+<div class='page'>
+
+    <mat-toolbar>
+    
+        <button type="button"  mat-button (click)="drawer.toggle()">
+            <span class="label">Список досок</span>
+        </button>
+    
+        <button mat-button routerLink='/'>Главная</button>
+        <button class='login' mat-button routerLink='/' mat-button>
+            <p>
+                <img class='icon' src='https://image.flaticon.com/icons/svg/149/149071.svg'/>
+            </p>
+        </button>
+        <button mat-button (click)='logOut()'>
+            <span class="label">Выход</span>
+        </button>
+    
+    </mat-toolbar> 
+    
+    <mat-drawer-container>  
+        
+        <mat-drawer #drawer mode="side">
+        <mat-list>
+            <mat-list-item routerLink='/board/notes'>Личное</mat-list-item>
+            <mat-list-item>Семья</mat-list-item>
+            <mat-list-item>Дачка</mat-list-item>
+        </mat-list>
+        </mat-drawer>
+    
+        <mat-drawer-content>
+            <mat-grid-list cols="3" rowHeight="2:1">
+                <mat-grid-tile>Что-нибудь важное</mat-grid-tile>
+                <mat-grid-tile>Что-нибудь важное</mat-grid-tile>
+                <mat-grid-tile>Что-нибудь важное</mat-grid-tile>
+                <mat-grid-tile>Что-нибудь важное</mat-grid-tile>
+            </mat-grid-list>
+        </mat-drawer-content>
+        
+    </mat-drawer-container>
+    
+</div>
