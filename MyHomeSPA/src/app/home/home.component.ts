@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Page } from './page';
+import { JwtService } from '../main/auth/jwt.service';
 
 @Component({
   selector: 'app-home',
@@ -8,14 +8,12 @@ import { Page } from './page';
 })
 export class HomeComponent implements OnInit {
 
-  pages = [
-
-    new Page()
-  ]
-
-  constructor() { }
+  constructor(private service: JwtService) { }
 
   ngOnInit() {
   }
 
+  logOut(){
+    this.service.logOut();
+  }
 }

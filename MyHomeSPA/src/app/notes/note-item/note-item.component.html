@@ -1,14 +1,17 @@
 <div *ngIf='!isEditNote; else editTemplate'>
     <mat-card class="card" style="width: 18rem;">
         <mat-card-header>
+
             <div mat-card-avatar class="header" [style.backgroundColor]="card.noteCategory.color"></div>
 
             <div *ngIf='card.note.noteCategoryId != 0; else defaultCategory'>
-                <mat-card-subtitle><h6>Категория:</h6>{{card.noteCategory.name}}</mat-card-subtitle>
+                <mat-card-subtitle><h6>{{card.noteCategory.name}}</h6></mat-card-subtitle>
             </div>
+
             <ng-template #defaultCategory>
-                <mat-card-subtitle><h6>Категория:</h6>Без категории</mat-card-subtitle>
-            </ng-template>                        
+                <mat-card-subtitle><h6>Без категории</h6></mat-card-subtitle>
+            </ng-template>  
+
         </mat-card-header>
 
         <mat-card-content>
