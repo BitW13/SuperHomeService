@@ -7,5 +7,7 @@ namespace TaskPlannerService.Bll.BusinessLogic.Interfaces
         ITaskService Tasks { get; set; }
 
         ITaskCategoryService TaskCategories { get; set; }
+
+        ISeverityService Severities { get; set; }
     }
 }

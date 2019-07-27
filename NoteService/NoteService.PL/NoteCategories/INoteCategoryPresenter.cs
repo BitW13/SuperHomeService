@@ -3,7 +3,7 @@ using Common.Patterns.Repository;
 
 namespace NoteService.PL.NoteCategories
 {
-    public interface INoteCategoryPresenter : IPresenter<NoteCategory>
+    public interface INoteCategoryPresenter : IPresenter<NoteCategory, NoteCategory>
     {
     }
 }

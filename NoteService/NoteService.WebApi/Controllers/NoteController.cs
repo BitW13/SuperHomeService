@@ -88,12 +88,7 @@ namespace NoteService.WebApi.Controllers
                 return BadRequest();
             }
 
-            Note note = await db.Notes.DeleteAsync(id);
-
-            if(note == null)
-            {
-                return NotFound();
-            }
+            await db.Notes.DeleteAsync(id);
 
             return Ok();
         }

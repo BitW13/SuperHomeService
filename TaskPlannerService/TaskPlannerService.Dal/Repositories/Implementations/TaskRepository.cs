@@ -50,6 +50,13 @@ namespace TaskPlannerService.Dal.Repositories.Implementations
             return await db.Tasks.ToListAsync();
         }
 
+        public async Task<IEnumerable<TaskEntity>> GetBySeverityIdAsync(int severityId)
+        {
+            var notes = (await GetAllAsync()) as List<TaskEntity>;
+
+            return notes.FindAll(note => note.SeverityId == severityId);
+        }
+
         public async Task<IEnumerable<TaskEntity>> GetByTaskCategoryIdAsync(int taskCategoryId)
         {
             var notes = (await GetAllAsync()) as List<TaskEntity>;

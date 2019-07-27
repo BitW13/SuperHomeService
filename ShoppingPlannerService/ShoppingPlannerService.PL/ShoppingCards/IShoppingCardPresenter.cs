@@ -1,17 +1,9 @@
 ﻿using Common.Entity.ShoppingPlannerService;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+using Common.Patterns.Repository;
 
 namespace ShoppingPlannerService.PL.ShoppingCards
 {
-    public interface IShoppingCardPresenter
+    public interface IShoppingCardPresenter : IPresenter<Purchase, ShoppingCard>
     {
-        Task<IEnumerable<ShoppingCard>> GetAllAsync();
-
-        Task<ShoppingCard> GetItemByIdAsync(int id);
-
-        Task<ShoppingCard> CreateAsync(Purchase item);
-
-        Task<ShoppingCard> UpdateAsync(Purchase item);
     }
 }

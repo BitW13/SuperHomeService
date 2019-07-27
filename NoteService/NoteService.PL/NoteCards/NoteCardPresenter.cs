@@ -21,6 +21,18 @@ namespace NoteService.PL.NoteCards
             return await GetItemByIdAsync(note.Id);
         }
 
+        public async Task DeleteAsync(int id)
+        {
+            Note note = await db.Notes.GetItemByIdAsync(id);
+
+            if (note == null)
+            {
+                return;
+            }
+
+            await db.Notes.DeleteAsync(id);
+        }
+
         public async Task<IEnumerable<NoteCard>> GetAllAsync()
         {
             IEnumerable<Note> notes = await db.Sort.GetItemsByLastChangedAsync();

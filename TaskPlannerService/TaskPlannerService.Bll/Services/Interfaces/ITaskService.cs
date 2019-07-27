@@ -8,5 +8,7 @@ namespace TaskPlannerService.Bll.Services.Interfaces
     public interface ITaskService : IService<TaskEntity>
     {
         Task<IEnumerable<TaskEntity>> GetByTaskCategoryIdAsync(int taskCategoryId);
+
+        Task<IEnumerable<TaskEntity>> GetBySeverityIdAsync(int severityId);
     }
 }

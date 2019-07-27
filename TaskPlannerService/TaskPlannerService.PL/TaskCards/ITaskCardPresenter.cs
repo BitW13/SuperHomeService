@@ -1,17 +1,10 @@
 ﻿using Common.Entity.TaskPlannerService;
-using System.Collections.Generic;
+using Common.Patterns.Repository;
 using System.Threading.Tasks;
 
 namespace TaskPlannerService.PL.TaskCards
 {
-    public interface ITaskCardPresenter
+    public interface ITaskCardPresenter : IPresenter<TaskEntity, TaskCard>
     {
-        Task<IEnumerable<TaskCard>> GetAllAsync();
-
-        Task<TaskCard> GetItemByIdAsync(int id);
-
-        Task<TaskCard> CreateAsync(TaskEntity item);
-
-        Task<TaskCard> UpdateAsync(TaskEntity item);
     }
 }

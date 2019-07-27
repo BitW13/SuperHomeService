@@ -59,6 +59,7 @@
                         Description = "",
                         TaskCategoryId = 0,
                         PlannerDateId = 0,
+                        SeverityId = 0,
                         IsDone = false
                     };
                 }
@@ -72,6 +73,8 @@
 
                 if (item.TaskCategoryId < 0) { item.TaskCategoryId = Task.TaskCategoryId; }
 
+                if (item.SeverityId < 0) { item.SeverityId = Task.SeverityId; }
+
                 return item;
             }
 
@@ -80,6 +83,39 @@
                 if (item.TaskCategoryId < 0) { item.TaskCategoryId = Task.TaskCategoryId; }
 
                 if (item.PlannerDateId < 0) { item.PlannerDateId = Task.PlannerDateId; }
+
+                if (item.SeverityId < 0) { item.SeverityId = Task.SeverityId; }
+
+                return item;
+            }
+        }
+
+        public static class DefaultSeverity
+        {
+            public static Severity Severity
+            {
+                get
+                {
+                    return new Severity
+                    {
+                        Id = 0,
+                        Name = "Средняя"
+                    };
+                }
+            }
+
+            public static Severity VerificationAndCorrectionDataForCreating(Severity item)
+            {
+                if (item.Id != 0) { item.Id = Severity.Id; }
+
+                if (string.IsNullOrEmpty(item.Name)) { item.Name = Severity.Name; }
+
+                return item;
+            }
+
+            public static Severity VerificationAndCorrectionDataForEdit(Severity item)
+            {
+                if (string.IsNullOrEmpty(item.Name)) { item.Name = Severity.Name; }
 
                 return item;
             }

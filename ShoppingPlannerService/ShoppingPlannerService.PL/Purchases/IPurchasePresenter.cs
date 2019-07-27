@@ -1,13 +1,11 @@
 ﻿using Common.Entity.ShoppingPlannerService;
 using Common.Patterns.Repository;
-using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace ShoppingPlannerService.PL.Purchases
 {
-    public interface IPurchasePresenter: IPresenter<Purchase>
+    public interface IPurchasePresenter : IPresenter<Purchase, Purchase>
     {
         Task<IEnumerable<Purchase>> GetByShoppingCategoryIdAsync(int shoppingCategoryId);
 

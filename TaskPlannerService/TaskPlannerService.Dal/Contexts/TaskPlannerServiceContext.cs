@@ -14,5 +14,7 @@ namespace TaskPlannerService.Dal.Contexts
         public DbSet<TaskEntity> Tasks { get; set; }
 
         public DbSet<TaskCategory> TaskCategories { get; set; }
+
+        public DbSet<Severity> Severities { get; set; }
     }
 }

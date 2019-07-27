@@ -20,18 +20,16 @@ namespace NoteService.PL.Notes
             return await db.CreateAsync(item);
         }
 
-        public async Task<Note> DeleteAsync(int id)
+        public async Task DeleteAsync(int id)
         {
             Note note = await db.GetItemByIdAsync(id);
 
             if (note == null)
             {
-                return null;
+                return;
             }
 
             await db.DeleteAsync(note.Id);
-
-            return note;
         }
 
         public async Task<IEnumerable<Note>> GetAllAsync()
@@ -49,9 +47,11 @@ namespace NoteService.PL.Notes
             return await db.GetItemByIdAsync(id);
         }
 
-        public async Task UpdateAsync(Note item)
+        public async Task<Note> UpdateAsync(Note item)
         {
             await db.UpdateAsync(item);
+
+            return item;
         }
     }
 }

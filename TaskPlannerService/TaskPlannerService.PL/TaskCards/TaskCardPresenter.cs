@@ -21,6 +21,18 @@ namespace TaskPlannerService.PL.TaskCards
             return await GetItemByIdAsync(task.Id);
         }
 
+        public async Task DeleteAsync(int id)
+        {
+            TaskEntity task = await db.Tasks.GetItemByIdAsync(id);
+
+            if (task == null)
+            {
+                return;
+            }
+
+            await db.Tasks.DeleteAsync(id);
+        }
+
         public async Task<IEnumerable<TaskCard>> GetAllAsync()
         {
             IEnumerable<TaskEntity> tasks = await db.Tasks.GetAllAsync();
@@ -31,7 +43,9 @@ namespace TaskPlannerService.PL.TaskCards
             {
                 TaskCategory category = await db.TaskCategories.GetItemByIdAsync(task.TaskCategoryId);
 
-                cards.Add(new TaskCard { Task = task, TaskCategory = category });
+                Severity severity = await db.Severities.GetItemByIdAsync(task.SeverityId);
+
+                cards.Add(new TaskCard { Task = task, TaskCategory = category, Severity = severity });
             }
 
             return cards;
@@ -47,6 +61,7 @@ namespace TaskPlannerService.PL.TaskCards
             }
 
             TaskCategory category = await db.TaskCategories.GetItemByIdAsync(task.TaskCategoryId);
+            Severity severity = await db.Severities.GetItemByIdAsync(task.SeverityId);
 
             TaskCard card = new TaskCard
             {

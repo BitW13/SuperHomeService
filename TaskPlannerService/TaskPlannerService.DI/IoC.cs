@@ -24,6 +24,7 @@ namespace TaskPlannerService.DI
             services.AddTransient<IDataAccess, DataAccess>();
             services.AddTransient<ITaskRepository, TaskRepository>();
             services.AddTransient<ITaskCategoryRepository, TaskCategoryRepository>();
+            services.AddTransient<ISeverityRepository, SeverityRepository>();
 
             string connectionString = configuration.GetConnectionString("DefaultConnection");
 
@@ -33,6 +34,7 @@ namespace TaskPlannerService.DI
             services.AddTransient<IBusinessLogic, BusinessLogic>();
             services.AddTransient<ITaskService, TaskService>();
             services.AddTransient<ITaskCategoryService, TaskCategoryService>();
+            services.AddTransient<ISeverityService, SeverityService>();
 
             services.AddTransient<IPresenterLayer, PresenterLayer>();
             services.AddTransient<ITaskCardPresenter, TaskCardPresenter>();

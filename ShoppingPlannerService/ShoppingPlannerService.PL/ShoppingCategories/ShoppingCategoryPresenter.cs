@@ -21,9 +21,9 @@ namespace ShoppingPlannerService.PL.ShoppingCategories
             return await db.CreateAsync(item);
         }
 
-        public async Task<ShoppingCategory> DeleteAsync(int id)
+        public async Task DeleteAsync(int id)
         {
-            return await db.DeleteAsync(id);
+            await db.DeleteAsync(id);
         }
 
         public async Task<IEnumerable<ShoppingCategory>> GetAllAsync()
@@ -36,9 +36,11 @@ namespace ShoppingPlannerService.PL.ShoppingCategories
             return await db.GetItemByIdAsync(id);
         }
 
-        public async Task UpdateAsync(ShoppingCategory item)
+        public async Task<ShoppingCategory> UpdateAsync(ShoppingCategory item)
         {
             await db.UpdateAsync(item);
+
+            return item;
         }
     }
 }

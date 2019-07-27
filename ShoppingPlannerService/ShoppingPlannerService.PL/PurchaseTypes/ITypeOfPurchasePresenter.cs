@@ -3,7 +3,7 @@ using Common.Patterns.Repository;
 
 namespace ShoppingPlannerService.PL.PurchaseTypes
 {
-    public interface ITypeOfPurchasePresenter : IPresenter<TypeOfPurchase>
+    public interface ITypeOfPurchasePresenter : IPresenter<TypeOfPurchase, TypeOfPurchase>
     {
     }
 }

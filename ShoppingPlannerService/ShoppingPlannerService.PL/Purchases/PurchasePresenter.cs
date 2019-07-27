@@ -19,9 +19,9 @@ namespace ShoppingPlannerService.PL.Purchases
             return await db.CreateAsync(item);
         }
 
-        public async Task<Purchase> DeleteAsync(int id)
+        public async Task DeleteAsync(int id)
         {
-            return await db.DeleteAsync(id);
+            await db.DeleteAsync(id);
         }
 
         public async Task<IEnumerable<Purchase>> GetAllAsync()
@@ -44,9 +44,11 @@ namespace ShoppingPlannerService.PL.Purchases
             return await db.GetItemByIdAsync(id);
         }
 
-        public async Task UpdateAsync(Purchase item)
+        public async Task<Purchase> UpdateAsync(Purchase item)
         {
             await db.UpdateAsync(item);
+
+            return item;
         }
     }
 }

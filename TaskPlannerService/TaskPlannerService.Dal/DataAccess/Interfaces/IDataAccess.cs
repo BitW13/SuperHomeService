@@ -7,5 +7,7 @@ namespace TaskPlannerService.Dal.DataAccess.Interfaces
         ITaskRepository Tasks { get; set; }
 
         ITaskCategoryRepository TaskCategories { get; set; }
+
+        ISeverityRepository Severities { get; set; }
     }
 }

@@ -3,16 +3,16 @@ using System.Threading.Tasks;
 
 namespace Common.Patterns.Repository
 {
-    public interface IPresenter<T>
+    public interface IPresenter<Input, Output>
     {
-        Task<IEnumerable<T>> GetAllAsync();
+        Task<IEnumerable<Output>> GetAllAsync();
 
-        Task<T> GetItemByIdAsync(int id);
+        Task<Output> GetItemByIdAsync(int id);
 
-        Task<T> CreateAsync(T item);
+        Task<Output> CreateAsync(Input item);
 
-        Task UpdateAsync(T item);
+        Task<Output> UpdateAsync(Input item);
 
-        Task<T> DeleteAsync(int id);
+        Task DeleteAsync(int id);
     }
 }
